@@ -1,0 +1,48 @@
+{
+ "title": "MEDICENTER Farmacia Narni Via dei Priori",
+ "shortTitle": "MEDICENTER Farmacia Narni Via dei Priori",
+ "lead": "Progettazione definitiva nuova Farmacia Comunale in Narni",
+ "cat": "Privato",
+ "tag": "Medicenter",
+ "ordine": 57,
+ "scheda": {
+  "committente": "Medicenter",
+  "luogo": "—",
+  "anno": "—",
+  "importo": "—",
+  "categoria": "Privato",
+  "impresa": "—",
+  "responsabile": "—",
+  "stato": "—",
+  "inizio": "—",
+  "fine": "—"
+ },
+ "blocchi": {
+  "descrizione": [
+   "Progettazione definitiva nuova Farmacia Comunale in Narni"
+  ],
+  "committente": [
+   "Medicenter"
+  ],
+  "impresa": [],
+  "progettisti": [
+   "CF CONSULTING Srl",
+   "Via G.D. Romagnosi n°11 – 05100 terni (tr)",
+   "05100 Terni (tr)",
+   "CIABACCHINI ing. Alessandro",
+   "TESTARELLA Ing. Fabrizio"
+  ],
+  "servizi": [
+   "CF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
+  ]
+ },
+ "foto": [
+  "img/progetti/medicenter-farmacia-narni/medicenter-farmacia-narni-01.webp",
+  "img/progetti/medicenter-farmacia-narni/medicenter-farmacia-narni-02.webp",
+  "img/progetti/medicenter-farmacia-narni/medicenter-farmacia-narni-03.webp",
+  "img/progetti/medicenter-farmacia-narni/medicenter-farmacia-narni-04.webp",
+  "img/progetti/medicenter-farmacia-narni/medicenter-farmacia-narni-05.webp",
+  "img/progetti/medicenter-farmacia-narni/medicenter-farmacia-narni-06.webp",
+  "img/progetti/medicenter-farmacia-narni/medicenter-farmacia-narni-07.webp"
+ ]
+}

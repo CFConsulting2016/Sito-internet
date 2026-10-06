@@ -1,0 +1,44 @@
+{
+ "title": "PUCCI Srl – Nuovo Ristorante Macelleria Via Piave Terni",
+ "shortTitle": "PUCCI Srl – Nuovo Ristorante Macelleria Via Piave Terni",
+ "lead": "",
+ "cat": "Privato",
+ "tag": "Committente privato",
+ "ordine": 55,
+ "scheda": {
+  "committente": "—",
+  "luogo": "—",
+  "anno": "—",
+  "importo": "—",
+  "categoria": "Privato",
+  "impresa": "—",
+  "responsabile": "—",
+  "stato": "—",
+  "inizio": "—",
+  "fine": "—"
+ },
+ "blocchi": {
+  "descrizione": [],
+  "committente": [],
+  "impresa": [],
+  "progettisti": [
+   "CF CONSULTING Srl",
+   "Via G.D. Romagnosi n°11 – 05100 terni (tr)",
+   "05100 Terni (tr)",
+   "CIABACCHINI ing. Alessandro",
+   "TESTARELLA Ing. Fabrizio",
+   "MAESTRI Geom. Niccolò",
+   "RICCIONI Dott.ssa Elisa"
+  ],
+  "servizi": [
+   "Progettazione definitiva impianto climatizzazione e ricambio meccanico dell’aria",
+   "CF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
+  ]
+ },
+ "foto": [
+  "img/progetti/pucci-srl/pucci-srl-01.webp",
+  "img/progetti/pucci-srl/pucci-srl-02.webp",
+  "img/progetti/pucci-srl/pucci-srl-03.webp",
+  "img/progetti/pucci-srl/pucci-srl-04.webp"
+ ]
+}

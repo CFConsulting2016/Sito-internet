@@ -1,0 +1,27 @@
+{
+ "_nota": "Correzioni all'abbinamento foto-progetto ereditato dal sito attuale. Vengono applicate da .scrape/map.py dopo l'estrazione, cosi' sopravvivono a ogni rigenerazione.",
+ "escludi": {
+  "nuovo-teatro-verdi-lo-avevamo-pensato-cosi": {
+   "motivo": "La pagina del Teatro Verdi sul sito attuale contiene le foto del punto vendita Conad di Ciconia (stessi file, posizioni 6-22). Le foto proprie del progetto sono i render 3D e le tavole.",
+   "file": [
+    "20190809_103549-scaled.jpg",
+    "20190809_103646-scaled.jpg",
+    "20190809_104424-scaled.jpg",
+    "20200110_093727-scaled.jpg",
+    "20200121_103024-scaled.jpg",
+    "20200121_103105-scaled.jpg",
+    "20200121_103247-scaled.jpg",
+    "20200121_104557-scaled.jpg",
+    "20200124_111106-scaled.jpg",
+    "20200204_112557-scaled.jpg",
+    "20200204_112611-scaled.jpg",
+    "20200204_112633-scaled.jpg",
+    "20200204_112648-scaled.jpg",
+    "IMG_6138-scaled.jpg",
+    "IMG_6145-scaled.jpg",
+    "Tav-03-Compatimentazione-e-impianti-pdf.jpg",
+    "Tav01-stato-di-fatto-e-progetto-pdf.jpg"
+   ]
+  }
+ }
+}

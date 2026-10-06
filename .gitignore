@@ -1,0 +1,36 @@
+# Questo repository finira' sull'account GitHub del cliente, che potra'
+# leggerne ogni file e tutta la cronologia. Qui resta solo il sito.
+
+# --- documenti commerciali e corrispondenza ------------------
+# Preventivi, offerte, bozze di email: roba nostra, non del progetto.
+*.pdf
+Email al cliente.md
+Mail da inviare.md
+
+# --- strumenti di lavorazione --------------------------------
+# Script di migrazione dal vecchio sito, generatori di PDF, cache dello
+# scraping: servono a noi, una volta sola, e pesano 18 MB.
+.scrape/
+
+# I mockup approvati del progetto grafico: materiale di lavorazione.
+mockup/
+
+# Pagina di controllo interna, non fa parte del sito pubblico.
+controllo-foto.html
+
+# --- roba di sistema -----------------------------------------
+node_modules/
+Thumbs.db
+desktop.ini
+.DS_Store
+*.log
+
+# --- pacchetti generati --------------------------------------
+# Si rifanno con .scrape/esporta-anteprima.py, non vanno versionati.
+*.zip
+
+# Copia scompattata del pacchetto di anteprima: duplicato dell'intero sito.
+CF Consulting - anteprima sito/
+
+# Anteprima generata dal sistema.
+.thumbnail

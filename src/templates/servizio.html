@@ -1,0 +1,61 @@
+<section class="page-hero">
+  <div class="hero__grid hero__grid--static">{{heroGrid}}</div>
+  <div class="page-hero__veil"></div>
+  <div class="container page-hero__inner">
+    <div class="hero-in">
+      <h1 class="page-hero__title">{{nome}}</h1>
+      <p class="page-hero__lead">{{lead}}</p>
+    </div>
+    <div class="page-hero__actions hero-in hero-in--late">
+      <a class="btn btn--primary" href="contatti.html">Richiedi un preventivo</a>
+      <a class="btn btn--ghost" href="tel:+3907441963005">Chiamaci</a>
+    </div>
+  </div>
+</section>
+
+<section class="container section-inner-service">
+  <div class="service-layout">
+    <div class="service-main">
+      <div class="prose" data-rv>
+{{PROSE}}
+      </div>
+{{ELENCO}}
+    </div>
+
+    <aside class="sidebar" data-rv>
+      <div class="side-cta">
+        <div class="side-cta__label">Parliamone</div>
+        <p>Un incontro preliminare senza impegno per valutare la nostra offerta.</p>
+        <a class="btn btn--primary btn--block" href="contatti.html">Richiedi informazioni</a>
+      </div>
+      <div class="side-card">
+        <div class="side-card__label">Area di servizio</div>
+        <div class="side-list">
+          <div><a href="servizi.html#{{areaId}}">{{areaNome}}</a></div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<section class="section-tint section-tint--both">
+  <div class="container section-inner-wide">
+    <div class="head-row" data-rv>
+      <h2 class="head-row__title" data-title><span>Progetti correlati</span></h2>
+      <a class="link-arrow" href="progetti.html">Vedi tutti i progetti →</a>
+    </div>
+    <div class="card-grid">
+{{RELATED}}
+    </div>
+  </div>
+</section>
+
+<section class="container section-inner-wide">
+  <div class="block-head block-head--tight" data-rv>
+    <h2 class="head-row__title" data-title><span>{{areaNome}}</span></h2>
+    <div class="rule" data-line></div>
+  </div>
+  <div class="siblings" data-rv>
+{{SIBLINGS}}
+  </div>
+</section>

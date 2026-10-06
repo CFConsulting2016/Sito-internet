@@ -1,0 +1,7 @@
+{
+ "_nota": "Persone da non pubblicare sul sito, pur essendo presenti sul sito attuale. Applicato da .scrape/map.py.",
+ "escludi": [
+  "Elisa Riccioni",
+  "Carpinelli Riccardo"
+ ]
+}

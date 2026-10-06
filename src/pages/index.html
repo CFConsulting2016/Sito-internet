@@ -1,0 +1,47 @@
+<!--meta
+{
+  "out": "index.html",
+  "nav": "home",
+  "title": "CF Consulting — Ingegneria, architettura ed energia a Terni",
+  "description": "Consulenza aziendale e gestione di processi complessi in ambito ingegneristico, architettonico, energetico ed industriale. Studio con sede a Terni.",
+  "canonical": "https://www.cieffeconsulting.eu/"
+}
+-->
+<section class="hero">
+  <div class="hero__grid">{{heroGrid}}</div>
+  <div class="hero__veil"></div>
+  <div class="hero__inner">
+    <div class="hero__eyebrow hero-in">Ingegneria · Architettura · Energia · Industria</div>
+    <h1 class="hero__title hero-in">CF Consulting</h1>
+    <div class="hero__rule hero-in"></div>
+    <p class="hero__lead hero-in">Consulenza aziendale e gestione di processi complessi in ambito ingegneristico, architettonico, energetico ed industriale.</p>
+    <div class="hero__actions hero-in">
+      <a class="btn btn--primary" href="contatti.html">Contattaci</a>
+      <a class="btn btn--ghost" href="progetti.html">Portfolio</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container section__inner">
+
+    <div class="section-head" data-rv>
+      <div>
+        <h2 class="section-head__title" data-title><span>I nostri progetti</span></h2>
+        <div class="rule" data-line></div>
+      </div>
+      <span class="section-head__count">{{PROJECT_COUNT}} progetti in portfolio</span>
+    </div>
+
+{{HOME_FEATURED}}
+
+    <div class="project-grid">
+{{HOME_TRIO}}
+    </div>
+
+    <div class="section__more" data-rv>
+      <a class="btn btn--outline" href="progetti.html">Vedi tutti i progetti</a>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,17 @@
+{
+ "nome": "La Termotecnica",
+ "sito": "https://www.latermotecnica.net/",
+ "feed": "https://www.latermotecnica.net/feed.php",
+ "base": "https://www.latermotecnica.net",
+ "attiva": true,
+ "mantieniPubblicati": true,
+ "autorizzazione": "non-necessaria",
+ "attribuzione": "",
+ "condizioni": "https://www.latermotecnica.net/",
+ "revisione": {
+  "stato": "ok",
+  "data": "2026-09-25",
+  "nota": "Riverificata il 25/09/2026: nessuna condizione d'uso pubblicata, sull'articolo solo un «© 2026» generico senza clausola di riserva, robots.txt senza blocchi. Base giuridica: la legge (link ed estratti molto brevi), non un permesso della testata."
+ },
+ "ordine": 2
+}

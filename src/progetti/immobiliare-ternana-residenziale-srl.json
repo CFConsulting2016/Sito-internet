@@ -1,0 +1,52 @@
+{
+ "title": "FC DISTRIBUZIONE Srl – Intervento edilizio di nuova costruzione Località Santa Giusta",
+ "shortTitle": "FC DISTRIBUZIONE Srl",
+ "lead": "Intervento di nuova costruzione in Località Santa Giusta",
+ "cat": "Privato",
+ "tag": "FC Distribuzione Srl",
+ "ordine": 58,
+ "scheda": {
+  "committente": "FC Distribuzione Srl",
+  "luogo": "—",
+  "anno": "—",
+  "importo": "—",
+  "categoria": "Privato",
+  "impresa": "Da definire",
+  "responsabile": "—",
+  "stato": "—",
+  "inizio": "—",
+  "fine": "—"
+ },
+ "blocchi": {
+  "descrizione": [
+   "Intervento di nuova costruzione in Località Santa Giusta"
+  ],
+  "committente": [
+   "FC Distribuzione Srl"
+  ],
+  "impresa": [
+   "Da definire"
+  ],
+  "progettisti": [
+   "CF Consulting Srl",
+   "via g.d.romagnosi n°11",
+   "05100 terni (tr)",
+   "progettazione, direzione lavori e coordinamento sicurezza",
+   "ciabacchini ing. alessandro",
+   "collaboratori",
+   "testarella ing. fabrizio",
+   "maestri geom. niccolò",
+   "riccioni dott.ssa elisa"
+  ],
+  "servizi": [
+   "Progettazione esecutiva impianti meccanici",
+   "CF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
+  ]
+ },
+ "foto": [
+  "img/progetti/immobiliare-ternana-residenziale-srl/immobiliare-ternana-residenziale-srl-01.webp",
+  "img/progetti/immobiliare-ternana-residenziale-srl/immobiliare-ternana-residenziale-srl-02.webp",
+  "img/progetti/immobiliare-ternana-residenziale-srl/immobiliare-ternana-residenziale-srl-03.webp",
+  "img/progetti/immobiliare-ternana-residenziale-srl/immobiliare-ternana-residenziale-srl-04.webp"
+ ]
+}

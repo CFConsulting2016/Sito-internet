@@ -1,0 +1,17 @@
+{
+ "nome": "BibLus — ACCA software",
+ "sito": "https://biblus.acca.it/",
+ "feed": "https://biblus.acca.it/feed/",
+ "base": "https://biblus.acca.it",
+ "attiva": false,
+ "mantieniPubblicati": true,
+ "autorizzazione": "richiesta",
+ "attribuzione": "BibLus – biblus.acca.it",
+ "condizioni": "https://biblus.acca.it/termini-d-uso-proprieta-intellettuale-e-responsabilita/",
+ "revisione": {
+  "stato": "da-verificare",
+  "data": "2026-09-25",
+  "nota": "In attesa di autorizzazione scritta da ACCA software S.p.A. I termini d'uso permettono la condivisione dei collegamenti e la citazione di brevi estratti con attribuzione «BibLus – biblus.acca.it» e link diretto alla pagina originaria, e ammettono l'uso del feed RSS nei modi tecnici messi a disposizione. Vietano però la ripubblicazione sistematica senza autorizzazione scritta: è quella la parola che rende incerto un automatismo. Richiesta inviata a redazione.biblus@acca.it. Non attivare prima della risposta scritta."
+ },
+ "ordine": 5
+}

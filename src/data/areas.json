@@ -1,0 +1,73 @@
+[
+  {
+    "id": "ingegneria",
+    "num": "01",
+    "name": "Servizi di ingegneria e progettazione",
+    "items": [
+      "Progettazione architettonica",
+      "Progettazione impianti meccanici civili e industriali",
+      "Progettazione impianti da fonti rinnovabili",
+      "Impianti elettrici civili e industriali",
+      "Sostenibilità ambientale",
+      "Progettazione anticadute impianti speciali",
+      "Progettazione acustica",
+      "Offerta tecnica e gare"
+    ]
+  },
+  {
+    "id": "energia",
+    "num": "02",
+    "name": "Efficientamento energetico",
+    "items": [
+      "Pratiche detrazioni fiscali",
+      "Conto Termico 2.0"
+    ]
+  },
+  {
+    "id": "bonus",
+    "num": "03",
+    "name": "Ecobonus & Sismabonus",
+    "items": [
+      "Ecobonus",
+      "Sismabonus"
+    ]
+  },
+  {
+    "id": "edilizia",
+    "num": "04",
+    "name": "Pratiche edilizie",
+    "items": [
+      "Autorizzazioni beni culturali e paesaggistiche",
+      "Autorizzazione permessi per costruire",
+      "Elaborazione tabelle millesimali di proprietà",
+      "Il condominio nel codice civile",
+      "Piano di lavoro smaltimento amianto"
+    ]
+  },
+  {
+    "id": "sicurezza",
+    "num": "05",
+    "name": "Sicurezza nei luoghi di lavoro",
+    "items": [
+      "Incarico RSPP esterno",
+      "Medicina del lavoro",
+      "Coordinamento sicurezza progettazione/esecuzione"
+    ]
+  },
+  {
+    "id": "eventi",
+    "num": "06",
+    "name": "Pianificazione eventi e manifestazioni",
+    "items": [
+      "Safety & Security"
+    ]
+  },
+  {
+    "id": "qualita",
+    "num": "07",
+    "name": "Organizzazione aziendale e certificati di qualità",
+    "items": [
+      "Implementazione sistemi gestione qualità ISO 9001:15"
+    ]
+  }
+]

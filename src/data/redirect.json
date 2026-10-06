@@ -1,0 +1,53 @@
+{
+ "nota": "Indirizzi del vecchio sito WordPress da reindirizzare al nuovo. Le 79 schede progetto non stanno qui: si generano da src/data/provenienza.json. L'ordine conta: Netlify applica la prima regola che combacia, quindi le regole con l'asterisco vanno per ultime.",
+
+ "pagine": {
+  "/chi-siamo/": "/chi-siamo.html",
+  "/contatti/": "/contatti.html",
+  "/portfolio/": "/progetti.html",
+  "/aggiornamenti/": "/news.html"
+ },
+
+ "servizi": {
+  "/progettazione-architettonica/": "/servizi/ingegneria/progettazione-architettonica.html",
+  "/progettazione-impianti-meccanici-civili-e-industriali/": "/servizi/ingegneria/progettazione-impianti-meccanici-civili-e-industriali.html",
+  "/progettazione-impianti-da-fonti-rinnovabili-2/": "/servizi/ingegneria/progettazione-impianti-da-fonti-rinnovabili.html",
+  "/progettazione-impianti-da-fonti-rinnovabili/": "/servizi/ingegneria/progettazione-impianti-da-fonti-rinnovabili.html",
+  "/impianti-elettrici-civili-e-industriali-2/": "/servizi/ingegneria/impianti-elettrici-civili-e-industriali.html",
+  "/impianti-elettrici-civili-e-industriali/": "/servizi/ingegneria/impianti-elettrici-civili-e-industriali.html",
+  "/sostenibilita-ambientale/": "/servizi/ingegneria/sostenibilita-ambientale.html",
+  "/progettazione-anticadute-impianti-speciali/": "/servizi/ingegneria/progettazione-anticadute-impianti-speciali.html",
+  "/progettazione-acustica/": "/servizi/ingegneria/progettazione-acustica.html",
+  "/offerta-tecnica-e-gare/": "/servizi/ingegneria/offerta-tecnica-e-gare.html",
+  "/pratiche-detrazioni-fiscali/": "/servizi/energia/pratiche-detrazioni-fiscali.html",
+  "/conto-termico-2-0/": "/servizi/energia/conto-termico-2-0.html",
+  "/ecobonus/": "/servizi/bonus/ecobonus.html",
+  "/sismabonus/": "/servizi/bonus/sismabonus.html",
+  "/autorizzazioni-beni-culturali-e-paesaggistiche/": "/servizi/edilizia/autorizzazioni-beni-culturali-e-paesaggistiche.html",
+  "/autorizzazione-permessi-per-costruire/": "/servizi/edilizia/autorizzazione-permessi-per-costruire.html",
+  "/elaborazione-tabelle-millesimali-di-proprieta/": "/servizi/edilizia/elaborazione-tabelle-millesimali-di-proprieta.html",
+  "/il-condominio-nel-codice-civile/": "/servizi/edilizia/il-condominio-nel-codice-civile.html",
+  "/piano-di-lavoro-smaltimento-amianto/": "/servizi/edilizia/piano-di-lavoro-smaltimento-amianto.html",
+  "/incarico-rspp-esterno/": "/servizi/sicurezza/incarico-rspp-esterno.html",
+  "/medicina-del-lavoro/": "/servizi/sicurezza/medicina-del-lavoro.html",
+  "/coordinamento-sicurezza-progettazione-esecuzione/": "/servizi/sicurezza/coordinamento-sicurezza-progettazione-esecuzione.html",
+  "/safety-security/": "/servizi/eventi/safety-e-security.html",
+  "/implementazione-sistemi-gestione-qualita-iso-9001-15/": "/servizi/qualita/implementazione-sistemi-gestione-qualita-iso-9001-15.html",
+  "/articolo-implementazione-sistemi-gestione-qualita-iso-9001-15/": "/servizi/qualita/implementazione-sistemi-gestione-qualita-iso-9001-15.html"
+ },
+
+ "articoli": {
+  "/corso-di-formazione-anaci-20-23-27-30-aprile-2020/": "/news.html",
+  "/corso-di-formazione-anci-25-01-2019/": "/news.html",
+  "/pubblicato-dal-mise-il-dm-asseverazioni-2020/": "/news.html",
+  "/pubblicazione-bozza-rtv-chiusure-dambito-degli-edifici-civili/": "/news.html",
+  "/pubblicazione-linee-guida-agenzia-delle-entrate-ecobonus-110/": "/news.html",
+  "/feed/": "/news.html"
+ },
+
+ "generali": {
+  "/team/*": "/chi-siamo.html",
+  "/portfolio-lavori/*": "/progetti.html",
+  "/portfolio/*": "/progetti.html"
+ }
+}

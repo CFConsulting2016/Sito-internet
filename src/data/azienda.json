@@ -1,0 +1,83 @@
+{
+ "fondazione": "2016-03-08",
+ "certificazioni": [
+  {
+   "nome": "UNI EN ISO 9001:2015",
+   "ente": "Kiwa Cermet Italia",
+   "numero": "20832-A",
+   "scadenza": "2029-06-25",
+   "ambito": "Progettazione di ingegneria integrata, direzione lavori, coordinamento della sicurezza, verifica della progettazione ai fini della validazione",
+   "file": "img/certificazioni/kiwa-iso9001-accredia.webp"
+  }
+ ],
+ "sede": [
+  "img/sede/sede-01.webp",
+  "img/sede/sede-02.webp",
+  "img/sede/sede-03.webp",
+  "img/sede/sede-04.webp",
+  "img/sede/sede-05.webp",
+  "img/sede/sede-06.webp",
+  "img/sede/sede-07.webp",
+  "img/sede/sede-08.webp",
+  "img/sede/sede-09.webp"
+ ],
+ "legale": {
+  "denominazione": "CF Consulting S.r.l.",
+  "sedeLegale": "Via Bartocci 7/T, 05100 Terni (TR)",
+  "registroImprese": "Registro Imprese dell'Umbria",
+  "codiceFiscale": "01567990559",
+  "partitaIva": "01567990559",
+  "rea": "TR-107354",
+  "capitaleSociale": "€ 10.000,00 i.v.",
+  "socioUnico": false,
+  "pec": "cfc@pec.cieffeconsulting.eu",
+  "pecPubblica": false,
+  "albo": {
+   "titolo": "Ing.",
+   "nome": "Alessandro Ciabacchini",
+   "ordine": "Ordine degli Ingegneri della Provincia di Terni",
+   "numero": "829",
+   "sezione": "A",
+   "stato": "Italia"
+  }
+ },
+ "certificazioniPersonali": [
+  {
+   "persona": "Ing. Alessandro Ciabacchini",
+   "titolo": "Ingegnere esperto in Energetica",
+   "specializzazione": "Termotecnica ed efficientamento energetico degli edifici civili",
+   "ente": "CERTing — Consiglio Nazionale degli Ingegneri",
+   "numero": "TRB-2421-IT20",
+   "scadenza": "2029-06-05"
+  },
+  {
+   "persona": "Ing. Alessandro Ciabacchini",
+   "titolo": "Ingegnere esperto in CAM",
+   "specializzazione": "",
+   "ente": "CERTing — Consiglio Nazionale degli Ingegneri",
+   "numero": "TRB-3101-IT20",
+   "scadenza": "2029-07-28",
+   "daConfermare": true
+  },
+  {
+   "persona": "Ing. Claudio Raggi",
+   "titolo": "Esperto in Gestione dell'Energia (EGE), settore civile",
+   "specializzazione": "UNI CEI 11339:2023",
+   "ente": "Unisapiens",
+   "numero": "28/25-EGE",
+   "scadenza": "2030-12-16"
+  }
+ ],
+ "sostegni": [
+  {
+   "nome": "I Bambini delle Fate",
+   "testo": "Sosteniamo i progetti di inclusione sociale",
+   "file": "img/certificazioni/bambini-delle-fate.webp"
+  }
+ ],
+ "privacy": {
+  "emailDiritti": "info@cieffeconsulting.eu",
+  "conservazioneForm": null,
+  "ultimoAggiornamento": "2026-10-06"
+ }
+}

@@ -1,0 +1,38 @@
+<!--meta
+{
+  "out": "progetti.html",
+  "nav": "progetti",
+  "title": "Progetti — CF Consulting, Terni",
+  "description": "Il portfolio di CF Consulting: interventi per enti pubblici e committenti privati in Umbria e nel Lazio.",
+  "canonical": "https://www.cieffeconsulting.eu/progetti.html"
+}
+-->
+<section class="page-hero">
+  <div class="hero__grid hero__grid--static">{{heroGrid}}</div>
+  <div class="page-hero__veil"></div>
+  <div class="container page-hero__inner">
+    <div class="hero-in">
+      <h1 class="page-hero__title">Progetti</h1>
+      <p class="page-hero__lead">{{PROJECT_COUNT}} progetti · committenti pubblici e privati</p>
+    </div>
+  </div>
+</section>
+
+<div class="filterbar">
+  <div class="container filterbar__inner" role="group" aria-label="Filtra i progetti per committente">
+    <button type="button" class="filter" data-filter="Tutti" aria-pressed="true">Tutti</button>
+    <button type="button" class="filter" data-filter="Pubblico" aria-pressed="false">Pubblico</button>
+    <button type="button" class="filter" data-filter="Privato" aria-pressed="false">Privato</button>
+  </div>
+</div>
+
+<section class="container section-inner-archive">
+  <div class="archive-grid" data-archive>
+{{ARCHIVE_CARDS}}
+  </div>
+
+  <div class="loadmore" hidden>
+    <button type="button" class="btn--load" data-archive-more>Carica altri progetti</button>
+    <span class="loadmore__counter" data-archive-counter></span>
+  </div>
+</section>

@@ -1,0 +1,63 @@
+<section class="page-hero">
+  <div class="hero__grid hero__grid--static">{{heroGrid}}</div>
+  <div class="page-hero__veil"></div>
+  <div class="container page-hero__inner">
+    <div class="hero-in">
+      <h1 class="page-hero__title">{{shortTitle}}</h1>
+      <p class="page-hero__lead">{{lead}}</p>
+    </div>
+    <div class="project-meta hero-in hero-in--late">
+      <div class="project-meta__cell">
+        <div class="project-meta__k">Committente</div>
+        <div class="project-meta__v">{{committente}}</div>
+      </div>
+      <div class="project-meta__cell">
+        <div class="project-meta__k">Luogo</div>
+        <div class="project-meta__v">{{luogo}}</div>
+      </div>
+      <div class="project-meta__cell">
+        <div class="project-meta__k">Anno</div>
+        <div class="project-meta__v">{{anno}}</div>
+      </div>
+      <div class="project-meta__cell">
+        <div class="project-meta__k">Importo</div>
+        <div class="project-meta__v">{{importo}}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="project-figure">
+  <div class="container">
+    <div class="project-figure__inner">{{FIGURE}}</div>
+  </div>
+</div>
+<div class="project-figure__spacer"></div>
+
+<section class="container section-inner-project">
+  <div class="service-layout">
+    <div class="service-main">
+{{BLOCCHI}}
+    </div>
+
+    <aside class="sheet" data-rv>
+      <div class="side-card__label">Scheda tecnica</div>
+      <div class="side-list">
+{{SCHEDA}}
+      </div>
+      <a class="btn btn--primary btn--block" href="contatti.html">Richiedi informazioni</a>
+    </aside>
+  </div>
+</section>
+
+{{GALLERIA}}
+
+<section class="container section-inner-wide">
+  <div class="head-row" data-rv>
+    <h2 class="head-row__title head-row__title--lg" data-title><span>Altri progetti</span></h2>
+    <a class="link-arrow" href="progetti.html">Vedi tutti i progetti →</a>
+  </div>
+  <div class="card-grid">
+{{OTHERS}}
+  </div>
+</section>

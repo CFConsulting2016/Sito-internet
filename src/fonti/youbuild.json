@@ -1,0 +1,17 @@
+{
+ "nome": "YouBuild",
+ "sito": "https://youbuildweb.it/",
+ "feed": "https://youbuildweb.it/feed",
+ "base": "https://youbuildweb.it",
+ "attiva": false,
+ "mantieniPubblicati": true,
+ "autorizzazione": "non-necessaria",
+ "attribuzione": "",
+ "condizioni": "https://youbuildweb.it/",
+ "revisione": {
+  "stato": "ok",
+  "data": "2026-09-25",
+  "nota": "Verifica del 25/09/2026: nessuna pagina di condizioni d'uso, nessun avviso di riproduzione riservata nel codice della home, robots.txt blocca solo /wp-admin/ e lascia libero il feed. Sta nella stessa posizione di La Termotecnica ed Edilbuild. Era spenta per una nota precedente su un «tutti i diritti riservati» nel piè di pagina che il controllo di oggi non ha confermato."
+ },
+ "ordine": 4
+}

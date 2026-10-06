@@ -1,0 +1,17 @@
+{
+ "nome": "GSE — Gestore dei Servizi Energetici",
+ "sito": "https://www.gse.it/",
+ "feed": "https://www.gse.it/_layouts/15/GSE.Internet2016/pages/GenerateFeedRSSNews.aspx",
+ "base": "https://www.gse.it",
+ "attiva": false,
+ "mantieniPubblicati": true,
+ "autorizzazione": "richiesta",
+ "attribuzione": "",
+ "condizioni": "https://www.gse.it/note-legali",
+ "revisione": {
+  "stato": "da-verificare",
+  "data": "2026-09-25",
+  "nota": "Spenta in attesa di autorizzazione scritta dal GSE. La pubblicazione in sé resta corretta (ente pubblico, nessuna condizione d'uso che limiti link ed estratti brevi): il nodo è l'automazione, perché l'unico feed sta sotto /_layouts/, percorso che il loro robots.txt vieta a tutti gli agenti automatici, e la pagina notizie e' generata in JavaScript, quindi non esiste una via alternativa leggibile. Richiesta da inviare dal cliente. Non riattivare prima della risposta scritta."
+ },
+ "ordine": 1
+}

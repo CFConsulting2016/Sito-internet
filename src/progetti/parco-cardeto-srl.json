@@ -1,0 +1,37 @@
+{
+ "title": "PARCO CARDETO Srl – Riqualificazione Parco “B. Galigani” Terni",
+ "shortTitle": "PARCO CARDETO Srl – Riqualificazione Parco “B. Galigani” Terni",
+ "lead": "",
+ "cat": "Privato",
+ "tag": "PARCO Cardeto Srl",
+ "ordine": 56,
+ "scheda": {
+  "committente": "PARCO Cardeto Srl",
+  "luogo": "—",
+  "anno": "—",
+  "importo": "—",
+  "categoria": "Privato",
+  "impresa": "—",
+  "responsabile": "—",
+  "stato": "—",
+  "inizio": "—",
+  "fine": "—"
+ },
+ "blocchi": {
+  "descrizione": [],
+  "committente": [
+   "PARCO Cardeto Srl"
+  ],
+  "impresa": [],
+  "progettisti": [],
+  "servizi": [
+   "CF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
+  ]
+ },
+ "foto": [
+  "img/progetti/parco-cardeto-srl/parco-cardeto-srl-01.webp",
+  "img/progetti/parco-cardeto-srl/parco-cardeto-srl-02.webp",
+  "img/progetti/parco-cardeto-srl/parco-cardeto-srl-03.webp",
+  "img/progetti/parco-cardeto-srl/parco-cardeto-srl-04.webp"
+ ]
+}

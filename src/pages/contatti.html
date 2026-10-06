@@ -1,0 +1,151 @@
+<!--meta
+{
+  "out": "contatti.html",
+  "nav": "contatti",
+  "title": "Contatti — CF Consulting, Terni",
+  "description": "Preventivi, informazioni e assistenza. CF Consulting, Via A. Bartocci 7/T, Terni — 0744 196 3005.",
+  "canonical": "https://www.cieffeconsulting.eu/contatti.html"
+}
+-->
+<section class="page-hero">
+  <div class="hero__grid hero__grid--static">{{heroGrid}}</div>
+  <div class="page-hero__veil"></div>
+  <div class="container page-hero__inner">
+    <div class="hero-in">
+      <h1 class="page-hero__title">Contatti</h1>
+      <p class="page-hero__lead">Preventivi, informazioni, assistenza</p>
+    </div>
+  </div>
+</section>
+
+<section class="container section-inner-tight">
+  <div class="two-col two-col--contact">
+
+    <div data-rv>
+      <img class="contact-logo" src="img/logo-cf-dark.webp" alt="CF consulting" width="900" height="307" />
+      <div class="contact-rule contact-rule--top"></div>
+
+      <div class="contact-info">
+        <div class="contact-info__row">
+          <span class="contact-info__icon" aria-hidden="true">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-7.3 7-12A7 7 0 0 0 5 10c0 4.7 7 12 7 12Z M12 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" /></svg>
+          </span>
+          <span class="contact-info__k">Sede:</span>
+          <span class="contact-info__v">Via A. Bartocci 7/T — 05100 Terni (TR)</span>
+        </div>
+        <div class="contact-info__row">
+          <span class="contact-info__icon" aria-hidden="true">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.6 3h3l1.5 4-2 1.4a12.5 12.5 0 0 0 6.5 6.5l1.4-2 4 1.5v3A2 2 0 0 1 19 19.5C10.7 19.5 4.5 13.3 4.5 5A2 2 0 0 1 6.6 3Z" /></svg>
+          </span>
+          <span class="contact-info__k">Telefono:</span>
+          <span class="contact-info__v"><a href="tel:+3907441963005">0744 196 3005</a></span>
+        </div>
+        <div class="contact-info__row">
+          <span class="contact-info__icon" aria-hidden="true">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18v12H3z M3 6.5l9 6.5 9-6.5" /></svg>
+          </span>
+          <span class="contact-info__k">Email:</span>
+          <span class="contact-info__v"><a href="mailto:info@cieffeconsulting.eu">info@cieffeconsulting.eu</a></span>
+        </div>
+      </div>
+
+      <div class="contact-rule contact-rule--mid"></div>
+      <h2 class="hours-label">Orari ufficio</h2>
+      <table class="hours">
+        <tbody>
+          <tr><td>Lunedì</td><td>09:00–13:00 / 15:00–19:30</td></tr>
+          <tr><td>Martedì</td><td>09:00–13:00 / 15:00–19:30</td></tr>
+          <tr><td>Mercoledì</td><td>09:00–13:00 / 15:00–19:30</td></tr>
+          <tr><td>Giovedì</td><td>09:00–13:00 / 15:00–19:30</td></tr>
+          <tr><td>Venerdì</td><td>09:00–13:00 / 15:00–19:30</td></tr>
+          <tr><td>Sabato</td><td class="is-closed">Chiuso</td></tr>
+          <tr><td>Domenica</td><td class="is-closed">Chiuso</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="contact-side">
+      <div class="form-card" data-rv>
+        <h2 class="form-card__title" data-title><span>Richiedi informazioni</span></h2>
+        <p class="form-card__sub">Compila il form per ricevere informazioni</p>
+
+        <form class="form" data-contact-form action="#" method="post" novalidate>
+          <p class="honeypot" aria-hidden="true">
+            <label>Azienda <input type="text" name="azienda" tabindex="-1" autocomplete="off" /></label>
+          </p>
+
+          <div class="form__field">
+            <label class="sr-only" for="cf-nome">Il tuo nome</label>
+            <input type="text" id="cf-nome" name="nome" placeholder="Il tuo nome" required autocomplete="name" />
+            <span class="form__error" id="cf-nome-err"></span>
+          </div>
+
+          <div class="form__field">
+            <label class="sr-only" for="cf-tel">Il tuo numero di telefono</label>
+            <input type="tel" id="cf-tel" name="telefono" placeholder="Il tuo numero di telefono" autocomplete="tel" />
+            <span class="form__error"></span>
+          </div>
+
+          <div class="form__field">
+            <label class="sr-only" for="cf-email">Il tuo indirizzo email</label>
+            <input type="email" id="cf-email" name="email" placeholder="Il tuo indirizzo email" required autocomplete="email" />
+            <span class="form__error"></span>
+          </div>
+
+          <div class="form__field">
+            <label class="sr-only" for="cf-messaggio">La tua richiesta</label>
+            <textarea id="cf-messaggio" name="messaggio" rows="6" placeholder="Scrivi qui la tua richiesta…" required></textarea>
+            <span class="form__error"></span>
+          </div>
+
+          <div class="form__field">
+            <label class="form__consent">
+              <input type="checkbox" name="privacy" required />
+              <span>Acconsento al trattamento dei miei dati, come descritto nella nostra <a href="privacy-policy.html">Privacy Policy</a></span>
+            </label>
+            <span class="form__error"></span>
+          </div>
+
+          <button type="submit" class="form__submit">Invia la tua richiesta</button>
+          <p class="form__status" role="status" hidden></p>
+        </form>
+      </div>
+
+    <div class="social" data-rv>
+      <div class="social__label">Seguici</div>
+      <div class="social__links">
+        <a class="social__link" href="https://www.facebook.com/cieffeconsultingsrl" target="_blank" rel="noopener" aria-label="CF Consulting su Facebook">
+          <svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true" focusable="false">
+            <circle cx="12" cy="12" r="12" fill="#1877F2" />
+            <path fill="#fff" d="M16.67 15.46 17.2 12h-3.32V9.75c0-.95.46-1.87 1.95-1.87h1.51V4.93s-1.37-.24-2.68-.24c-2.74 0-4.53 1.66-4.53 4.67V12H7.08v3.46h3.05v8.39a12.1 12.1 0 0 0 3.75 0v-8.39h2.79Z" />
+          </svg>
+        </a>
+        <a class="social__link" href="#" aria-label="CF Consulting su LinkedIn" title="Profilo da collegare">
+          <svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true" focusable="false">
+            <rect width="24" height="24" rx="2" fill="#0A66C2" />
+            <path fill="#fff" d="M7.12 20.45H3.55V9h3.57v11.45ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm15.11 13.02h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29Z" />
+          </svg>
+        </a>
+      </div>
+    </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section-tint section-tint--both">
+  <div class="container section-inner-wide">
+    <div class="block-head block-head--tight" data-rv>
+      <h2 class="block-head__title" data-title><span>Via A. Bartocci 7/T, Terni</span></h2>
+      <div class="rule" data-line></div>
+    </div>
+    <div class="map-frame" data-rv data-map="https://www.google.com/maps?q=Via+Aldo+Bartocci+7,+05100+Terni+TR,+Italia&amp;output=embed">
+      <div class="map-consent">
+        <div class="map-consent__label">Mappa Google Maps</div>
+        <p>Per visualizzare la mappa è necessario il consenso ai cookie di terze parti.</p>
+        <button type="button" data-map-load>Carica la mappa</button>
+      </div>
+    </div>
+    <div class="map-note" data-rv>La mappa è fornita da Google Maps e viene caricata solo dopo il consenso ai cookie.</div>
+  </div>
+</section>

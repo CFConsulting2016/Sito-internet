@@ -1,0 +1,290 @@
+# Decap CMS — pannello di gestione di CF Consulting
+#
+# Il cliente modifica tre cose: i progetti, le notizie e lo stato delle fonti.
+# Tutto il resto del sito resta nostro.
+#
+# I file di contenuto stanno in src/ e sono JSON: il generatore (build.mjs)
+# legge quelle cartelle e riscrive l'HTML. Decap non tocca mai l'HTML.
+
+# --- accesso ---------------------------------------------------
+# DecapBridge sostituisce Netlify Identity, che è stato dismesso.
+# I due valori segnati DA COMPILARE arrivano quando creiamo il sito su
+# DecapBridge: finché non ci sono, si lavora in locale (vedi local_backend).
+backend:
+  name: git-gateway
+  repo: DA-COMPILARE/cf-consulting            # utente-github/nome-repository
+  branch: main
+  identity_url: https://auth.decapbridge.com/sites/DA-COMPILARE-SITE-ID
+  gateway_url: https://gateway.decapbridge.com
+  commit_messages:
+    create: 'Aggiunto {{collection}} "{{slug}}"'
+    update: 'Modificato {{collection}} "{{slug}}"'
+    delete: 'Rimosso {{collection}} "{{slug}}"'
+    uploadMedia: 'Caricata immagine "{{path}}"'
+    deleteMedia: 'Rimossa immagine "{{path}}"'
+
+# Permette di provare il pannello senza account, sul computer:
+#   npx decap-server        (in un terminale, dalla cartella del progetto)
+#   python anteprima.py     (in un altro)
+# e poi http://127.0.0.1:8777/admin/
+local_backend: true
+
+# Nulla va online finché non è approvato: ogni modifica diventa una
+# proposta, e viene pubblicata solo quando il cliente preme "Pubblica".
+publish_mode: editorial_workflow
+
+# --- immagini --------------------------------------------------
+# Le foto caricate dal pannello finiscono in una cartella dedicata:
+# quelle già presenti restano dove sono, con i loro percorsi.
+media_folder: img/caricate
+public_folder: img/caricate
+# Nota: Decap 3.x non espone un limite di dimensione per la libreria
+# immagini interna (`media_library` serve solo alle librerie esterne).
+# Il controllo sul peso delle foto va fatto altrove: vedi la conversione
+# in WebP, da aggiungere quando il repository sarà online.
+
+locale: it
+
+collections:
+  # --- progetti -----------------------------------------------
+  - name: progetti
+    label: Progetti
+    label_singular: Progetto
+    folder: src/progetti
+    extension: json
+    format: json
+    create: true
+    delete: true
+    slug: '{{slug}}'
+    identifier_field: shortTitle
+    summary: '{{shortTitle}}'
+    sortable_fields: [ordine, anno, shortTitle]
+    view_groups:
+      - label: Committente
+        field: cat
+    fields:
+      - label: Titolo completo
+        name: title
+        widget: string
+        hint: Il titolo per esteso, come compare in cima alla scheda.
+
+      - label: Titolo breve
+        name: shortTitle
+        widget: string
+        hint: Quello che si legge nelle anteprime e nell'archivio. Tienilo corto.
+
+      - label: Sommario
+        name: lead
+        widget: text
+        required: false
+        hint: Due o tre righe di presentazione. Compaiono sotto al titolo.
+
+      - label: Tipo di committente
+        name: cat
+        widget: select
+        options: [Pubblico, Privato]
+        hint: Decide sotto quale filtro compare il progetto nell'archivio.
+
+      - label: Etichetta sull'anteprima
+        name: tag
+        widget: string
+        required: false
+        hint: La riga rossa sopra il titolo nelle anteprime, di solito il nome del committente.
+
+      - label: Ordine
+        name: ordine
+        widget: number
+        value_type: int
+        required: false
+        hint: Numero più basso, posizione più alta nell'archivio.
+
+      - label: Scheda tecnica
+        name: scheda
+        widget: object
+        collapsed: false
+        fields:
+          - { label: Committente, name: committente, widget: string, required: false }
+          - { label: Luogo, name: luogo, widget: string, required: false }
+          - { label: Anno, name: anno, widget: string, required: false }
+          - { label: Importo, name: importo, widget: string, required: false }
+          - { label: Categoria, name: categoria, widget: string, required: false,
+              hint: "L'etichetta che compare nella scheda, per esempio «Ente pubblico»." }
+          - { label: Impresa, name: impresa, widget: string, required: false }
+          - { label: Progettista responsabile, name: responsabile, widget: string, required: false }
+          - { label: Stato, name: stato, widget: select, required: false,
+              options: ['In corso', 'Concluso', '—'] }
+          - { label: Inizio lavori, name: inizio, widget: string, required: false }
+          - { label: Fine lavori, name: fine, widget: string, required: false }
+
+      - label: Testi della scheda
+        name: blocchi
+        widget: object
+        collapsed: true
+        fields:
+          - label: Descrizione progetto
+            name: descrizione
+            widget: list
+            required: false
+            field: { label: Paragrafo, name: paragrafo, widget: text }
+          - label: Committente
+            name: committente
+            widget: list
+            required: false
+            field: { label: Riga, name: riga, widget: string }
+          - label: Impresa appaltatrice
+            name: impresa
+            widget: list
+            required: false
+            field: { label: Riga, name: riga, widget: string }
+          - label: Progettisti
+            name: progettisti
+            widget: list
+            required: false
+            field: { label: Riga, name: riga, widget: string }
+          - label: Servizi svolti
+            name: servizi
+            widget: list
+            required: false
+            field: { label: Riga, name: riga, widget: string }
+
+      - label: Fotografie
+        name: foto
+        widget: list
+        required: false
+        field: { label: Foto, name: foto, widget: image }
+        hint: La prima è la copertina, quella che si vede nell'archivio. Le altre formano la galleria.
+
+  # --- news ---------------------------------------------------
+  - name: news
+    label: News
+    label_singular: Notizia
+    folder: src/news
+    extension: json
+    format: json
+    create: true
+    delete: true
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    identifier_field: titolo
+    summary: '{{data}} — {{titolo}}'
+    sortable_fields: [data, titolo]
+    fields:
+      - label: Titolo dell'articolo
+        name: titolo
+        widget: string
+        hint: Il titolo così come lo ha scritto la fonte. Non riscriverlo.
+
+      - label: Fonte
+        name: fonte
+        widget: relation
+        collection: fonti
+        search_fields: [nome]
+        value_field: '{{slug}}'
+        display_fields: [nome]
+        hint: Se la fonte è disattivata, la notizia non compare sul sito.
+
+      - label: Indirizzo dell'articolo
+        name: url
+        widget: string
+        pattern: ['^https?://', 'Deve essere un indirizzo che comincia con http:// o https://']
+        hint: Il collegamento all'articolo originale. Il testo completo resta sul sito della fonte.
+
+      - label: Data
+        name: data
+        widget: datetime
+        date_format: 'YYYY-MM-DD'
+        time_format: false
+        format: 'YYYY-MM-DD'
+
+      - label: Nota redazionale
+        name: nota
+        widget: text
+        required: false
+        hint: Due righe scritte da voi, con parole vostre. Non copiare il testo dell'articolo.
+
+      - label: Immagine
+        name: foto
+        widget: image
+        required: false
+        hint: Facoltativa, e dev'essere vostra o libera da diritti. Non usare le foto della fonte.
+
+  # --- fonti --------------------------------------------------
+  # Non si possono creare né cancellare dal pannello: ogni fonte va
+  # verificata legalmente prima di entrare in elenco. Dal pannello si
+  # attiva, si disattiva e si conferma una segnalazione.
+  - name: fonti
+    label: Fonti
+    label_singular: Fonte
+    folder: src/fonti
+    extension: json
+    format: json
+    create: false
+    delete: false
+    identifier_field: nome
+    summary: '{{nome}}'
+    sortable_fields: [ordine, nome]
+    fields:
+      - { label: Nome, name: nome, widget: string }
+
+      - label: Raccogli nuove notizie
+        name: attiva
+        widget: boolean
+        default: false
+        hint: "Se la spegni, da questa fonte non si pubblicano piu' notizie nuove. Quelle gia' online restano dove sono."
+
+      - label: Mantieni online le notizie gia' pubblicate
+        name: mantieniPubblicati
+        widget: boolean
+        default: true
+        hint: "Toglilo solo se la fonte chiede espressamente di rimuovere i contenuti: sparisce dal sito tutto il suo archivio, in un colpo solo. Un cambio di condizioni d'uso, da solo, non obbliga a farlo." 
+
+      - { label: Sito, name: sito, widget: string }
+      - { label: Indirizzo del feed, name: feed, widget: string }
+      - { label: Radice degli indirizzi, name: base, widget: string, required: false }
+
+      - label: Autorizzazione
+        name: autorizzazione
+        widget: select
+        options:
+          - { label: 'Non necessaria', value: 'non-necessaria' }
+          - { label: 'Richiesta, in attesa di risposta', value: 'richiesta' }
+          - { label: 'Concessa per iscritto', value: 'concessa' }
+          - { label: 'Negata', value: 'negata' }
+
+      - label: Attribuzione obbligatoria
+        name: attribuzione
+        widget: string
+        required: false
+        hint: "Se la fonte impone una dicitura, scrivila qui: comparirà sotto ogni notizia."
+
+      - { label: Pagina delle condizioni d'uso, name: condizioni, widget: string, required: false }
+
+      - label: Controllo delle condizioni
+        name: revisione
+        widget: object
+        collapsed: false
+        fields:
+          - label: Stato
+            name: stato
+            widget: select
+            options:
+              - { label: 'A posto', value: 'ok' }
+              - { label: 'Condizioni cambiate, da rivedere', value: 'da-verificare' }
+            hint: Quando le condizioni d'uso della fonte cambiano, qui compare «da rivedere». Leggi la nota, poi decidi se rimettere «a posto» oppure spegnere la fonte.
+          - { label: Data del controllo, name: data, widget: string, required: false }
+          - { label: Cosa è cambiato, name: nota, widget: text, required: false }
+
+      - { label: Ordine, name: ordine, widget: number, value_type: int, required: false }
+
+  # --- testi fissi della pagina News --------------------------
+  - name: pagine
+    label: Pagine
+    files:
+      - name: pagina-news
+        label: Pagina News
+        file: src/data/pagina-news.json
+        fields:
+          - { label: Titolo, name: titolo, widget: string }
+          - { label: Sommario, name: sommario, widget: string,
+              hint: 'La riga sotto al titolo, in cima alla pagina.' }
+          - { label: Nota in fondo alla pagina, name: nota, widget: text,
+              hint: "La precisazione sul fatto che gli articoli sono di terzi. Conviene non toglierla." }

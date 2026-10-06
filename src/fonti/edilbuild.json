@@ -1,0 +1,17 @@
+{
+ "revisione": {
+  "stato": "ok",
+  "data": "2026-09-25",
+  "nota": "Riverificata il 25/09/2026: robots.txt con «Disallow:» vuoto, cioè tutto esplicitamente consentito, feed compreso. Nessuna pagina di condizioni d'uso, nessun avviso di riproduzione riservata sulla home né sugli articoli. Collegata dalla home c'è solo l'informativa privacy, che non dice nulla sul riuso dei contenuti."
+ },
+ "attribuzione": "",
+ "base": "https://www.edilbuild.it",
+ "sito": "https://www.edilbuild.it/",
+ "attiva": true,
+ "mantieniPubblicati": true,
+ "condizioni": "https://www.edilbuild.it/",
+ "nome": "Edilbuild",
+ "autorizzazione": "non-necessaria",
+ "feed": "https://www.edilbuild.it/feed/",
+ "ordine": 3
+}

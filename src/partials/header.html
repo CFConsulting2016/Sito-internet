@@ -1,0 +1,62 @@
+<a class="skip-link" href="#contenuto">Vai al contenuto</a>
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="site-header__logo" href="index.html">
+      <img src="img/logo-cf-dark.webp" alt="CF consulting" width="900" height="307" />
+    </a>
+
+    <nav class="nav-desktop" aria-label="Navigazione principale">
+      <a href="index.html" data-nav="home">Home</a>
+      <a href="chi-siamo.html" data-nav="chi-siamo">Chi siamo</a>
+      <button type="button" class="nav-services-btn" data-panel-toggle data-nav="servizi"
+              aria-expanded="false" aria-haspopup="true" aria-controls="cf-services-panel">
+        Servizi <span class="nav-services-btn__caret" aria-hidden="true">▾</span>
+      </button>
+      <a href="progetti.html" data-nav="progetti">Progetti</a>
+      <a href="news.html" data-nav="news">News</a>
+      <a href="contatti.html" data-nav="contatti">Contatti</a>
+    </nav>
+
+    <button type="button" class="burger" data-drawer-toggle
+            aria-label="Menù" aria-expanded="false" aria-controls="cf-drawer">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="services-panel" id="cf-services-panel">
+    <div class="services-panel__grid">
+      <div class="services-panel__areas" role="tablist" aria-label="Aree di servizio">
+{{PANEL_AREAS}}
+      </div>
+{{PANEL_LISTS}}
+    </div>
+  </div>
+</header>
+
+<div class="drawer-backdrop" data-drawer-close hidden></div>
+
+<aside class="drawer" id="cf-drawer" aria-label="Menù di navigazione">
+  <div class="drawer__top">
+    <img src="img/logo-cf-light.webp" alt="CF consulting" width="900" height="307" />
+    <button type="button" class="drawer__close" data-drawer-close aria-label="Chiudi il menù">×</button>
+  </div>
+  <nav class="drawer__nav">
+    <a class="drawer__link" href="index.html" data-nav="home">Home</a>
+    <a class="drawer__link" href="chi-siamo.html" data-nav="chi-siamo">Chi siamo</a>
+
+    <div class="drawer__heading">Servizi</div>
+{{DRAWER_AREAS}}
+    <a class="drawer__all" href="servizi.html">Tutti i servizi</a>
+
+    <a class="drawer__link" href="progetti.html" data-nav="progetti">Progetti</a>
+    <a class="drawer__link" href="news.html" data-nav="news">News</a>
+    <a class="drawer__link" href="contatti.html" data-nav="contatti">Contatti</a>
+
+    <div class="drawer__contacts">
+      <a href="tel:+3907441963005">0744 196 3005</a>
+      <a href="mailto:info@cieffeconsulting.eu">info@cieffeconsulting.eu</a>
+      <span>Via A. Bartocci 7/T<br />05100 Terni (TR)</span>
+    </div>
+  </nav>
+</aside>
