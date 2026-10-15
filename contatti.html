@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="assets/css/site.css?v=91166017" />
+<link rel="stylesheet" href="assets/css/site.css?v=86038748" />
 </head>
 <body>
 
@@ -398,7 +398,9 @@
         <h2 class="form-card__title" data-title><span>Richiedi informazioni</span></h2>
         <p class="form-card__sub">Compila il form per ricevere informazioni</p>
 
-        <form class="form" data-contact-form action="#" method="post" novalidate>
+        <form class="form" data-contact-form action="/" method="post" novalidate
+              name="contatto" data-netlify="true" data-netlify-honeypot="azienda">
+          <input type="hidden" name="form-name" value="contatto" />
           <p class="honeypot" aria-hidden="true">
             <label>Azienda <input type="text" name="azienda" tabindex="-1" autocomplete="off" /></label>
           </p>
@@ -541,6 +543,6 @@
   </div>
 </div>
 
-<script src="assets/js/site.js?v=91166017" defer></script>
+<script src="assets/js/site.js?v=86038748" defer></script>
 </body>
 </html>

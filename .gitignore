@@ -34,3 +34,5 @@ CF Consulting - anteprima sito/
 
 # Anteprima generata dal sistema.
 .thumbnail
+
+# Il feed dei progetti si rigenera a ogni build, come la sitemap.

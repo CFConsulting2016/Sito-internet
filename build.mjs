@@ -683,6 +683,47 @@ const sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n'
   + '\n</urlset>\n';
 await writeFile(join(ROOT, 'sitemap.xml'), sitemap, 'utf8');
 
+/* --- feed dei progetti -------------------------------------- */
+// È il ponte fra il pannello e i social: quando il cliente pubblica un
+// progetto, il sito si ricostruisce, il progetto compare qui, e Zapier
+// se ne accorge. Niente webhook, che sul piano gratuito non ci sono.
+//
+// L'indirizzo di base lo dà Netlify al momento della costruzione: così
+// il feed punta da solo all'anteprima finché il dominio non è spostato,
+// e al dominio vero appena lo sarà, senza modifiche al codice.
+{
+  const base = (process.env.URL || SITE).replace(/\/+$/, '') + '/';
+  const quando = new Date().toUTCString();
+
+  const voci = projects.slice(0, 30).map((p) => {
+    const url = base + projectHref(p);
+    const foto = p.img ? base + p.img : '';
+    return `    <item>
+      <title>${esc(p.shortTitle)}</title>
+      <link>${esc(url)}</link>
+      <guid isPermaLink="true">${esc(url)}</guid>
+      <description>${esc(p.lead || p.title)}</description>
+      <category>${esc(p.cat)}</category>${foto ? `
+      <enclosure url="${esc(foto)}" type="image/webp" length="0" />` : ''}
+    </item>`;
+  }).join('\n');
+
+  const feed = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>CF Consulting — Progetti</title>
+    <link>${esc(base)}progetti.html</link>
+    <description>I progetti pubblicati da CF Consulting S.r.l.</description>
+    <language>it-IT</language>
+    <lastBuildDate>${quando}</lastBuildDate>
+${voci}
+  </channel>
+</rss>
+`;
+  await writeFile(join(ROOT, 'progetti.xml'), feed, 'utf8');
+  console.log(`progetti.xml: feed con ${Math.min(projects.length, 30)} progetti (base ${base})`);
+}
+
 /* --- reindirizzamenti dal vecchio sito ---------------------- */
 // Il file lo legge solo Netlify: in locale e' inerte e non tocca nessuna pagina.
 // L'ordine conta, Netlify applica la prima regola che combacia: prima gli
@@ -728,6 +769,16 @@ await writeFile(join(ROOT, 'robots.txt'),
   `User-agent: *\nAllow: /\n\nSitemap: ${SITE}sitemap.xml\n`, 'utf8');
 
 console.log(`${written.length} pagine + sitemap.xml + robots.txt`);
+// il blocco ai motori e' comodo adesso e disastroso al lancio:
+// meglio un avviso a ogni build che un sito invisibile per settimane
+try {
+  const toml = await read(ROOT, 'netlify.toml');
+  if (/X-Robots-Tag\s*=\s*"noindex/.test(toml)) {
+    console.log('\nNOTA: il sito è escluso dai motori di ricerca (X-Robots-Tag in');
+    console.log('netlify.toml). Giusto adesso, da togliere il giorno del lancio.');
+  }
+} catch { /* in locale netlify.toml puo' non esserci */ }
+
 if (conservazioneMancante) {
   console.log('\nATTENZIONE: nella privacy policy manca il periodo di conservazione dei');
   console.log('messaggi del modulo contatti. Da chiedere al cliente e scrivere in');

@@ -391,10 +391,15 @@
       submit.disabled = true;
       submit.textContent = 'Invio in corso…';
 
+      // Netlify Forms vuole i campi codificati come una querystring,
+      // non come multipart: con FormData l'invio verrebbe rifiutato.
       fetch(endpoint, {
         method: 'POST',
-        headers: { Accept: 'application/json' },
-        body: new FormData(form)
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: new URLSearchParams(new FormData(form)).toString()
       }).then(function (res) {
         if (!res.ok) throw new Error('invio non riuscito');
         form.reset();

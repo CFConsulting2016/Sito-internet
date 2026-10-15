@@ -35,3 +35,15 @@
   for = "/admin/*"
   [headers.values]
     X-Robots-Tag = "noindex, nofollow"
+
+# --- SOLO PRIMA DEL LANCIO ---------------------------------
+# Finché il sito vive sull'indirizzo .netlify.app non deve finire nei
+# motori di ricerca: sarebbe un doppione del sito attuale del cliente,
+# e capita che il doppione si posizioni al posto dell'originale.
+#
+# AL LANCIO QUESTO BLOCCO VA TOLTO, altrimenti il sito resta invisibile
+# a Google. Il generatore avvisa a ogni ricostruzione finché c'è.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"

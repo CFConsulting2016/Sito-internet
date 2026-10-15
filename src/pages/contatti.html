@@ -69,7 +69,9 @@
         <h2 class="form-card__title" data-title><span>Richiedi informazioni</span></h2>
         <p class="form-card__sub">Compila il form per ricevere informazioni</p>
 
-        <form class="form" data-contact-form action="#" method="post" novalidate>
+        <form class="form" data-contact-form action="/" method="post" novalidate
+              name="contatto" data-netlify="true" data-netlify-honeypot="azienda">
+          <input type="hidden" name="form-name" value="contatto" />
           <p class="honeypot" aria-hidden="true">
             <label>Azienda <input type="text" name="azienda" tabindex="-1" autocomplete="off" /></label>
           </p>
