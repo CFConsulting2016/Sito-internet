@@ -1,0 +1,37 @@
+# Configurazione di pubblicazione per Netlify.
+#
+# Il generatore va eseguito a ogni pubblicazione, non solo in locale:
+# Decap CMS scrive in src/, e senza una ricostruzione le pagine HTML
+# resterebbero quelle vecchie. E' il motivo per cui qui c'e' un comando
+# di build invece del semplice "pubblica quello che trovi".
+
+[build]
+  command = "node build.mjs"
+  publish = "."
+
+[build.environment]
+  # Fissata di proposito: un aggiornamento automatico della versione
+  # di Node potrebbe cambiare il comportamento del generatore senza
+  # che nessuno abbia toccato una riga.
+  NODE_VERSION = "22"
+
+# Le pagine sono statiche e cambiano a ogni pubblicazione: non vanno
+# tenute in cache dal browser, altrimenti il cliente modifica un
+# progetto e non vede la differenza.
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Le immagini invece non cambiano mai: hanno un nome diverso quando
+# sono diverse, quindi possono restare in cache a lungo.
+[[headers]]
+  for = "/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Il pannello di gestione non deve finire nei motori di ricerca.
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
