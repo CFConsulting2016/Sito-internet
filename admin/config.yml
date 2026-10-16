@@ -14,14 +14,31 @@ backend:
   name: git-gateway
   repo: CFConsulting2016/Sito-internet
   branch: main
-  identity_url: https://auth.decapbridge.com/sites/DA-COMPILARE-SITE-ID
+
+  # Accesso PKCE di DecapBridge, che ha sostituito Netlify Identity.
+  # Il codice nei due percorsi identifica il sito su DecapBridge: non e'
+  # un segreto, il browser scarica questo file a ogni apertura di /admin/.
+  auth_type: pkce
+  base_url: https://auth.decapbridge.com
+  auth_endpoint: /sites/7eb647f6-f54e-4acb-81ec-028a5f70571a/pkce
+  auth_token_endpoint: /sites/7eb647f6-f54e-4acb-81ec-028a5f70571a/token
   gateway_url: https://gateway.decapbridge.com
+
+  # Ogni modifica porta il nome di chi l'ha fatta: con piu' persone nel
+  # pannello, la cronologia dice chi ha cambiato cosa.
   commit_messages:
-    create: 'Aggiunto {{collection}} "{{slug}}"'
-    update: 'Modificato {{collection}} "{{slug}}"'
-    delete: 'Rimosso {{collection}} "{{slug}}"'
-    uploadMedia: 'Caricata immagine "{{path}}"'
-    deleteMedia: 'Rimossa immagine "{{path}}"'
+    create: 'Aggiunto {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}>'
+    update: 'Modificato {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}>'
+    delete: 'Rimosso {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}>'
+    uploadMedia: 'Caricata immagine "{{path}}" - {{author-name}} <{{author-login}}>'
+    deleteMedia: 'Rimossa immagine "{{path}}" - {{author-name}} <{{author-login}}>'
+
+# Campi che PKCE mette a disposizione su chi ha fatto l'accesso.
+auth:
+  email_claim: email
+  first_name_claim: first_name
+  last_name_claim: last_name
+  avatar_url_claim: avatar_url
 
 # Permette di provare il pannello senza account, sul computer:
 #   npx decap-server        (in un terminale, dalla cartella del progetto)
