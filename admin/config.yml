@@ -12,7 +12,7 @@
 # DecapBridge: finché non ci sono, si lavora in locale (vedi local_backend).
 backend:
   name: git-gateway
-  repo: DA-COMPILARE/cf-consulting            # utente-github/nome-repository
+  repo: CFConsulting2016/Sito-internet
   branch: main
   identity_url: https://auth.decapbridge.com/sites/DA-COMPILARE-SITE-ID
   gateway_url: https://gateway.decapbridge.com
@@ -42,6 +42,13 @@ public_folder: img/caricate
 # immagini interna (`media_library` serve solo alle librerie esterne).
 # Il controllo sul peso delle foto va fatto altrove: vedi la conversione
 # in WebP, da aggiungere quando il repository sarà online.
+
+# Dove vive il sito. Serve a Decap per il collegamento "vedi il sito"
+# e per le anteprime. Quando sposteremo il dominio, qui vanno i due
+# indirizzi nuovi.
+site_url: https://cf-consulting.netlify.app
+display_url: https://cf-consulting.netlify.app
+logo_url: https://cf-consulting.netlify.app/img/logo-cf-dark.webp
 
 locale: it
 
