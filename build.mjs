@@ -11,7 +11,11 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
 const SRC = join(ROOT, 'src');
-const SITE = 'https://www.cieffeconsulting.eu/';
+// L'indirizzo del sito lo dà Netlify al momento della costruzione: così
+// anteprime social, canonical e feed puntano all'indirizzo dove il sito
+// vive davvero — l'anteprima ora, il dominio dopo il lancio. In locale,
+// senza variabile, resta il dominio definitivo.
+const SITE = (process.env.URL || 'https://www.cieffeconsulting.eu').replace(/\/+$/, '') + '/';
 
 const read = (...p) => readFile(join(...p), 'utf8');
 
@@ -695,13 +699,17 @@ await writeFile(join(ROOT, 'sitemap.xml'), sitemap, 'utf8');
   const base = (process.env.URL || SITE).replace(/\/+$/, '') + '/';
   const quando = new Date().toUTCString();
 
+  // Il guid NON contiene l'indirizzo: e' con lui che Zapier riconosce i
+  // progetti gia' visti. Se dipendesse dal dominio, il giorno del lancio
+  // tutti i progetti sembrerebbero nuovi e verrebbero ripubblicati sui
+  // social in blocco. Lo slug invece non cambia mai.
   const voci = projects.slice(0, 30).map((p) => {
     const url = base + projectHref(p);
     const foto = p.img ? base + p.img : '';
     return `    <item>
       <title>${esc(p.shortTitle)}</title>
       <link>${esc(url)}</link>
-      <guid isPermaLink="true">${esc(url)}</guid>
+      <guid isPermaLink="false">cf-consulting-progetto-${esc(p.slug)}</guid>
       <description>${esc(p.lead || p.title)}</description>
       <category>${esc(p.cat)}</category>${foto ? `
       <enclosure url="${esc(foto)}" type="image/webp" length="0" />` : ''}
