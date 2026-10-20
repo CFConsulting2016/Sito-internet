@@ -1,0 +1,16 @@
+{
+ "edilbuild": {
+  "url": "https://www.edilbuild.it/",
+  "modo": "home",
+  "frasi": [],
+  "controllato": "2026-10-20"
+ },
+ "la-termotecnica": {
+  "url": "https://www.latermotecnica.net/",
+  "modo": "home",
+  "frasi": [
+   "copyright"
+  ],
+  "controllato": "2026-10-20"
+ }
+}

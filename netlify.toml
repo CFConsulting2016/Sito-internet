@@ -8,6 +8,10 @@
 [build]
   command = "node build.mjs"
   publish = "."
+  # Niente ricostruzione quando cambiano solo gli strumenti dell'automazione
+  # news (.github/ e strumenti/): non toccano il sito. Le notizie approvate
+  # stanno in src/news e fanno ricostruire normalmente.
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- . ':(exclude).github' ':(exclude)strumenti'"
 
 [build.environment]
   # Fissata di proposito: un aggiornamento automatico della versione
