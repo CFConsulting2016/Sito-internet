@@ -69,6 +69,11 @@ logo_url: https://cf-consulting.netlify.app/img/logo-cf-dark.webp
 
 locale: it
 
+# L'anteprima a destra del modulo e' quella generica di Decap: non usa la
+# grafica del sito e sembra una pagina rotta. Meglio il solo modulo.
+editor:
+  preview: false
+
 collections:
   # --- progetti -----------------------------------------------
   - name: progetti
