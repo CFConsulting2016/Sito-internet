@@ -387,6 +387,11 @@ const projects = await leggiCartella('progetti', (p, nome) => {
   Object.assign(p, p.scheda || {});    // nel CMS la scheda tecnica è un gruppo,
                                        // qui i campi tornano comodi in piano
 });
+// Un progetto appena creato dal pannello di solito non ha «Ordine»: va in
+// cima, nell'archivio e nel feed. In fondo uscirebbe dai primi 30 del feed,
+// e Zapier non lo vedrebbe mai: niente post sui social.
+const posizione = (p) => (Number.isFinite(p.ordine) ? p.ordine : -1);
+projects.sort((a, b) => posizione(a) - posizione(b));
 const fonti = await leggiCartella('fonti', (f, nome) => { f.id = nome; });
 // le notizie si ordinano per data, dalla più recente
 const news = (await leggiCartella('news', (n, nome) => { n.id = nome; }))
