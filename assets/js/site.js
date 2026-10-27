@@ -195,6 +195,9 @@
 
     bar.querySelector('.cookiebar__accept').addEventListener('click', function () { decide('all'); });
     bar.querySelector('.cookiebar__decline').addEventListener('click', function () { decide('necessary'); });
+    // chiudere con la X senza scegliere vale come rifiuto
+    var chiudi = bar.querySelector('.cookiebar__close');
+    if (chiudi) chiudi.addEventListener('click', function () { decide('necessary'); });
 
     // la scelta si deve poter cambiare in qualsiasi momento: è un obbligo,
     // non una cortesia. Il collegamento sta nel footer di ogni pagina.
@@ -362,7 +365,7 @@
         ? '' : 'Inserisci un indirizzo email valido.') && ok;
       ok = fieldError(message, message.value.trim().length >= 10
         ? '' : 'Scrivi almeno una riga sulla tua richiesta.') && ok;
-      ok = fieldError(consent, consent.checked ? '' : 'È necessario il consenso al trattamento dei dati.') && ok;
+      ok = fieldError(consent, consent.checked ? '' : 'Conferma di aver letto l’informativa privacy.') && ok;
       return ok;
     }
 

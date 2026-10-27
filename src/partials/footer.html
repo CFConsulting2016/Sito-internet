@@ -39,10 +39,14 @@
 
 <div class="cookiebar" hidden>
   <div class="container cookiebar__inner">
-    <p>Usiamo un solo strumento tecnico, per ricordare questa scelta. La mappa di Google viene caricata soltanto se acconsentite. Nessuna statistica, nessun tracciamento. Dettagli nella <a href="cookie-policy.html">Cookie Policy</a>.</p>
+    <p>Usiamo un solo strumento tecnico, per ricordare questa scelta. La mappa di Google viene caricata soltanto se acconsentite. Nessuna statistica, nessun tracciamento. Il sito funziona allo stesso modo qualunque cosa scegliate. Dettagli nella <a href="cookie-policy.html">Cookie Policy</a>.</p>
+    <!-- I due pulsanti hanno lo stesso aspetto di proposito: il Garante chiede
+         di non spingere verso il consenso con la grafica. -->
     <div class="cookiebar__actions">
-      <button type="button" class="cookiebar__decline">Solo necessari</button>
+      <button type="button" class="cookiebar__decline">Rifiuta tutti</button>
       <button type="button" class="cookiebar__accept">Accetta tutti</button>
     </div>
+    <!-- Chiudere senza scegliere vale come rifiuto (linee guida Garante 2021). -->
+    <button type="button" class="cookiebar__close" aria-label="Chiudi e rifiuta i cookie facoltativi">&times;</button>
   </div>
 </div>

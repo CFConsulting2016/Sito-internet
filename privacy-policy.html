@@ -18,10 +18,8 @@
 <meta property="og:url" content="https://www.cieffeconsulting.eu/privacy-policy.html" />
 <meta name="twitter:card" content="summary" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="assets/css/site.css?v=86038748" />
+<link rel="preload" href="assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="assets/css/site.css?v=26565313" />
 </head>
 <body>
 
@@ -324,7 +322,7 @@
     <p>Il conferimento dei dati contrassegnati come obbligatori nel modulo è necessario per poter rispondere: senza quelli non siamo in grado di ricontattarvi. Il numero di telefono è facoltativo e serve solo se preferite essere richiamati.</p>
 
     <h2>4. Per quanto tempo li conserviamo</h2>
-    <p>Conserviamo i messaggi ricevuti tramite il modulo contatti per <strong><mark class="legale__manca">periodo da definire con il cliente</mark></strong>, decorsi i quali vengono cancellati. Se dalla richiesta nasce un rapporto professionale, i dati confluiscono nella documentazione di quel rapporto e seguono i termini di conservazione previsti dalla legge, in particolare quelli fiscali e civilistici.</p>
+    <p>Conserviamo i messaggi ricevuti tramite il modulo contatti per <strong>24 mesi</strong>, decorsi i quali vengono cancellati. Se dalla richiesta nasce un rapporto professionale, i dati confluiscono nella documentazione di quel rapporto e seguono i termini di conservazione previsti dalla legge, in particolare quelli fiscali e civilistici.</p>
     <p>I log tecnici del sistema di hosting sono conservati per periodi brevi, definiti dal fornitore, e servono esclusivamente a fini di sicurezza e diagnostica.</p>
 
     <h2>5. A chi possono essere comunicati</h2>
@@ -364,7 +362,7 @@
     <h2>11. Modifiche a questa informativa</h2>
     <p>Se cambiano i servizi del sito o il modo in cui trattiamo i dati, aggiorneremo questo documento. La data in calce indica l&rsquo;ultima revisione: vi invitiamo a consultarla periodicamente.</p>
 
-    <p class="legale__data">Ultimo aggiornamento: 6 ottobre 2026</p>
+    <p class="legale__data">Ultimo aggiornamento: 27 ottobre 2026</p>
   </div>
 </section>
 </main>
@@ -423,14 +421,18 @@
 
 <div class="cookiebar" hidden>
   <div class="container cookiebar__inner">
-    <p>Usiamo un solo strumento tecnico, per ricordare questa scelta. La mappa di Google viene caricata soltanto se acconsentite. Nessuna statistica, nessun tracciamento. Dettagli nella <a href="cookie-policy.html">Cookie Policy</a>.</p>
+    <p>Usiamo un solo strumento tecnico, per ricordare questa scelta. La mappa di Google viene caricata soltanto se acconsentite. Nessuna statistica, nessun tracciamento. Il sito funziona allo stesso modo qualunque cosa scegliate. Dettagli nella <a href="cookie-policy.html">Cookie Policy</a>.</p>
+    <!-- I due pulsanti hanno lo stesso aspetto di proposito: il Garante chiede
+         di non spingere verso il consenso con la grafica. -->
     <div class="cookiebar__actions">
-      <button type="button" class="cookiebar__decline">Solo necessari</button>
+      <button type="button" class="cookiebar__decline">Rifiuta tutti</button>
       <button type="button" class="cookiebar__accept">Accetta tutti</button>
     </div>
+    <!-- Chiudere senza scegliere vale come rifiuto (linee guida Garante 2021). -->
+    <button type="button" class="cookiebar__close" aria-label="Chiudi e rifiuta i cookie facoltativi">&times;</button>
   </div>
 </div>
 
-<script src="assets/js/site.js?v=86038748" defer></script>
+<script src="assets/js/site.js?v=26565313" defer></script>
 </body>
 </html>

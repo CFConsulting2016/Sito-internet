@@ -18,10 +18,8 @@
 <meta property="og:url" content="https://www.cieffeconsulting.eu/progetti/condominio-ripaverde-via-del-parco-25-narni-scalo.html" />
 <meta name="twitter:card" content="summary" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="../assets/css/site.css?v=86038748" />
+<link rel="preload" href="../assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="../assets/css/site.css?v=26565313" />
 </head>
 <body>
 
@@ -574,14 +572,18 @@
 
 <div class="cookiebar" hidden>
   <div class="container cookiebar__inner">
-    <p>Usiamo un solo strumento tecnico, per ricordare questa scelta. La mappa di Google viene caricata soltanto se acconsentite. Nessuna statistica, nessun tracciamento. Dettagli nella <a href="../cookie-policy.html">Cookie Policy</a>.</p>
+    <p>Usiamo un solo strumento tecnico, per ricordare questa scelta. La mappa di Google viene caricata soltanto se acconsentite. Nessuna statistica, nessun tracciamento. Il sito funziona allo stesso modo qualunque cosa scegliate. Dettagli nella <a href="../cookie-policy.html">Cookie Policy</a>.</p>
+    <!-- I due pulsanti hanno lo stesso aspetto di proposito: il Garante chiede
+         di non spingere verso il consenso con la grafica. -->
     <div class="cookiebar__actions">
-      <button type="button" class="cookiebar__decline">Solo necessari</button>
+      <button type="button" class="cookiebar__decline">Rifiuta tutti</button>
       <button type="button" class="cookiebar__accept">Accetta tutti</button>
     </div>
+    <!-- Chiudere senza scegliere vale come rifiuto (linee guida Garante 2021). -->
+    <button type="button" class="cookiebar__close" aria-label="Chiudi e rifiuta i cookie facoltativi">&times;</button>
   </div>
 </div>
 
-<script src="../assets/js/site.js?v=86038748" defer></script>
+<script src="../assets/js/site.js?v=26565313" defer></script>
 </body>
 </html>

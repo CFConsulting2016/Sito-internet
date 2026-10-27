@@ -18,10 +18,8 @@
 <meta property="og:url" content="https://www.cieffeconsulting.eu/cookie-policy.html" />
 <meta name="twitter:card" content="summary" />
 
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="assets/css/site.css?v=86038748" />
+<link rel="preload" href="assets/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin />
+<link rel="stylesheet" href="assets/css/site.css?v=26565313" />
 </head>
 <body>
 
@@ -317,10 +315,11 @@
     </div>
 
     <h3>Quello che non usiamo</h3>
-    <p>Per chiarezza, visto che è raro: questo sito <strong>non usa</strong> Google Analytics o altri strumenti di statistica, non usa il pixel di Facebook né alcun tracciatore pubblicitario, non ha pulsanti social che caricano codice di terzi — i collegamenti alle nostre pagine Facebook e LinkedIn sono normali collegamenti, che non comunicano nulla a nessuno finché non li cliccate — e non costruisce profili di navigazione.</p>
+    <p>Per chiarezza, visto che è raro: questo sito <strong>non usa</strong> Google Analytics o altri strumenti di statistica, non usa il pixel di Facebook né alcun tracciatore pubblicitario, non ha pulsanti social che caricano codice di terzi — i collegamenti alle nostre pagine Facebook e LinkedIn sono normali collegamenti, che non comunicano nulla a nessuno finché non li cliccate — e non costruisce profili di navigazione. Anche i caratteri tipografici e tutti gli altri file del sito sono serviti dal sito stesso: aprendo una pagina il vostro browser non contatta server di terzi.</p>
 
     <h2>3. Come esprimere e cambiare le vostre scelte</h2>
-    <p>Alla prima visita compare un banner con due pulsanti: <strong>Solo necessari</strong>, che rifiuta tutto ciò che non è indispensabile, e <strong>Accetta tutti</strong>, che autorizza anche la mappa. Rifiutare è facile quanto accettare, e il sito funziona in entrambi i casi.</p>
+    <p>Alla prima visita compare un banner con due pulsanti dello stesso aspetto: <strong>Rifiuta tutti</strong>, che rifiuta tutto ciò che non è indispensabile, e <strong>Accetta tutti</strong>, che autorizza anche la mappa. Potete anche chiudere il banner con la <strong>X</strong>: vale come rifiuto. Rifiutare è facile quanto accettare, e il sito funziona allo stesso modo in tutti i casi: l&rsquo;unica differenza è che, senza consenso, al posto della mappa compare un riquadro.</p>
+    <p>La vostra scelta viene ricordata, così il banner non vi viene riproposto a ogni pagina. Per ricordarla usiamo lo strumento tecnico descritto sopra, che per questo non richiede consenso.</p>
     <p>Potete cambiare idea in qualsiasi momento: in fondo a ogni pagina trovate il collegamento <strong>Preferenze cookie</strong>, che fa ricomparire il banner e vi permette di scegliere di nuovo.</p>
     <p>Potete anche intervenire direttamente dal browser, bloccando o cancellando i cookie già salvati. Le istruzioni sono qui:</p>
     <ul class="legale-elenco legale-elenco--inline">
@@ -339,7 +338,7 @@
     Per qualsiasi domanda: <a href="mailto:info@cieffeconsulting.eu">info@cieffeconsulting.eu</a>.</p>
     <p>Trovate il quadro completo del trattamento dei dati personali, e l&rsquo;elenco dei vostri diritti, nella <a href="privacy-policy.html">Privacy Policy</a>.</p>
 
-    <p class="legale__data">Ultimo aggiornamento: 6 ottobre 2026</p>
+    <p class="legale__data">Ultimo aggiornamento: 27 ottobre 2026</p>
   </div>
 </section>
 </main>
@@ -398,14 +397,18 @@
 
 <div class="cookiebar" hidden>
   <div class="container cookiebar__inner">
-    <p>Usiamo un solo strumento tecnico, per ricordare questa scelta. La mappa di Google viene caricata soltanto se acconsentite. Nessuna statistica, nessun tracciamento. Dettagli nella <a href="cookie-policy.html">Cookie Policy</a>.</p>
+    <p>Usiamo un solo strumento tecnico, per ricordare questa scelta. La mappa di Google viene caricata soltanto se acconsentite. Nessuna statistica, nessun tracciamento. Il sito funziona allo stesso modo qualunque cosa scegliate. Dettagli nella <a href="cookie-policy.html">Cookie Policy</a>.</p>
+    <!-- I due pulsanti hanno lo stesso aspetto di proposito: il Garante chiede
+         di non spingere verso il consenso con la grafica. -->
     <div class="cookiebar__actions">
-      <button type="button" class="cookiebar__decline">Solo necessari</button>
+      <button type="button" class="cookiebar__decline">Rifiuta tutti</button>
       <button type="button" class="cookiebar__accept">Accetta tutti</button>
     </div>
+    <!-- Chiudere senza scegliere vale come rifiuto (linee guida Garante 2021). -->
+    <button type="button" class="cookiebar__close" aria-label="Chiudi e rifiuta i cookie facoltativi">&times;</button>
   </div>
 </div>
 
-<script src="assets/js/site.js?v=86038748" defer></script>
+<script src="assets/js/site.js?v=26565313" defer></script>
 </body>
 </html>

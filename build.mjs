@@ -693,6 +693,10 @@ const sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n'
 await writeFile(join(ROOT, 'sitemap.xml'), sitemap, 'utf8');
 
 /* --- feed dei progetti -------------------------------------- */
+// Le foto migrate sono WebP, quelle caricate dal pannello di solito JPEG:
+// il tipo dichiarato nel feed segue l'estensione del file.
+const tipoImmagine = (f) => ({ jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', webp: 'image/webp' })[
+  String(f).split('.').pop().toLowerCase()] || 'image/jpeg';
 // È il ponte fra il pannello e i social: quando il cliente pubblica un
 // progetto, il sito si ricostruisce, il progetto compare qui, e Zapier
 // se ne accorge. Niente webhook, che sul piano gratuito non ci sono.
@@ -717,7 +721,7 @@ await writeFile(join(ROOT, 'sitemap.xml'), sitemap, 'utf8');
       <guid isPermaLink="false">cf-consulting-progetto-${esc(p.slug)}</guid>
       <description>${esc(p.lead || p.title)}</description>
       <category>${esc(p.cat)}</category>${foto ? `
-      <enclosure url="${esc(foto)}" type="image/webp" length="0" />` : ''}
+      <enclosure url="${esc(foto)}" type="${tipoImmagine(foto)}" length="0" />` : ''}
     </item>`;
   }).join('\n');
 
