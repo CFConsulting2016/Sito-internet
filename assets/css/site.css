@@ -762,7 +762,8 @@ textarea:focus-visible,
 .site-footer__bottom {
   max-width: var(--container);
   margin: 0 auto;
-  padding: 22px var(--gutter) 40px;
+  /* in fondo resta spazio per il riquadro «Powered by Netlify», vedi sotto */
+  padding: 22px var(--gutter) 76px;
   border-top: 1px solid rgba(255,255,255,.08);
   display: flex;
   flex-wrap: wrap;
@@ -1799,6 +1800,19 @@ textarea:focus-visible,
 
 /* La X chiude senza consenso: vale come rifiuto. */
 .cookiebar { padding-right: 44px; }
+
+/* Sul piano gratuito Netlify aggiunge a ogni pagina un riquadro «Powered by
+   Netlify» fisso in basso a destra (circa 180 x 47 px, a 13 px dal fondo e
+   30 dal bordo), sopra a tutto e senza modo di nasconderlo. Il banner lascia
+   libero quell'angolo: coprirebbe «Accetta tutti», e i due pulsanti devono
+   restare ugualmente visibili. Su schermi larghi si sposta a sinistra, su
+   quelli stretti sale. */
+@media (min-width: 761px) {
+  .cookiebar { padding-right: 250px; }
+}
+@media (max-width: 760px) {
+  .cookiebar { padding-bottom: 64px; }
+}
 .cookiebar .cookiebar__close {
   position: absolute;
   top: 8px;
