@@ -353,6 +353,9 @@
 
     var status = form.querySelector('.form__status');
     var submit = form.querySelector('.form__submit');
+    // i controlli li fa lo script, con messaggi in italiano; senza script
+    // resta quello del browser, che blocca l'invio senza la casella privacy
+    form.noValidate = true;
 
     function fieldError(input, message) {
       var box = input.closest('.form__field');
