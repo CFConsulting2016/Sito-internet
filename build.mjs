@@ -443,6 +443,25 @@ const paginaNews = JSON.parse(await read(SRC, 'data', 'pagina-news.json'));
 const serviceText = JSON.parse(await read(SRC, 'data', 'servizi-contenuti.json'));
 const team = JSON.parse(await read(SRC, 'data', 'team.json'));
 const azienda = JSON.parse(await read(SRC, 'data', 'azienda.json'));
+// Una certificazione scaduta non si mostra: presentarla come valida, in una
+// gara, è peggio che non averla. Due mesi prima si avvisa di caricare il rinnovo.
+{
+  const oggi = new Date().toISOString().slice(0, 10);
+  const fra60 = new Date(Date.now() + 60 * 864e5).toISOString().slice(0, 10);
+  const valide = (elenco) => (elenco || []).filter((c) => {
+    const nome = `${c.nome || c.titolo}${c.persona ? ` (${c.persona})` : ''}`;
+    if (c.scadenza && c.scadenza < oggi) {
+      console.log(`ATTENZIONE: certificazione scaduta il ${c.scadenza}, tolta dal sito: ${nome}`);
+      return false;
+    }
+    if (c.scadenza && c.scadenza < fra60) {
+      console.log(`ATTENZIONE: certificazione in scadenza il ${c.scadenza}, caricare il rinnovo: ${nome}`);
+    }
+    return true;
+  });
+  azienda.certificazioni = valide(azienda.certificazioni);
+  azienda.certificazioniPersonali = valide(azienda.certificazioniPersonali);
+}
 const layout = await read(SRC, 'layout.html');
 const heroGrid = (await read(SRC, 'partials', 'hero-grid.html')).trim();
 let footer = (await read(SRC, 'partials', 'footer.html')).trim();
