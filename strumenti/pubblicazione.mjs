@@ -2,46 +2,31 @@
  * Quando un salvataggio sul ramo principale deve ricostruire il sito.
  *
  * Ogni ricostruzione costa 15 crediti Netlify (300 al mese nel piano
- * gratuito). Le news, che il pannello propone due volte a settimana, si
- * accumulano e vanno online insieme il lunedì mattina; tutto il resto
- * (progetti, pagine, dati) esce subito, come prima.
- *
- * Le regole stanno qui una volta sola: le usano sia Netlify per decidere
- * se costruire (salta-build.mjs) sia il controllo del lunedì per capire se
- * ci sono news in attesa (news-settimanali.mjs).
+ * gratuito). Le news approvate non vanno direttamente sul sito: finiscono
+ * in src/news-in-attesa, che il sito non legge, e da lì le sposta in
+ * src/news il giro del lunedì (strumenti/sposta-news.mjs), con una sola
+ * ricostruzione per tutte. Tutto il resto (progetti, pagine, dati) esce
+ * subito, come prima.
  */
 
-/** File che non toccano il sito: automazioni e strumenti di lavoro. */
-const FUORI_DAL_SITO = ['.github/', 'strumenti/'];
+/** File che non cambiano il sito: salvarli non deve costare crediti. */
+const NON_TOCCANO_IL_SITO = [
+  '.github/',
+  'strumenti/',
+  'src/news-in-attesa/',            // l'area di attesa, il sito non la legge
+  'src/data/pubblica-news-ora.json', // la richiesta: costruisce lo spostamento
+];
 
-/** File che possono aspettare il lunedì: le notizie e le immagini caricate
- *  dal pannello, che con il flusso di approvazione viaggiano insieme alla
- *  notizia. Se arrivano insieme a un progetto, il progetto fa costruire. */
-const RIMANDABILI = ['src/news/', 'img/caricate/'];
+/** Le immagini caricate dal pannello, da sole, non cambiano il sito: lo
+ *  cambiano quando le usa un progetto o una news, e allora arrivano insieme. */
+const SOLO_IMMAGINI = 'img/caricate/';
 
-const inizia = (file, elenco) => elenco.some((p) => file.startsWith(p));
+const inizia = (file, prefissi) => prefissi.some((p) => file.startsWith(p));
 
-/**
- * @param {string[]} file   percorsi cambiati nel salvataggio
- * @param {(percorso: string) => string|null} leggi   contenuto del file
- *        nella versione salvata, null se il file è stato cancellato
- * @returns {'subito'|'lunedi'|'niente'}
- */
-export function quandoPubblicare(file, leggi) {
-  const sito = file.filter((f) => !inizia(f, FUORI_DAL_SITO));
-  if (!sito.length) return 'niente';
-  if (sito.some((f) => !inizia(f, RIMANDABILI))) return 'subito';
-
-  // solo news: escono subito quelle con «Pubblicazione immediata» accesa
-  for (const f of sito) {
-    if (!f.startsWith('src/news/') || !f.endsWith('.json')) continue;
-    const testo = leggi(f);
-    if (!testo) continue;
-    try {
-      if (JSON.parse(testo).pubblicaSubito === true) return 'subito';
-    } catch {
-      return 'subito'; // un file illeggibile meglio vederlo fallire subito
-    }
-  }
-  return 'lunedi';
+/** @param {string[]} file  percorsi cambiati nel salvataggio
+ *  @returns {boolean} true se il sito va ricostruito */
+export function cambiaIlSito(file) {
+  return file
+    .filter((f) => !inizia(f, NON_TOCCANO_IL_SITO))
+    .some((f) => !f.startsWith(SOLO_IMMAGINI));
 }

@@ -184,10 +184,14 @@ collections:
         hint: La prima è la copertina, quella che si vede nell'archivio. Le altre formano la galleria.
 
   # --- news ---------------------------------------------------
-  - name: news
-    label: News
+  - name: attesa
+    label: News in attesa
     label_singular: Notizia
-    folder: src/news
+    description: >-
+      Le notizie approvate aspettano qui e vanno online tutte insieme il lunedì mattina, con
+      una sola pubblicazione. Qui arrivano anche le proposte automatiche, dopo che le avete
+      pubblicate dalla scheda Workflow. Per farle uscire prima usate «Pubblica ora le news».
+    folder: src/news-in-attesa
     extension: json
     format: json
     create: true
@@ -203,12 +207,68 @@ collections:
         default: false
         required: false
         hint: >-
-          Spento (consigliato): la notizia va online lunedì mattina insieme alle altre approvate
-          nella settimana, con una sola pubblicazione. Acceso: va online pochi minuti dopo che
-          premete Pubblica, ma ogni pubblicazione immediata consuma 15 crediti dei 300 mensili
-          del sito, gli stessi che servono per i progetti. Accendetelo solo se la notizia
-          deve uscire oggi.
+          Spento (consigliato): dopo Pubblica la notizia resta in «News in attesa» e va online
+          lunedì mattina insieme alle altre, con una sola pubblicazione. Acceso: va online pochi
+          minuti dopo Pubblica, ma ogni pubblicazione immediata consuma 15 crediti dei 300
+          mensili del sito, gli stessi che servono per i progetti. Accendetelo solo se la
+          notizia deve uscire oggi.
 
+      - label: Titolo dell'articolo
+        name: titolo
+        widget: string
+        hint: Il titolo così come lo ha scritto la fonte. Non riscriverlo.
+
+      - label: Fonte
+        name: fonte
+        widget: relation
+        collection: fonti
+        search_fields: [nome]
+        value_field: '{{slug}}'
+        display_fields: [nome]
+        hint: Se la fonte è disattivata, la notizia non compare sul sito.
+
+      - label: Indirizzo dell'articolo
+        name: url
+        widget: string
+        pattern: ['^https?://', 'Deve essere un indirizzo che comincia con http:// o https://']
+        hint: Il collegamento all'articolo originale. Il testo completo resta sul sito della fonte.
+
+      - label: Data
+        name: data
+        widget: datetime
+        date_format: 'YYYY-MM-DD'
+        time_format: false
+        format: 'YYYY-MM-DD'
+
+      - label: Nota redazionale
+        name: nota
+        widget: text
+        required: false
+        hint: Due righe scritte da voi, con parole vostre. Non copiare il testo dell'articolo.
+
+      - label: Immagine
+        name: foto
+        widget: image
+        choose_url: false
+        required: false
+        hint: Facoltativa, e dev'essere vostra o libera da diritti. Non usare le foto della fonte.
+
+  - name: news
+    label: News pubblicate
+    label_singular: Notizia
+    folder: src/news
+    extension: json
+    format: json
+    description: >-
+      Le notizie già online. Le nuove si scrivono in «News in attesa»: qui si possono
+      correggere o cancellare, e ogni modifica va online subito (15 crediti).
+    create: false
+    delete: true
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    identifier_field: titolo
+    summary: '{{data}} — {{titolo}}'
+    sortable_fields: [data, titolo]
+    fields:
       - label: Titolo dell'articolo
         name: titolo
         widget: string
@@ -319,10 +379,9 @@ collections:
 
   # --- testi fissi della pagina News --------------------------
   # --- pubblicazione anticipata delle news -----------------------
-  # Le news approvate escono tutte insieme il lunedì mattina. Salvare questa
-  # scheda cambia un file fuori da src/news, quindi Netlify ricostruisce
-  # subito e porta online tutte quelle in attesa (regole in
-  # strumenti/pubblicazione.mjs). Il lunedì dopo non resta niente da fare.
+  # Salvare questa scheda avvia .github/workflows/pubblica-news.yml, che
+  # sposta subito tutte le news in attesa tra le pubblicate e fa ricostruire
+  # il sito una volta. Il salvataggio in sé non costruisce nulla.
   - name: pubblicazione
     label: Pubblica ora le news
     files:
@@ -335,11 +394,11 @@ collections:
             widget: datetime
             required: false
             hint: >-
-              Le news approvate vanno online da sole il lunedì mattina, tutte insieme. Se non
+              Le news in attesa vanno online da sole il lunedì mattina, tutte insieme. Se non
               volete aspettare: premete «Now» qui sopra per mettere la data di oggi, poi Salva,
-              stato «Pronto» e Pubblica. Tutte le news in attesa vanno online in pochi minuti.
-              Costa 15 crediti dei 300 mensili, come una pubblicazione immediata, anche se non
-              ci sono news in attesa: usatelo solo quando serve.
+              stato «Pronto» e Pubblica. Tutte quelle in «News in attesa» vanno online in pochi
+              minuti. Costa 15 crediti dei 300 mensili, come una pubblicazione immediata; se non
+              ci sono news in attesa non succede niente e non costa niente.
 
   - name: pagine
     label: Pagine

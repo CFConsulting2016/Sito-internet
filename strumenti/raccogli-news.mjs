@@ -5,11 +5,13 @@
  * TRE articoli nuovi e li propone nel pannello Decap come notizie pronte
  * da pubblicare. Non pubblica niente: decide il cliente, una per una.
  *
- * Ogni proposta e' una richiesta di modifica su un ramo cms/news/<nome>
+ * Ogni proposta e' una richiesta di modifica su un ramo cms/attesa/<nome>
  * con l'etichetta decap-cms/pending_publish: e' il formato che Decap usa
  * per le sue bozze, quindi la proposta compare nella scheda Workflow come
- * se l'avesse scritta il cliente. Le proposte vivono su rami a parte e
- * non toccano il sito finche' non vengono pubblicate.
+ * se l'avesse scritta il cliente. Pubblicarla la mette in «News in attesa»
+ * (src/news-in-attesa), da dove va online con il giro del lunedi'.
+ * Fino al 28/10/2026 le proposte stavano su cms/news/<nome>: si controllano
+ * ancora, perche' gli articoli gia' proposti non tornino.
  *
  * Cosa finisce nella notizia: titolo dell'articolo, collegamento, testata
  * e data. Niente riassunto e niente immagini della fonte, come concordato:
@@ -35,6 +37,7 @@ const MAX_PER_FONTE = 2;    // per non far arrivare tre notizie dalla stessa tes
 const GIORNI_MASSIMI = 14;  // gli articoli piu' vecchi non sono piu' notizie
 const ETICHETTA = 'decap-cms/pending_publish';
 const GIORNI_PROPOSTA = 14; // le proposte non pubblicate si scartano da sole dopo due settimane
+const RAMI = ['cms/attesa/', 'cms/news/']; // il primo è quello di oggi, il secondo quello di prima
 const UA = 'CF-Consulting-News/1.0 (+https://www.cieffeconsulting.eu)';
 
 /* --- lettura dei dati ----------------------------------------- */
@@ -152,10 +155,13 @@ function github(token, repo) {
   return {
     /** Una proposta per questo ramo esiste gia', aperta o chiusa? Le chiuse
      *  contano: se il cliente ha scartato un articolo, non va riproposto. */
-    async giaProposto(ramo) {
+    async giaProposto(nome) {
       const proprietario = repo.split('/')[0];
-      const elenco = await api('GET', `/pulls?state=all&head=${proprietario}:${encodeURIComponent(ramo)}`);
-      return elenco.length > 0;
+      for (const prefisso of RAMI) {
+        const elenco = await api('GET', `/pulls?state=all&head=${proprietario}:${encodeURIComponent(prefisso + nome)}`);
+        if (elenco.length) return true;
+      }
+      return false;
     },
 
     /** Scarta le proposte automatiche rimaste nel pannello oltre il limite:
@@ -165,7 +171,7 @@ function github(token, repo) {
     async scartaVecchie(giorni) {
       const limite = Date.now() - giorni * 864e5;
       const aperte = await api('GET', '/pulls?state=open&per_page=100');
-      const vecchie = aperte.filter((pr) => pr.head.ref.startsWith('cms/news/')
+      const vecchie = aperte.filter((pr) => RAMI.some((p) => pr.head.ref.startsWith(p))
         && pr.title.startsWith('Proposta news:')
         && Date.parse(pr.created_at) < limite);
       for (const pr of vecchie) await api('PATCH', `/pulls/${pr.number}`, { state: 'closed' });
@@ -197,7 +203,8 @@ function github(token, repo) {
 const suGithub = process.argv.includes('--github');
 
 const fonti = (await leggiCartella('fonti')).filter((f) => f.attiva === true && f.feed);
-const giaPubblicate = new Set((await leggiCartella('news')).map((n) => n.url));
+const giaPubblicate = new Set([...await leggiCartella('news'), ...await leggiCartella('news-in-attesa')]
+  .map((n) => n.url));
 
 console.log(`Fonti attive: ${fonti.map((f) => f.nome).join(', ') || 'nessuna'}`);
 
@@ -232,7 +239,7 @@ for (let giro = 0; giro < 10; giro++) {
   const nuovi = [];
   for (const a of prova) {
     const nome = `${giorno(a.data)}-${slug(a.titolo)}`;
-    if (gh && await gh.giaProposto(`cms/news/${nome}`)) {
+    if (gh && await gh.giaProposto(nome)) {
       scartati.add(a.url);
     } else {
       nuovi.push({ ...a, nome });
@@ -259,11 +266,11 @@ for (const a of scelti) {
   };
   const contenuto = JSON.stringify(notizia, null, 1) + '\n';
   if (gh) {
-    const numero = await gh.proponi(`cms/news/${a.nome}`, `src/news/${a.nome}.json`, contenuto, a.titolo);
+    const numero = await gh.proponi(`cms/attesa/${a.nome}`, `src/news-in-attesa/${a.nome}.json`, contenuto, a.titolo);
     console.log(`  #${numero}  ${a.titolo}`);
   } else {
-    console.log(`\n  ramo:  cms/news/${a.nome}`);
-    console.log(`  file:  src/news/${a.nome}.json`);
+    console.log(`\n  ramo:  cms/attesa/${a.nome}`);
+    console.log(`  file:  src/news-in-attesa/${a.nome}.json`);
     console.log('  ' + contenuto.trim().replace(/\n/g, '\n  '));
   }
 }

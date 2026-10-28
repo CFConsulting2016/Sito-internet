@@ -6,14 +6,13 @@
  * sito vecchio. Le regole stanno in pubblicazione.mjs.
  */
 import { execFileSync } from 'node:child_process';
-import { readFileSync, existsSync } from 'node:fs';
-import { quandoPubblicare } from './pubblicazione.mjs';
+import { cambiaIlSito } from './pubblicazione.mjs';
 
 const costruisci = (motivo) => { console.log(`Si costruisce: ${motivo}`); process.exit(1); };
 const salta = (motivo) => { console.log(`Costruzione saltata: ${motivo}`); process.exit(0); };
 
 try {
-  // avvio dal pulsante di Netlify (il giro del lunedì): si costruisce sempre
+  // avvio dal pulsante di Netlify (lo spostamento delle news): sempre
   if (process.env.INCOMING_HOOK_TITLE) costruisci(`avvio «${process.env.INCOMING_HOOK_TITLE}»`);
 
   const prima = process.env.CACHED_COMMIT_REF;
@@ -23,10 +22,8 @@ try {
   const file = execFileSync('git', ['diff', '--name-only', prima, ora], { encoding: 'utf8' })
     .split('\n').map((f) => f.trim()).filter(Boolean);
 
-  const quando = quandoPubblicare(file, (f) => (existsSync(f) ? readFileSync(f, 'utf8') : null));
-  if (quando === 'subito') costruisci('modifiche al sito');
-  if (quando === 'lunedi') salta('solo news, escono con il giro del lunedì');
-  salta('nessun file del sito cambiato');
+  if (cambiaIlSito(file)) costruisci('modifiche al sito');
+  salta('nessun file del sito cambiato (news in attesa, automazioni o immagini non ancora usate)');
 } catch (e) {
   costruisci(`controllo non riuscito (${e.message})`);
 }

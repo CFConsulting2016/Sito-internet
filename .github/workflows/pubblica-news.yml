@@ -1,24 +1,36 @@
-# Pubblicazione settimanale delle news.
+# Pubblicazione delle news in attesa.
 #
-# Le news approvate nel pannello non ricostruiscono il sito una per una:
-# ogni ricostruzione costa 15 crediti Netlify. Il lunedi' mattina questo
-# giro controlla se ce ne sono in attesa e, solo in quel caso, avvia una
-# ricostruzione unica. Le news con «Pubblicazione immediata» accesa escono
-# subito e non aspettano il lunedi'.
+# Le news approvate nel pannello finiscono in «News in attesa»
+# (src/news-in-attesa), che il sito non legge: approvarle non costa crediti.
+# Questo giro le sposta tra le news pubblicate e fa ricostruire il sito una
+# volta sola (15 crediti):
+#   - il lunedi' mattina, tutte quelle in attesa;
+#   - quando nel pannello si usa «Pubblica ora le news», tutte;
+#   - quando se ne approva una con «Pubblicazione immediata», solo quella.
+# Se non c'e' niente da spostare non succede nulla e non si spende nulla.
 #
 # 7:00 UTC sono le 8:00 d'inverno e le 9:00 d'estate in Italia.
 # Serve il secret NETLIFY_BUILD_HOOK: l'indirizzo del pulsante di avvio
 # creato su Netlify (Project configuration > Build & deploy > Build hooks).
 
-name: Pubblicazione news del lunedi
+name: Pubblicazione news
 
 on:
   schedule:
     - cron: '0 7 * * 1'
   workflow_dispatch:       # avvio a mano dalla scheda Actions
+  push:
+    branches: [main]
+    paths:
+      - 'src/news-in-attesa/**'
+      - 'src/data/pubblica-news-ora.json'
 
 permissions:
-  contents: read
+  contents: write          # salvare lo spostamento delle news
+
+concurrency:
+  group: pubblicazione-news
+  cancel-in-progress: false
 
 jobs:
   pubblica:
@@ -26,13 +38,29 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 300   # serve la storia per capire cosa e' gia' online
+          fetch-depth: 50
 
       - uses: actions/setup-node@v4
         with:
           node-version: 22
 
-      - name: News in attesa
-        run: node strumenti/news-settimanali.mjs --avvia
+      # Tutte: il lunedi', l'avvio a mano e «Pubblica ora le news».
+      # Solo le immediate: quando cambia soltanto l'area di attesa.
+      - name: Quali news pubblicare
+        id: modo
+        run: |
+          modo=tutte
+          if [ "${{ github.event_name }}" = "push" ]; then
+            modo=immediate
+            if git diff --name-only "${{ github.event.before }}" "${{ github.sha }}" 2>/dev/null \
+                 | grep -qx 'src/data/pubblica-news-ora.json'; then
+              modo=tutte
+            fi
+          fi
+          echo "modo=$modo" >> "$GITHUB_OUTPUT"
+          echo "Modo: $modo"
+
+      - name: Pubblicazione
+        run: node strumenti/sposta-news.mjs --${{ steps.modo.outputs.modo }} --github
         env:
           NETLIFY_BUILD_HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}
