@@ -381,7 +381,7 @@ function markCurrent(html, nav) {
 }
 
 const areas = JSON.parse(await read(SRC, 'data', 'areas.json'));
-const projects = await leggiCartella('progetti', (p, nome) => {
+const tuttiProgetti = await leggiCartella('progetti', (p, nome) => {
   p.slug = nome;                       // il nome del file è lo slug: non cambia
   p.img = (p.foto || [])[0] || '';     // la copertina è sempre la prima foto
   Object.assign(p, p.scheda || {});    // nel CMS la scheda tecnica è un gruppo,
@@ -391,7 +391,15 @@ const projects = await leggiCartella('progetti', (p, nome) => {
 // cima, nell'archivio e nel feed. In fondo uscirebbe dai primi 30 del feed,
 // e Zapier non lo vedrebbe mai: niente post sui social.
 const posizione = (p) => (Number.isFinite(p.ordine) ? p.ordine : -1);
-projects.sort((a, b) => posizione(a) - posizione(b));
+tuttiProgetti.sort((a, b) => posizione(a) - posizione(b));
+// Un progetto senza foto né testo non si pubblica: la scheda sarebbe vuota.
+// Resta nel pannello e compare da solo appena gli si aggiunge qualcosa.
+const haContenuto = (p) => (p.foto || []).length > 0 || Boolean(p.lead)
+  || ((p.blocchi || {}).descrizione || []).length > 0;
+const projects = tuttiProgetti.filter(haContenuto);
+if (projects.length < tuttiProgetti.length) {
+  console.log(`progetti: ${tuttiProgetti.length - projects.length} senza foto né testo, non pubblicati`);
+}
 const fonti = await leggiCartella('fonti', (f, nome) => { f.id = nome; });
 // le notizie si ordinano per data, dalla più recente
 const news = (await leggiCartella('news', (n, nome) => { n.id = nome; }))
@@ -760,10 +768,12 @@ ${voci}
 
   // le 79 schede: l'indirizzo vecchio sta nella provenienza dello scraping
   const schede = [];
-  for (const p of projects) {
+  // quelle dei progetti non pubblicati portano all'archivio
+  for (const p of tuttiProgetti) {
     const fonte = provenienza[p.slug]?.fonte;
     const m = fonte && fonte.match(/\/portfolio-lavori\/([^/]+)\//);
-    if (m) schede.push([`/portfolio-lavori/${m[1]}/`, `/${projectHref(p)}`]);
+    const meta = haContenuto(p) ? `/${projectHref(p)}` : '/progetti.html';
+    if (m) schede.push([`/portfolio-lavori/${m[1]}/`, meta]);
   }
   schede.sort((a, b) => a[0].localeCompare(b[0]));
 
