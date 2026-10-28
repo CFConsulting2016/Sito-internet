@@ -197,6 +197,18 @@ collections:
     summary: '{{data}} — {{titolo}}'
     sortable_fields: [data, titolo]
     fields:
+      - label: Pubblicazione immediata
+        name: pubblicaSubito
+        widget: boolean
+        default: false
+        required: false
+        hint: >-
+          Spento (consigliato): la notizia va online lunedì mattina insieme alle altre approvate
+          nella settimana, con una sola pubblicazione. Acceso: va online pochi minuti dopo che
+          premete Pubblica, ma ogni pubblicazione immediata consuma 15 crediti dei 300 mensili
+          del sito, gli stessi che servono per i progetti. Accendetelo solo se la notizia
+          deve uscire oggi.
+
       - label: Titolo dell'articolo
         name: titolo
         widget: string

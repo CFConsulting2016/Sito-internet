@@ -34,6 +34,7 @@ const MAX_TOTALE = 3;       // proposte per giro, in tutto
 const MAX_PER_FONTE = 2;    // per non far arrivare tre notizie dalla stessa testata
 const GIORNI_MASSIMI = 14;  // gli articoli piu' vecchi non sono piu' notizie
 const ETICHETTA = 'decap-cms/pending_publish';
+const GIORNI_PROPOSTA = 14; // le proposte non pubblicate si scartano da sole dopo due settimane
 const UA = 'CF-Consulting-News/1.0 (+https://www.cieffeconsulting.eu)';
 
 /* --- lettura dei dati ----------------------------------------- */
@@ -157,6 +158,20 @@ function github(token, repo) {
       return elenco.length > 0;
     },
 
+    /** Scarta le proposte automatiche rimaste nel pannello oltre il limite:
+     *  le chiude, come se il cliente le avesse scartate. Il ramo resta, così
+     *  giaProposto() continua a riconoscerle e non tornano. Le bozze scritte
+     *  dal cliente non si toccano: solo quelle che iniziano con «Proposta news». */
+    async scartaVecchie(giorni) {
+      const limite = Date.now() - giorni * 864e5;
+      const aperte = await api('GET', '/pulls?state=open&per_page=100');
+      const vecchie = aperte.filter((pr) => pr.head.ref.startsWith('cms/news/')
+        && pr.title.startsWith('Proposta news:')
+        && Date.parse(pr.created_at) < limite);
+      for (const pr of vecchie) await api('PATCH', `/pulls/${pr.number}`, { state: 'closed' });
+      return vecchie.length;
+    },
+
     async proponi(ramo, percorso, contenuto, titolo) {
       const principale = await api('GET', '/git/ref/heads/main');
       await api('POST', '/git/refs', { ref: `refs/heads/${ramo}`, sha: principale.object.sha });
@@ -204,6 +219,8 @@ if (suGithub) {
   const repo = process.env.GITHUB_REPOSITORY;
   if (!token || !repo) throw new Error('Mancano GITHUB_TOKEN o GITHUB_REPOSITORY');
   gh = github(token, repo);
+  const scartate = await gh.scartaVecchie(GIORNI_PROPOSTA);
+  if (scartate) console.log(`Proposte più vecchie di ${GIORNI_PROPOSTA} giorni scartate: ${scartate}`);
 }
 
 // Scorro i candidati in ordine e salto quelli gia' proposti in passato,

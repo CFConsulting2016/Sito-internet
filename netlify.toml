@@ -8,10 +8,11 @@
 [build]
   command = "node build.mjs"
   publish = "."
-  # Niente ricostruzione quando cambiano solo gli strumenti dell'automazione
-  # news (.github/ e strumenti/): non toccano il sito. Le notizie approvate
-  # stanno in src/news e fanno ricostruire normalmente.
-  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF -- . ':(exclude).github' ':(exclude)strumenti'"
+  # Decide se un salvataggio ricostruisce il sito (ogni costruzione costa
+  # 15 crediti): niente per .github/ e strumenti/, le news aspettano il
+  # giro del lunedi' salvo «Pubblicazione immediata», tutto il resto subito.
+  # Regole in strumenti/pubblicazione.mjs; nel dubbio si costruisce.
+  ignore = "node strumenti/salta-build.mjs"
 
 [build.environment]
   # Fissata di proposito: un aggiornamento automatico della versione
