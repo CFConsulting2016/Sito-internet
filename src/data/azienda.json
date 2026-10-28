@@ -7,7 +7,8 @@
    "numero": "20832-A",
    "scadenza": "2029-06-25",
    "ambito": "Progettazione di ingegneria integrata, direzione lavori, coordinamento della sicurezza, verifica della progettazione ai fini della validazione",
-   "file": "img/certificazioni/kiwa-iso9001-accredia.webp"
+   "file": "img/certificazioni/kiwa-iso9001-accredia.webp",
+   "pdf": "documenti/certificato-iso-9001-kiwa-20832.pdf"
   }
  ],
  "sede": [
@@ -48,16 +49,17 @@
    "specializzazione": "Termotecnica ed efficientamento energetico degli edifici civili",
    "ente": "CERTing — Consiglio Nazionale degli Ingegneri",
    "numero": "TRB-2421-IT20",
-   "scadenza": "2029-06-05"
+   "scadenza": "2029-06-05",
+   "pdf": "documenti/certing-trb-2421-it20-energetica.pdf"
   },
   {
    "persona": "Ing. Alessandro Ciabacchini",
-   "titolo": "Ingegnere esperto in CAM",
+   "titolo": "Ingegnere esperto in Ecoprogettazione (CAM)",
    "specializzazione": "",
    "ente": "CERTing — Consiglio Nazionale degli Ingegneri",
    "numero": "TRB-3101-IT20",
    "scadenza": "2029-07-28",
-   "daConfermare": true
+   "pdf": "documenti/certing-trb-3101-it20-cam.pdf"
   },
   {
    "persona": "Ing. Claudio Raggi",

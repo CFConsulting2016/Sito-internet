@@ -4,6 +4,8 @@
 # --- documenti commerciali e corrispondenza ------------------
 # Preventivi, offerte, bozze di email: roba nostra, non del progetto.
 *.pdf
+# ...tranne i certificati pubblicati in Chi siamo
+!documenti/*.pdf
 Email al cliente.md
 Mail da inviare.md
 

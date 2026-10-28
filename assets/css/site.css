@@ -950,6 +950,62 @@ textarea:focus-visible,
   line-height: 1.5;
 }
 
+/* Certificazioni in Chi siamo */
+.certificati {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+}
+.certificato {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--red);
+  padding: 24px 24px 22px;
+}
+.certificato__tipo {
+  font-size: 11px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--label-top);
+  margin-bottom: 10px;
+}
+.certificato__titolo {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--heading);
+  margin: 0 0 6px;
+}
+.certificato__chi { font-size: 15px; color: var(--text); }
+.certificato__dettaglio {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text-2);
+  margin: 10px 0 0;
+}
+.certificato__dati {
+  margin: 18px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+}
+.certificato__dati div { display: flex; gap: 10px; }
+.certificato__dati dt { flex: 0 0 84px; color: var(--label); }
+.certificato__dati dd { margin: 0; color: var(--text); }
+.certificato__pdf {
+  margin-top: auto;
+  padding-top: 18px;
+  font-weight: 600;
+  color: var(--red);
+  text-decoration: none;
+}
+.certificato__pdf:hover { color: var(--red-hover); text-decoration: underline; }
+.certificato__pdf span { font-weight: 400; color: var(--label); margin-left: 4px; white-space: nowrap; }
+
 /* ============================================================
    18. Indice servizi
    ============================================================ */

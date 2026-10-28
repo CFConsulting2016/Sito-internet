@@ -196,6 +196,40 @@ function certLogos(certificazioni) {
       </div>`).join('\n');
 }
 
+/** Le schede delle certificazioni in Chi siamo: d'impresa e personali,
+ *  ciascuna con il suo PDF da scaricare quando c'è. */
+async function certificatiSchede(azienda) {
+  const voci = [
+    ...(azienda.certificazioni || []).map((c) => ({
+      tipo: "Certificazione d'impresa", titolo: c.nome, chi: azienda.legale.denominazione,
+      dettaglio: c.ambito, ente: c.ente, numero: c.numero, scadenza: c.scadenza, pdf: c.pdf })),
+    ...(azienda.certificazioniPersonali || []).map((c) => ({
+      tipo: 'Certificazione personale', titolo: c.titolo, chi: c.persona,
+      dettaglio: c.specializzazione, ente: c.ente, numero: c.numero, scadenza: c.scadenza, pdf: c.pdf })),
+  ];
+  const schede = [];
+  for (const v of voci) {
+    let scarica = '';
+    if (v.pdf) {
+      const kb = Math.round((await stat(join(ROOT, v.pdf))).size / 1024);
+      scarica = `
+        <a class="certificato__pdf" href="${esc(v.pdf)}" target="_blank" rel="noopener">Scarica il certificato <span>PDF, ${kb} KB</span></a>`;
+    }
+    schede.push(`      <article class="certificato" data-rv>
+        <div class="certificato__tipo">${esc(v.tipo)}</div>
+        <h3 class="certificato__titolo">${esc(v.titolo)}</h3>
+        <div class="certificato__chi">${esc(v.chi)}</div>${v.dettaglio ? `
+        <p class="certificato__dettaglio">${esc(v.dettaglio)}</p>` : ''}
+        <dl class="certificato__dati">
+          <div><dt>Ente</dt><dd>${esc(v.ente)}</dd></div>
+          <div><dt>Numero</dt><dd>${esc(v.numero)}</dd></div>
+          <div><dt>Valida fino al</dt><dd><time datetime="${esc(v.scadenza)}">${dataEstesa(v.scadenza)}</time></dd></div>
+        </dl>${scarica}
+      </article>`);
+  }
+  return schede.join('\n');
+}
+
 /** La riga obbligatoria dell'art. 2250 c.c., che per le societa' di capitali
  *  va riportata anche negli spazi elettronici ad accesso pubblico. */
 function rigaLegale(l) {
@@ -207,7 +241,7 @@ function rigaLegale(l) {
     `Capitale sociale ${l.capitaleSociale}`,
     `P.IVA ${l.partitaIva}`,
   ];
-  if (l.socioUnico) voci.splice(1, 0, 'Societaà con socio unico');
+  if (l.socioUnico) voci.splice(1, 0, 'Società con socio unico');
   if (l.pecPubblica && l.pec) voci.push(`PEC ${l.pec}`);
   return voci.map(esc).join(' &middot; ');
 }
@@ -226,8 +260,9 @@ function rigaAlbo(a) {
 function fasciaMarchi(azienda) {
   const voci = [];
   for (const c of azienda.certificazioni || []) {
+    const testo = `${c.nome} &middot; certificato n. ${c.numero} &middot; ${c.ente}`;
     voci.push({ file: c.file, alt: `${c.nome} — ${c.ente}`,
-      testo: `${c.nome} &middot; certificato n. ${c.numero} &middot; ${c.ente}` });
+      testo: c.pdf ? `<a href="${esc(c.pdf)}" target="_blank" rel="noopener">${testo}</a>` : testo });
   }
   for (const s of azienda.sostegni || []) {
     voci.push({ file: s.file, alt: s.nome, testo: s.testo });
@@ -418,6 +453,8 @@ header = header
   .replace('{{PANEL_LISTS}}', panelLists(areas))
   .replace('{{DRAWER_AREAS}}', drawerAreas(areas));
 
+const schedeCertificati = await certificatiSchede(azienda);
+
 footer = fasciaMarchi(azienda) + '\n\n' + footer
   .replace('{{RIGA_LEGALE}}', rigaLegale(azienda.legale))
   .replace('{{RIGA_ALBO}}', rigaAlbo(azienda.legale.albo))
@@ -499,7 +536,8 @@ for (const file of (await readdir(join(SRC, 'pages'))).filter((f) => f.endsWith(
     .replace('{{HOME_TRIO}}', homeTrio(projects))
     .replace('{{PROJECT_COUNT}}', String(projects.length))
     .replace('{{ANNI_ATTIVITA}}', String(anniAttivita(azienda.fondazione)))
-    .replace('{{CERT_COUNT}}', String(azienda.certificazioni.length))
+    .replace('{{CERT_COUNT}}', String(azienda.certificazioni.length + (azienda.certificazioniPersonali || []).length))
+    .replace('{{CERTIFICATI_SCHEDE}}', schedeCertificati)
     .replace('{{NEWS_LIST}}', newsList(news, fonti))
     .replace(/\{\{LEGALE_DENOMINAZIONE\}\}/g, esc(azienda.legale.denominazione))
     .replace(/\{\{LEGALE_SEDE\}\}/g, esc(azienda.legale.sedeLegale))
