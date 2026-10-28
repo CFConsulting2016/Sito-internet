@@ -225,7 +225,7 @@ collections:
         search_fields: [nome]
         value_field: '{{slug}}'
         display_fields: [nome]
-        hint: Se la fonte è disattivata, la notizia non compare sul sito.
+        hint: "Spegnere una fonte ferma solo le proposte nuove: le notizie già pubblicate restano online, a meno che nella scheda della fonte non si tolga «Mantieni pubblicati»."
 
       - label: Indirizzo dell'articolo
         name: url
@@ -281,7 +281,7 @@ collections:
         search_fields: [nome]
         value_field: '{{slug}}'
         display_fields: [nome]
-        hint: Se la fonte è disattivata, la notizia non compare sul sito.
+        hint: "Spegnere una fonte ferma solo le proposte nuove: le notizie già pubblicate restano online, a meno che nella scheda della fonte non si tolga «Mantieni pubblicati»."
 
       - label: Indirizzo dell'articolo
         name: url
