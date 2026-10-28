@@ -5,13 +5,13 @@
  "base": "https://youbuildweb.it",
  "attiva": false,
  "mantieniPubblicati": true,
- "autorizzazione": "non-necessaria",
+ "autorizzazione": "richiesta",
  "attribuzione": "",
  "condizioni": "https://youbuildweb.it/",
  "revisione": {
-  "stato": "ok",
-  "data": "2026-09-25",
-  "nota": "Verifica del 25/09/2026: nessuna pagina di condizioni d'uso, nessun avviso di riproduzione riservata nel codice della home, robots.txt blocca solo /wp-admin/ e lascia libero il feed. Sta nella stessa posizione di La Termotecnica ed Edilbuild. Era spenta per una nota precedente su un «tutti i diritti riservati» nel piè di pagina che il controllo di oggi non ha confermato."
+  "stato": "da-verificare",
+  "data": "2026-10-28",
+  "nota": "Verifica del 28/10/2026: nel piè di pagina della home c'è «© Virginia Gambino Editore Srl | Tutti i diritti riservati», cioè una clausola di riserva esplicita, che Edilbuild e La Termotecnica non hanno. robots.txt blocca solo /wp-admin/. Resta spenta finché l'editore non autorizza per iscritto l'uso di titolo e collegamento."
  },
  "ordine": 4
 }
