@@ -318,6 +318,29 @@ collections:
       - { label: Ordine, name: ordine, widget: number, value_type: int, required: false }
 
   # --- testi fissi della pagina News --------------------------
+  # --- pubblicazione anticipata delle news -----------------------
+  # Le news approvate escono tutte insieme il lunedì mattina. Salvare questa
+  # scheda cambia un file fuori da src/news, quindi Netlify ricostruisce
+  # subito e porta online tutte quelle in attesa (regole in
+  # strumenti/pubblicazione.mjs). Il lunedì dopo non resta niente da fare.
+  - name: pubblicazione
+    label: Pubblica ora le news
+    files:
+      - name: news-in-attesa
+        label: Pubblica ora tutte le news in attesa
+        file: src/data/pubblica-news-ora.json
+        fields:
+          - label: Richiesta di pubblicazione
+            name: richiesta
+            widget: datetime
+            required: false
+            hint: >-
+              Le news approvate vanno online da sole il lunedì mattina, tutte insieme. Se non
+              volete aspettare: premete «Now» qui sopra per mettere la data di oggi, poi Salva,
+              stato «Pronto» e Pubblica. Tutte le news in attesa vanno online in pochi minuti.
+              Costa 15 crediti dei 300 mensili, come una pubblicazione immediata, anche se non
+              ci sono news in attesa: usatelo solo quando serve.
+
   - name: pagine
     label: Pagine
     files:
