@@ -171,11 +171,20 @@
 
   var CONSENT_KEY = 'cf-cookie-consent';
 
+  // la scelta vale 6 mesi, poi si richiede (linee guida del Garante, 2021).
+  // Si salva come «valore;data»: un valore senza data è vecchio e si richiede.
+  var CONSENT_DURATA = 182 * 24 * 60 * 60 * 1000;
+
   function readConsent() {
-    try { return localStorage.getItem(CONSENT_KEY); } catch (e) { return null; }
+    try {
+      var parti = String(localStorage.getItem(CONSENT_KEY) || '').split(';');
+      var quando = Number(parti[1]);
+      if (!quando || Date.now() - quando > CONSENT_DURATA) return null;
+      return parti[0];
+    } catch (e) { return null; }
   }
   function writeConsent(v) {
-    try { localStorage.setItem(CONSENT_KEY, v); } catch (e) {}
+    try { localStorage.setItem(CONSENT_KEY, v + ';' + Date.now()); } catch (e) {}
   }
 
   /* --- 4. Banner cookie (tutte le pagine) ------------------- */

@@ -180,7 +180,7 @@ collections:
         name: foto
         widget: list
         required: false
-        field: { label: Foto, name: foto, widget: image }
+        field: { label: Foto, name: foto, widget: image, choose_url: false }
         hint: La prima è la copertina, quella che si vede nell'archivio. Le altre formano la galleria.
 
   # --- news ---------------------------------------------------
@@ -233,6 +233,7 @@ collections:
       - label: Immagine
         name: foto
         widget: image
+        choose_url: false
         required: false
         hint: Facoltativa, e dev'essere vostra o libera da diritti. Non usare le foto della fonte.
 
