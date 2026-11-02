@@ -126,7 +126,7 @@ collections:
         required: false
         hint: "Lasciatela vuota se i lavori sono in corso. Lo stato «In corso» o «Concluso» nella scheda tecnica si calcola da solo da queste due date."
 
-      - label: Importo del lavoro (€)
+      - label: Importo dei lavori (€)
         name: importoLavoro
         widget: number
         value_type: float
@@ -228,7 +228,7 @@ collections:
         required: false
         hint: "Lasciatela vuota se i lavori sono in corso. Lo stato «In corso» o «Concluso» nella scheda tecnica si calcola da solo da queste due date."
 
-      - label: Importo del lavoro (€)
+      - label: Importo dei lavori (€)
         name: importoLavoro
         widget: number
         value_type: float
