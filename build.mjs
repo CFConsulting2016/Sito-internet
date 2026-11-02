@@ -419,6 +419,9 @@ function markCurrent(html, nav) {
     key === nav ? ' aria-current="page"' : '');
 }
 
+// Il giorno della costruzione, all'ora italiana: decide «In corso» o «Concluso».
+const OGGI = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Rome' });
+
 const areas = JSON.parse(await read(SRC, 'data', 'areas.json'));
 const tuttiProgetti = await leggiCartella('progetti', (p, nome) => {
   p.slug = nome;                       // il nome del file è lo slug: non cambia
@@ -446,16 +449,42 @@ function completaProgetto(p) {
 
   if (vuoto(p.committente) && b.committente.length) p.committente = b.committente[0];
   if (vuoto(p.luogo)) {
-    // dall'indirizzo: «via aurelia 292 – 00165 roma (rm)» → «Roma (RM)»
-    const m = b.committente.join(' ').match(/\b\d{5}\s+([A-Za-zÀ-ÿ' .-]+?)\s*\(([A-Za-z]{2})\)/);
-    if (m) p.luogo = `${m[1].trim().replace(/(^|[\s'-])\p{L}/gu, (c) => c.toUpperCase())} (${m[2].toUpperCase()})`;
+    // dall'indirizzo del committente, riga per riga: «via aurelia 292 – 00165
+    // roma (rm)» → «Roma (RM)»; «piazza ridolfi 1 – 05100 TERNI» → «Terni».
+    // Senza sigla tra parentesi si scrive solo la città: la provincia non si
+    // inventa. Se il committente non ha un CAP il luogo resta vuoto: quello
+    // dell'impresa o di CF Consulting direbbe dove sta l'ufficio, non il cantiere.
+    const cap = /(?:^|[^\d])\d{5}\s+([A-Za-zÀ-ÿ'.]+(?:[ -][A-Za-zÀ-ÿ'.]+)*)\s*(?:\(([A-Za-z]{2})\))?\s*(?:$|[,;–—(]|-\s)/;
+    const m = b.committente.map((r) => r.match(cap)).find(Boolean);
+    if (m) p.luogo = titoloCitta(m[1]) + (m[2] ? ` (${m[2].toUpperCase()})` : '');
   }
   if (vuoto(p.impresa) && b.impresa.length) p.impresa = b.impresa[0];
   if (vuoto(p.responsabile)) {
-    const r = b.progettisti.map((x) => x.match(/progettista\s+responsabile\s*:\s*(.+)/i)).find(Boolean);
-    if (r) p.responsabile = r[1].trim();
+    // «Progettista responsabile: Ing. Rossi», oppure «Progettista Responsabile»
+    // senza due punti, da solo o seguito da altri ruoli («…, Direttore dei
+    // Lavori»), e il nome sulla riga dopo
+    const pr = b.progettisti;
+    const conNome = pr.map((x) => x.match(/progettista\s+responsabile\s*:\s*(.+)/i)).find(Boolean);
+    const titolo = pr.findIndex((x) => /^progettista\s+responsabile\b[^:]*$/i.test(x));
+    if (conNome) p.responsabile = conNome[1].trim();
+    else if (titolo >= 0 && pr[titolo + 1]) p.responsabile = pr[titolo + 1];
   }
-  if (p.data) p.anno = dataEstesa(p.data) || p.anno;
+  // Le date: «data» è l'inizio lavori, «dataFine» la fine (facoltativa). Sul
+  // sito escono per esteso; un valore scritto a mano nella scheda vince.
+  const iso = (v) => (String(v || '').match(/^\d{4}-\d{2}-\d{2}/) || [''])[0];
+  const inizioIso = iso(p.data);
+  const fineIso = iso(p.dataFine);
+  if (vuoto(p.inizio) && inizioIso) p.inizio = dataEstesa(inizioIso);
+  if (vuoto(p.fine) && fineIso) p.fine = dataEstesa(fineIso);
+  // Lo stato si calcola alla costruzione: senza fine, o con la fine ancora da
+  // venire, i lavori sono in corso. «—» scelto a mano nella scheda lo nasconde.
+  if (vuoto(p.stato) && p.stato !== '—' && (inizioIso || fineIso)) {
+    p.stato = !fineIso || fineIso >= OGGI ? 'In corso' : 'Concluso';
+  }
+  // La cella in alto mostra l'inizio lavori. I progetti vecchi senza data
+  // tengono la loro «Data» scritta a mano (spesso un intervallo, «2021–2022»).
+  if (inizioIso || (vuoto(p.anno) && !vuoto(p.inizio))) { p.cellaDataK = 'Inizio lavori'; p.cellaDataV = p.inizio; }
+  else { p.cellaDataK = 'Data'; p.cellaDataV = p.anno; }
   if (typeof p.importoLavoro === 'number') {
     p.importo = `€ ${p.importoLavoro.toLocaleString('it-IT', { maximumFractionDigits: 2 })}`;
   }
@@ -466,6 +495,14 @@ function completaProgetto(p) {
   if (vuoto(p.shortTitle)) p.shortTitle = p.title;
   if (vuoto(p.tag)) p.tag = p.committente || (p.cat === 'Pubblico' ? 'Committente pubblico' : 'Committente privato');
   if (vuoto(p.lead) && b.descrizione.length) p.lead = b.descrizione[0];
+  if (vuoto(p.categoria)) p.categoria = p.cat;
+}
+
+/** «TERNI» → «Terni», «citta' di castello» → «Citta' di Castello» */
+function titoloCitta(nome) {
+  const minuscole = new Set(['di', 'del', 'della', 'dei', 'delle', 'in', 'sul', 'sulla', 'al', 'e', 'nel', 'nell']);
+  return nome.trim().toLowerCase().replace(/[\p{L}]+/gu, (w, i) =>
+    (i > 0 && minuscole.has(w) ? w : w[0].toUpperCase() + w.slice(1)));
 }
 // Un progetto appena creato dal pannello di solito non ha «Ordine»: va in
 // cima, nell'archivio e nel feed. In fondo uscirebbe dai primi 30 del feed,
@@ -793,7 +830,7 @@ for (const p of projects) {
     .replace('{{GALLERIA}}', gallery(p))
     .replace('{{OTHERS}}', projectCards(others));
 
-  for (const key of ['shortTitle', 'lead', 'committente', 'luogo', 'anno', 'importo']) {
+  for (const key of ['shortTitle', 'lead', 'committente', 'luogo', 'cellaDataK', 'cellaDataV', 'importo']) {
     content = content.replace(new RegExp(`\\{\\{${key}\\}\\}`, 'g'), esc(p[key] || '—'));
   }
 

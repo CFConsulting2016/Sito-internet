@@ -108,14 +108,23 @@ collections:
         widget: string
         hint: Come compare in cima alla pagina, nell'archivio e nei post su LinkedIn e Facebook.
 
-      - label: Data
+      - label: Data inizio lavori
         name: data
         widget: datetime
         date_format: 'DD/MM/YYYY'
         time_format: false
         format: 'YYYY-MM-DD'
         required: false
-        hint: Clicca il giorno sul calendario. Sul sito compare per esteso, per esempio «14 maggio 2024».
+        hint: Il giorno in cui sono cominciati i lavori. Clicca il giorno sul calendario; sul sito compare per esteso, per esempio «14 maggio 2024».
+
+      - label: Data fine lavori
+        name: dataFine
+        widget: datetime
+        date_format: 'DD/MM/YYYY'
+        time_format: false
+        format: 'YYYY-MM-DD'
+        required: false
+        hint: "Lasciatela vuota se i lavori sono in corso. Lo stato «In corso» o «Concluso» nella scheda tecnica si calcola da solo da queste due date."
 
       - label: Importo del lavoro (€)
         name: importoLavoro
@@ -129,7 +138,7 @@ collections:
         name: blocchi
         widget: object
         collapsed: false
-        hint: "Incollate in ogni riquadro il testo così com'è: ogni riga diventa un paragrafo. Dalla prima riga del Committente il sito ricava il nome del committente, dal suo indirizzo il luogo; dalla prima riga dell'Impresa l'impresa; dalla riga «progettista responsabile: …» il progettista della scheda tecnica."
+        hint: "Incollate in ogni riquadro il testo così com'è: ogni riga diventa un paragrafo. Dalla prima riga del Committente il sito ricava il nome del committente, dal suo indirizzo il luogo; dalla prima riga dell'Impresa l'impresa; dalla riga «Progettista responsabile: …» (o dalla riga sotto «Progettista responsabile») il progettista della scheda tecnica."
         fields:
           - { label: Descrizione del progetto, name: descrizione, widget: text, required: false,
               hint: "La prima riga fa anche da presentazione sotto al titolo." }
@@ -201,14 +210,23 @@ collections:
         widget: string
         hint: Come compare in cima alla pagina, nell'archivio e nei post su LinkedIn e Facebook.
 
-      - label: Data
+      - label: Data inizio lavori
         name: data
         widget: datetime
         date_format: 'DD/MM/YYYY'
         time_format: false
         format: 'YYYY-MM-DD'
         required: false
-        hint: Clicca il giorno sul calendario. Sul sito compare per esteso, per esempio «14 maggio 2024».
+        hint: Il giorno in cui sono cominciati i lavori. Clicca il giorno sul calendario; sul sito compare per esteso, per esempio «14 maggio 2024».
+
+      - label: Data fine lavori
+        name: dataFine
+        widget: datetime
+        date_format: 'DD/MM/YYYY'
+        time_format: false
+        format: 'YYYY-MM-DD'
+        required: false
+        hint: "Lasciatela vuota se i lavori sono in corso. Lo stato «In corso» o «Concluso» nella scheda tecnica si calcola da solo da queste due date."
 
       - label: Importo del lavoro (€)
         name: importoLavoro
@@ -222,7 +240,7 @@ collections:
         name: blocchi
         widget: object
         collapsed: false
-        hint: "Incollate in ogni riquadro il testo così com'è: ogni riga diventa un paragrafo. Dalla prima riga del Committente il sito ricava il nome del committente, dal suo indirizzo il luogo; dalla prima riga dell'Impresa l'impresa; dalla riga «progettista responsabile: …» il progettista della scheda tecnica."
+        hint: "Incollate in ogni riquadro il testo così com'è: ogni riga diventa un paragrafo. Dalla prima riga del Committente il sito ricava il nome del committente, dal suo indirizzo il luogo; dalla prima riga dell'Impresa l'impresa; dalla riga «Progettista responsabile: …» (o dalla riga sotto «Progettista responsabile») il progettista della scheda tecnica."
         fields:
           - { label: Descrizione del progetto, name: descrizione, widget: text, required: false,
               hint: "La prima riga fa anche da presentazione sotto al titolo." }
