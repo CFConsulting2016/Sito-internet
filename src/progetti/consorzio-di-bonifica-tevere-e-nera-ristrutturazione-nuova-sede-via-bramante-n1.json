@@ -18,38 +18,11 @@
   "fine": "2025"
  },
  "blocchi": {
-  "descrizione": [
-   "Lavori di ristrutturazione ed efficientamento energetico nuova sede del Consorzio di Bonifica Tevere e Nera Via D. Bramante n°1 (ex CARIT)"
-  ],
-  "committente": [
-   "CONSORZIO DI BONIFICA TEVERE-NERA",
-   "Piazza E. fermi n°5 – 05100 TERNI (Tr)",
-   "Telefono: 0744 545711 – Fax: 0744 545790",
-   "C.F. 80000110553",
-   "E-mail: teverenera@teverenera.it – consorzioteverenera@pec.it",
-   "www.teverenera.it"
-  ],
-  "impresa": [],
-  "progettisti": [
-   "CF Consulting srl",
-   "via Via A. Bartocci n°7/T – 05100 Terni (Tr)",
-   "05100 Terni (Tr)",
-   "Ing. Alessandro CIABACCHINI",
-   "Ing. Fabrizio TESTARELLA",
-   "Geom. Niccolò MAESTRI",
-   "Ing. Claudio RAGGI"
-  ],
-  "servizi": [
-   "STRALCIO “A” – Piano terra e Piano primo",
-   "Studio di fattibilità, progettazione definitiva ed esecutiva",
-   "Progettazione impianti meccanici, elettrici e speciali",
-   "Coordinamento sicurezza in fase di progettazione",
-   "STRALCIO “B” Piano seminterrato",
-   "Studio di fattibilità, progettazione definitiva ed esecutiva",
-   "Progettazione impianti meccanici, elettrici e speciali",
-   "Coordinamento sicurezza in fase di progettazione",
-   "CF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
-  ]
+  "descrizione": "Lavori di ristrutturazione ed efficientamento energetico nuova sede del Consorzio di Bonifica Tevere e Nera Via D. Bramante n°1 (ex CARIT)",
+  "committente": "CONSORZIO DI BONIFICA TEVERE-NERA\nPiazza E. fermi n°5 – 05100 TERNI (Tr)\nTelefono: 0744 545711 – Fax: 0744 545790\nC.F. 80000110553\nE-mail: teverenera@teverenera.it – consorzioteverenera@pec.it\nwww.teverenera.it",
+  "impresa": "",
+  "progettisti": "CF Consulting srl\nvia Via A. Bartocci n°7/T – 05100 Terni (Tr)\n05100 Terni (Tr)\nIng. Alessandro CIABACCHINI\nIng. Fabrizio TESTARELLA\nGeom. Niccolò MAESTRI\nIng. Claudio RAGGI",
+  "servizi": "STRALCIO “A” – Piano terra e Piano primo\nStudio di fattibilità, progettazione definitiva ed esecutiva\nProgettazione impianti meccanici, elettrici e speciali\nCoordinamento sicurezza in fase di progettazione\nSTRALCIO “B” Piano seminterrato\nStudio di fattibilità, progettazione definitiva ed esecutiva\nProgettazione impianti meccanici, elettrici e speciali\nCoordinamento sicurezza in fase di progettazione\nCF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
  },
  "foto": [
   "img/progetti/consorzio-di-bonifica-tevere-e-nera-ristrutturazione-nuova-sede-via-bramante-n1/consorzio-di-bonifica-tevere-e-nera-rist-01.webp",

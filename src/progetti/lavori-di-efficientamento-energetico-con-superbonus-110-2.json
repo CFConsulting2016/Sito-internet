@@ -18,50 +18,11 @@
   "fine": "2022"
  },
  "blocchi": {
-  "descrizione": [
-   "LAVORI DI EFFICIENTAMENTO ENERGETICO EDILE ED IMPIANTISTICO EDIFICIO CON ACCESSO AGLI INCENTIVI STATALI PREVISTI DALLA LEGGE 17 LUGLIO 2020, N.77, SUPERBONUS 110% PER INTERVENTI DI EFFICIENZA ENERGETICA O INTERVENTI ANTISISMICI”."
-  ],
-  "committente": [
-   "EVANGELISTI FRANCESCA",
-   "Strada della Pittura n°26",
-   "05100 – Cesi- TERNI (Tr)"
-  ],
-  "impresa": [
-   "ARTEDIL Srl",
-   "Via Via Pascarella n°3/A",
-   "05100 TERNI (Tr)",
-   "Tel 0744/400522",
-   "Email: artedildodai@virgilio.it",
-   "GIGLI DOMENICO E PACIFICI CARLO SNC",
-   "Via Maestri del lavoro, 18/B",
-   "05100 TERNI (TR)",
-   "LIBERATI ERMINIO FU ENRICO",
-   "Via Romagna n° 61/C",
-   "05100 Terni (TR)",
-   "Tel. 0744 404287",
-   "C.F. LBRRMN47D17L117B",
-   "P.Iva 00069790558",
-   "Email: erminioliberati@gmail.com",
-   "Email PEC: liberati@pec.it"
-  ],
-  "progettisti": [
-   "CF Consulting Srl",
-   "Via G.D.Romagnosi n°11",
-   "05100 TERNI (Tr)",
-   "Progettista e Direttore dei Lavori e Coordinamento Sicurezza",
-   "CIABACCHINI Ing. Alessandro",
-   "Collaboratori",
-   "TESTARELLA Ing. Fabrizio",
-   "MAESTRI Geom. Niccolò",
-   "RICCIONI Dott.ssa Elisa"
-  ],
-  "servizi": [
-   "Studio di Fattibilità, Progettazione Definitiva ed Esecutiva",
-   "Direzione Lavori",
-   "Coordinamento Sicurezza in fase di Progettazione ed Esecuzione",
-   "Gestione pratica ENEA e CESSIONE DEL CREDITO",
-   "CF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
-  ]
+  "descrizione": "LAVORI DI EFFICIENTAMENTO ENERGETICO EDILE ED IMPIANTISTICO EDIFICIO CON ACCESSO AGLI INCENTIVI STATALI PREVISTI DALLA LEGGE 17 LUGLIO 2020, N.77, SUPERBONUS 110% PER INTERVENTI DI EFFICIENZA ENERGETICA O INTERVENTI ANTISISMICI”.",
+  "committente": "EVANGELISTI FRANCESCA\nStrada della Pittura n°26\n05100 – Cesi- TERNI (Tr)",
+  "impresa": "ARTEDIL Srl\nVia Via Pascarella n°3/A\n05100 TERNI (Tr)\nTel 0744/400522\nEmail: artedildodai@virgilio.it\nGIGLI DOMENICO E PACIFICI CARLO SNC\nVia Maestri del lavoro, 18/B\n05100 TERNI (TR)\nLIBERATI ERMINIO FU ENRICO\nVia Romagna n° 61/C\n05100 Terni (TR)\nTel. 0744 404287\nC.F. LBRRMN47D17L117B\nP.Iva 00069790558\nEmail: erminioliberati@gmail.com\nEmail PEC: liberati@pec.it",
+  "progettisti": "CF Consulting Srl\nVia G.D.Romagnosi n°11\n05100 TERNI (Tr)\nProgettista e Direttore dei Lavori e Coordinamento Sicurezza\nCIABACCHINI Ing. Alessandro\nCollaboratori\nTESTARELLA Ing. Fabrizio\nMAESTRI Geom. Niccolò\nRICCIONI Dott.ssa Elisa",
+  "servizi": "Studio di Fattibilità, Progettazione Definitiva ed Esecutiva\nDirezione Lavori\nCoordinamento Sicurezza in fase di Progettazione ed Esecuzione\nGestione pratica ENEA e CESSIONE DEL CREDITO\nCF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
  },
  "foto": [
   "img/progetti/lavori-di-efficientamento-energetico-con-superbonus-110-2/lavori-di-efficientamento-energetico-con-01.webp",

@@ -18,37 +18,11 @@
   "fine": "—"
  },
  "blocchi": {
-  "descrizione": [
-   "Lavori di riqualificazione copertura edificio condominiale"
-  ],
-  "committente": [
-   "Condominio Via Aminale n°6",
-   "05100 TERNI (Tr)",
-   "Amministratore Alcini srl – Alcini geom. Manlio",
-   "via alfonsine n°4",
-   "05100 terni (tr)"
-  ],
-  "impresa": [
-   "New Edil Cupi Srl – Impresa esecutrice",
-   "Via Tre Venezie n°179",
-   "05100 TERNI (Tr)"
-  ],
-  "progettisti": [
-   "CF Consulting srl",
-   "via Via A. BArtocci n°7/T1 – 05100 terni (tr)",
-   "05100 terni (tr)",
-   "ing. alessandro ciabacchini",
-   "ing. fabrizio testarella",
-   "geom. niccolò maestri",
-   "dott.ssa elisa riccioni"
-  ],
-  "servizi": [
-   "Studio di fattibilità, progettazione definitiva ed esecutiva",
-   "direzione lavori",
-   "coordinamento sicurezza in fase di progettazione e di esecuzione",
-   "Contabilità",
-   "CF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
-  ]
+  "descrizione": "Lavori di riqualificazione copertura edificio condominiale",
+  "committente": "Condominio Via Aminale n°6\n05100 TERNI (Tr)\nAmministratore Alcini srl – Alcini geom. Manlio\nvia alfonsine n°4\n05100 terni (tr)",
+  "impresa": "New Edil Cupi Srl – Impresa esecutrice\nVia Tre Venezie n°179\n05100 TERNI (Tr)",
+  "progettisti": "CF Consulting srl\nvia Via A. BArtocci n°7/T1 – 05100 terni (tr)\n05100 terni (tr)\ning. alessandro ciabacchini\ning. fabrizio testarella\ngeom. niccolò maestri\ndott.ssa elisa riccioni",
+  "servizi": "Studio di fattibilità, progettazione definitiva ed esecutiva\ndirezione lavori\ncoordinamento sicurezza in fase di progettazione e di esecuzione\nContabilità\nCF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
  },
  "foto": [
   "img/progetti/condominio-via-aminale-6-terni-riqualificazione-copertura-edificio/condominio-via-aminale-6-terni-riqualifi-01.webp",

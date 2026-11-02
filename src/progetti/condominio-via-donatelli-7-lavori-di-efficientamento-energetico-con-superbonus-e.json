@@ -18,50 +18,11 @@
   "fine": "2023"
  },
  "blocchi": {
-  "descrizione": [
-   "Lavori di efficientamento energetico edile ed impiantistico edificio con accesso agli incentivi statali previsti dalla legge 17 luglio 2020, n.77, superbonus 110% per interventi di efficienza energetica o interventi antisismici”."
-  ],
-  "committente": [
-   "Condominio Via Donatelli n°7 Terni (Tr)",
-   "Via Donatelli n°7",
-   "05100 TERNI (Tr)",
-   "c/o amministrazioni condominiali",
-   "paolucci alessio",
-   "via cesare battisti n°119",
-   "05100 terni (tr)"
-  ],
-  "impresa": [
-   "impresa appaltatrice:",
-   "Engie Servizi s.p.a. – general contractor",
-   "viale ribotta, 31",
-   "00144 Roma (rm)",
-   "tel. 3355789465",
-   "c.f. 07149930583",
-   "p.iva 0169891100",
-   "email pec: cofely_italia@cofely.postcert.it",
-   "Pernazza Group srl",
-   "Strada della selva, 40 – 05035 narni (tr)",
-   "telefono 0744/744589",
-   "fax: 0744/722786",
-   "e-mail: web@pernazzagroupsrl.it"
-  ],
-  "progettisti": [
-   "CF Consulting srl",
-   "via a. bartocci n°7/t – 05100 terni (tr)",
-   "05100 terni (tr)",
-   "ing. alessandro ciabacchini",
-   "ing. fabrizio testarella",
-   "geom. niccolò maestri",
-   "dott.ssa elisa riccioni"
-  ],
-  "servizi": [
-   "studio di fattibilità, progettazione definitiva ed esecutiva",
-   "direzione lavori",
-   "coordinamento sicurezza in fase di progettazione e di esecuzione",
-   "progettazione antincendio",
-   "Omologazione INAIL",
-   "CF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
-  ]
+  "descrizione": "Lavori di efficientamento energetico edile ed impiantistico edificio con accesso agli incentivi statali previsti dalla legge 17 luglio 2020, n.77, superbonus 110% per interventi di efficienza energetica o interventi antisismici”.",
+  "committente": "Condominio Via Donatelli n°7 Terni (Tr)\nVia Donatelli n°7\n05100 TERNI (Tr)\nc/o amministrazioni condominiali\npaolucci alessio\nvia cesare battisti n°119\n05100 terni (tr)",
+  "impresa": "impresa appaltatrice:\nEngie Servizi s.p.a. – general contractor\nviale ribotta, 31\n00144 Roma (rm)\ntel. 3355789465\nc.f. 07149930583\np.iva 0169891100\nemail pec: cofely_italia@cofely.postcert.it\nPernazza Group srl\nStrada della selva, 40 – 05035 narni (tr)\ntelefono 0744/744589\nfax: 0744/722786\ne-mail: web@pernazzagroupsrl.it",
+  "progettisti": "CF Consulting srl\nvia a. bartocci n°7/t – 05100 terni (tr)\n05100 terni (tr)\ning. alessandro ciabacchini\ning. fabrizio testarella\ngeom. niccolò maestri\ndott.ssa elisa riccioni",
+  "servizi": "studio di fattibilità, progettazione definitiva ed esecutiva\ndirezione lavori\ncoordinamento sicurezza in fase di progettazione e di esecuzione\nprogettazione antincendio\nOmologazione INAIL\nCF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
  },
  "foto": [
   "img/progetti/condominio-via-donatelli-7-lavori-di-efficientamento-energetico-con-superbonus-e/condominio-via-donatelli-7-lavori-di-eff-01.webp",

@@ -18,42 +18,11 @@
   "fine": "2026"
  },
  "blocchi": {
-  "descrizione": [
-   "Riqualificazione dell’edilizia residenziale pubblica” – SVS 6 Riqualificazione quartiere San Lucio-San Valentino",
-   "Fondo Complementare al PNRR – art.1, comma 2, lettera c), punto 13 D.lgs. 59 del 06/05/2021 – Legge n. 101 del 01/07/2021 programma “Sicuro, Verde e Sociale: – CUP H43D21002980001 H44F22000330005 H44F22000290006 H44F22000280006 CIG 9559943A86–"
-  ],
-  "committente": [
-   "ATER UMBRIA-COMUNE DI TERNI",
-   "Via G. Ferraris n°13",
-   "05100 TERNI",
-   "EMAIL PEC: ater.umbria@legalmail.it",
-   "RUP Ing.Elisa Lucaroni"
-  ],
-  "impresa": [
-   "ATI PICONE COSTRUZIONI Srl/ITALSTEM Spa",
-   "Via Bramante n°3/D",
-   "05100 TERNI (Tr)",
-   "Email PEC: piconecostruzioni@pec.it"
-  ],
-  "progettisti": [
-   "CF Consulting Srl (Capogruppo)",
-   "Via A. Bartocci n°7T – 05100 terni (tr)",
-   "05100 terni (tr)",
-   "Progettista Responsabile: CIABACCHINI Ing. Alessandro",
-   "TESTARELLA Ing. Fabrizio",
-   "MAESTRI Geom. Niccolò",
-   "MERLINI Geom. Mirko",
-   "PERUGINI Ing. Federica",
-   "Tec. Riccardo CARPINELLI",
-   "Martelli Ing. Carlo",
-   "Dott. Paolo PACCARA"
-  ],
-  "servizi": [
-   "Progettazione ESECUTIVA",
-   "Progettazione antincendio",
-   "Coordinamento Sicurezza in fase di Progettazione",
-   "CF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
-  ]
+  "descrizione": "Riqualificazione dell’edilizia residenziale pubblica” – SVS 6 Riqualificazione quartiere San Lucio-San Valentino\nFondo Complementare al PNRR – art.1, comma 2, lettera c), punto 13 D.lgs. 59 del 06/05/2021 – Legge n. 101 del 01/07/2021 programma “Sicuro, Verde e Sociale: – CUP H43D21002980001 H44F22000330005 H44F22000290006 H44F22000280006 CIG 9559943A86–",
+  "committente": "ATER UMBRIA-COMUNE DI TERNI\nVia G. Ferraris n°13\n05100 TERNI\nEMAIL PEC: ater.umbria@legalmail.it\nRUP Ing.Elisa Lucaroni",
+  "impresa": "ATI PICONE COSTRUZIONI Srl/ITALSTEM Spa\nVia Bramante n°3/D\n05100 TERNI (Tr)\nEmail PEC: piconecostruzioni@pec.it",
+  "progettisti": "CF Consulting Srl (Capogruppo)\nVia A. Bartocci n°7T – 05100 terni (tr)\n05100 terni (tr)\nProgettista Responsabile: CIABACCHINI Ing. Alessandro\nTESTARELLA Ing. Fabrizio\nMAESTRI Geom. Niccolò\nMERLINI Geom. Mirko\nPERUGINI Ing. Federica\nTec. Riccardo CARPINELLI\nMartelli Ing. Carlo\nDott. Paolo PACCARA",
+  "servizi": "Progettazione ESECUTIVA\nProgettazione antincendio\nCoordinamento Sicurezza in fase di Progettazione\nCF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
  },
  "foto": [
   "img/progetti/ater-umbria-comune-di-terni-_-riqualificazione-urbana-quartiere-san-lucio/ater-umbria-comune-di-terni-_-riqualific-01.webp",

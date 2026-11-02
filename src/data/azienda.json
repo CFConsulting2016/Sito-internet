@@ -1,16 +1,5 @@
 {
  "fondazione": "2016-03-08",
- "certificazioni": [
-  {
-   "nome": "UNI EN ISO 9001:2015",
-   "ente": "Kiwa Cermet Italia",
-   "numero": "20832-A",
-   "scadenza": "2029-06-25",
-   "ambito": "Progettazione di ingegneria integrata, direzione lavori, coordinamento della sicurezza, verifica della progettazione ai fini della validazione",
-   "file": "img/certificazioni/kiwa-iso9001-accredia.webp",
-   "pdf": "documenti/certificato-iso-9001-kiwa-20832.pdf"
-  }
- ],
  "sede": [
   "img/sede/sede-01.webp",
   "img/sede/sede-02.webp",
@@ -42,35 +31,6 @@
    "stato": "Italia"
   }
  },
- "certificazioniPersonali": [
-  {
-   "persona": "Ing. Alessandro Ciabacchini",
-   "titolo": "Ingegnere esperto in Energetica",
-   "specializzazione": "Termotecnica ed efficientamento energetico degli edifici civili",
-   "ente": "CERTing — Consiglio Nazionale degli Ingegneri",
-   "numero": "TRB-2421-IT20",
-   "scadenza": "2029-06-05",
-   "pdf": "documenti/certing-trb-2421-it20-energetica.pdf"
-  },
-  {
-   "persona": "Ing. Alessandro Ciabacchini",
-   "titolo": "Ingegnere esperto in Ecoprogettazione (CAM)",
-   "specializzazione": "",
-   "ente": "CERTing — Consiglio Nazionale degli Ingegneri",
-   "numero": "TRB-3101-IT20",
-   "scadenza": "2029-07-28",
-   "pdf": "documenti/certing-trb-3101-it20-cam.pdf"
-  },
-  {
-   "persona": "Ing. Claudio Raggi",
-   "titolo": "Esperto in Gestione dell'Energia (EGE), settore civile",
-   "specializzazione": "UNI CEI 11339:2023",
-   "ente": "Unisapiens",
-   "numero": "28/25-EGE",
-   "scadenza": "2030-12-16",
-   "pdf": "documenti/unisapiens-ege-28-25-raggi.pdf"
-  }
- ],
  "sostegni": [
   {
    "nome": "I Bambini delle Fate",

@@ -18,35 +18,11 @@
   "fine": "2020"
  },
  "blocchi": {
-  "descrizione": [
-   "LAVORI DI MANUTENZIONE STRAORDINARIA PROSPETTI E RISANAMENTO STRUTTURE IN C.A."
-  ],
-  "committente": [
-   "Condominio Via del Parco 25 – Condominio Ripa Verde – 05035 Narni (Tr)",
-   "Amministratore pro-tempore GAROFALO Dr Francesco – Narni Scalo"
-  ],
-  "impresa": [
-   "NUOVA TONELLI Srl",
-   "Via dei Castelli n°31",
-   "05100 TERNI (Tr)",
-   "PIva 00456230556",
-   "www.nuovatonelli.it"
-  ],
-  "progettisti": [
-   "CF Consulting Srl",
-   "Via G.D.Romagnosi n°11 – 05100 terni (tr)",
-   "05100 terni (tr)",
-   "CIABACCHINI ing. Alessandro",
-   "TESTARELLA Ing. Fabrizio",
-   "MAESTRI Geom. Niccolò",
-   "RICCIONI Dott.ssa Elisa"
-  ],
-  "servizi": [
-   "Progettazione intervento di manutenzione straordinaria copertura e prospetti",
-   "Direzione lavori",
-   "Coordinamento Sicurezza in Fase di Progettazione ed Esecuzione",
-   "CF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
-  ]
+  "descrizione": "LAVORI DI MANUTENZIONE STRAORDINARIA PROSPETTI E RISANAMENTO STRUTTURE IN C.A.",
+  "committente": "Condominio Via del Parco 25 – Condominio Ripa Verde – 05035 Narni (Tr)\nAmministratore pro-tempore GAROFALO Dr Francesco – Narni Scalo",
+  "impresa": "NUOVA TONELLI Srl\nVia dei Castelli n°31\n05100 TERNI (Tr)\nPIva 00456230556\nwww.nuovatonelli.it",
+  "progettisti": "CF Consulting Srl\nVia G.D.Romagnosi n°11 – 05100 terni (tr)\n05100 terni (tr)\nCIABACCHINI ing. Alessandro\nTESTARELLA Ing. Fabrizio\nMAESTRI Geom. Niccolò\nRICCIONI Dott.ssa Elisa",
+  "servizi": "Progettazione intervento di manutenzione straordinaria copertura e prospetti\nDirezione lavori\nCoordinamento Sicurezza in Fase di Progettazione ed Esecuzione\nCF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
  },
  "foto": [
   "img/progetti/condominio-ripaverde-via-del-parco-25-narni-scalo/condominio-ripaverde-via-del-parco-25-na-01.webp",

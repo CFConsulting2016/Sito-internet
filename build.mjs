@@ -259,7 +259,7 @@ function rigaAlbo(a) {
  *  i regolamenti d'uso degli enti. */
 function fasciaMarchi(azienda) {
   const voci = [];
-  for (const c of azienda.certificazioni || []) {
+  for (const c of (azienda.certificazioni || []).filter((x) => x.file)) { // senza marchio non c'è logo da mostrare
     const testo = `${c.nome} &middot; certificato n. ${c.numero} &middot; ${c.ente}`;
     voci.push({ file: c.file, alt: `${c.nome} — ${c.ente}`,
       testo: c.pdf ? `<a href="${esc(c.pdf)}" target="_blank" rel="noopener">${testo}</a>` : testo });
@@ -364,7 +364,11 @@ function newsList(news, fonti) {
   // Spegnere una fonte perché le sue condizioni d'uso sono cambiate non
   // rende illecito ciò che è già stato pubblicato: la pagina non deve
   // svuotarsi da sola. L'archivio si toglie solo con una scelta esplicita.
-  const visibili = news.filter((n) => perId.get(n.fonte)?.mantieniPubblicati !== false);
+  // Ogni notizia resta online due mesi, poi sparisce da sola alla prima
+  // ricostruzione: il file resta, così la raccolta non la ripubblica.
+  const scadenza = new Date(Date.now() - 61 * 864e5).toISOString().slice(0, 10);
+  const visibili = news.filter((n) => perId.get(n.fonte)?.mantieniPubblicati !== false
+    && String(n.data) >= scadenza);
 
   if (!visibili.length) {
     return '    <p class="news-vuoto">Nessuna notizia pubblicata al momento.</p>';
@@ -421,7 +425,48 @@ const tuttiProgetti = await leggiCartella('progetti', (p, nome) => {
   p.img = (p.foto || [])[0] || '';     // la copertina è sempre la prima foto
   Object.assign(p, p.scheda || {});    // nel CMS la scheda tecnica è un gruppo,
                                        // qui i campi tornano comodi in piano
+  completaProgetto(p);
 });
+
+/**
+ * Dal pannello il cliente incolla solo i cinque testi (descrizione,
+ * committente, impresa, progettisti, servizi), sceglie la data e scrive
+ * l'importo. Tutto il resto si ricava da lì: la tabellina in alto, la scheda
+ * tecnica, il sommario, il filtro Pubblico/Privato. Un valore scritto a mano
+ * nella scheda vince sempre su quello ricavato.
+ */
+function completaProgetto(p) {
+  const vuoto = (v) => v === undefined || v === null || String(v).trim() === '' || v === '—';
+  const righe = (v) => (Array.isArray(v) ? v : String(v || '').split(/\r?\n/))
+    .map((r) => String(r).trim()).filter(Boolean);
+
+  // i testi arrivano come un unico riquadro: una riga, un paragrafo
+  const b = p.blocchi = p.blocchi || {};
+  for (const k of ['descrizione', 'committente', 'impresa', 'progettisti', 'servizi']) b[k] = righe(b[k]);
+
+  if (vuoto(p.committente) && b.committente.length) p.committente = b.committente[0];
+  if (vuoto(p.luogo)) {
+    // dall'indirizzo: «via aurelia 292 – 00165 roma (rm)» → «Roma (RM)»
+    const m = b.committente.join(' ').match(/\b\d{5}\s+([A-Za-zÀ-ÿ' .-]+?)\s*\(([A-Za-z]{2})\)/);
+    if (m) p.luogo = `${m[1].trim().replace(/(^|[\s'-])\p{L}/gu, (c) => c.toUpperCase())} (${m[2].toUpperCase()})`;
+  }
+  if (vuoto(p.impresa) && b.impresa.length) p.impresa = b.impresa[0];
+  if (vuoto(p.responsabile)) {
+    const r = b.progettisti.map((x) => x.match(/progettista\s+responsabile\s*:\s*(.+)/i)).find(Boolean);
+    if (r) p.responsabile = r[1].trim();
+  }
+  if (p.data) p.anno = dataEstesa(p.data) || p.anno;
+  if (typeof p.importoLavoro === 'number') {
+    p.importo = `€ ${p.importoLavoro.toLocaleString('it-IT', { maximumFractionDigits: 2 })}`;
+  }
+  if (p.cat !== 'Pubblico' && p.cat !== 'Privato') {
+    const pubblico = /\b(comune|provincia|regione|ater|roma capitale|ministero|questura|prefettura|guardia di finanza|carabinieri|polizia|consorzio di bonifica|comunit[aà] montana|universit[aà]|istituto|scuola|asl|azienda sanitaria|agenzia del demanio|stato)\b/i;
+    p.cat = pubblico.test(p.committente || '') ? 'Pubblico' : 'Privato';
+  }
+  if (vuoto(p.shortTitle)) p.shortTitle = p.title;
+  if (vuoto(p.tag)) p.tag = p.committente || (p.cat === 'Pubblico' ? 'Committente pubblico' : 'Committente privato');
+  if (vuoto(p.lead) && b.descrizione.length) p.lead = b.descrizione[0];
+}
 // Un progetto appena creato dal pannello di solito non ha «Ordine»: va in
 // cima, nell'archivio e nel feed. In fondo uscirebbe dai primi 30 del feed,
 // e Zapier non lo vedrebbe mai: niente post sui social.
@@ -443,6 +488,19 @@ const paginaNews = JSON.parse(await read(SRC, 'data', 'pagina-news.json'));
 const serviceText = JSON.parse(await read(SRC, 'data', 'servizi-contenuti.json'));
 const team = JSON.parse(await read(SRC, 'data', 'team.json'));
 const azienda = JSON.parse(await read(SRC, 'data', 'azienda.json'));
+// Le certificazioni stanno in src/certificazioni, un file ciascuna: il
+// cliente le aggiunge dal pannello senza toccare gli altri dati aziendali.
+// Qui tornano nella forma che usa il resto del generatore.
+{
+  const percorso = (p) => String(p || '').replace(/^\/+/, '');
+  const certificazioni = await leggiCartella('certificazioni');
+  azienda.certificazioni = certificazioni.filter((c) => c.tipo === 'impresa').map((c) => ({
+    nome: c.titolo, ente: c.ente, numero: c.numero, scadenza: c.scadenza,
+    ambito: c.specializzazione, file: percorso(c.marchio), pdf: percorso(c.pdf) }));
+  azienda.certificazioniPersonali = certificazioni.filter((c) => c.tipo !== 'impresa').map((c) => ({
+    persona: c.persona, titolo: c.titolo, specializzazione: c.specializzazione,
+    ente: c.ente, numero: c.numero, scadenza: c.scadenza, pdf: percorso(c.pdf) }));
+}
 // Una certificazione scaduta non si mostra: presentarla come valida, in una
 // gara, è peggio che non averla. Due mesi prima si avvisa di caricare il rinnovo.
 {
@@ -569,7 +627,7 @@ for (const file of (await readdir(join(SRC, 'pages'))).filter((f) => f.endsWith(
     .replace('{{NEWS_NOTA}}', esc(paginaNews.nota))
     .replace('{{TEAM}}', teamCards(team))
     .replace('{{PUBLIC_BODIES}}', String(publicBodies(projects)))
-    .replace('{{CERTIFICAZIONI}}', certLogos(azienda.certificazioni))
+    .replace('{{CERTIFICAZIONI}}', certLogos(azienda.certificazioni.filter((c) => c.file)))
     .replace('{{SEDE}}', sedeMedia(azienda.sede))
     .replace('{{MAPPA_SEDE}}', mappaSede())
     .replace('{{RACCONTO_FOTO_1}}', raccontoFoto(azienda.sede, 3, 'La sala riunioni di CF Consulting a Terni'))

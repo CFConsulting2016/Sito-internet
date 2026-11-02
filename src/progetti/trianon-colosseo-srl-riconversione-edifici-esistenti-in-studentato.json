@@ -18,36 +18,11 @@
   "fine": "2026"
  },
  "blocchi": {
-  "descrizione": [
-   "INTERVENTO DI RESTAURO E RISANAMENTO CONSERVATIVO ai sensi del DPR 380/01 art.lo 22",
-   "RICONVERSIONE DI EDIFICI ESISTENTI IN RESIDENZA UNIVERSITARIA – EDIFICI A E F",
-   "Via Clarice Tartufari n°70",
-   "Località Decima Bassa – ROMA"
-  ],
-  "committente": [
-   "TRIANON COLOSSEO Srl",
-   "Via Margutta n°13",
-   "00187 ROMA (RM)"
-  ],
-  "impresa": [
-   "CRUCIANELLI REST\\EDILE Srl",
-   "Via Andrej Sacharov n°2/4",
-   "62029 TOLENTINO (MC)"
-  ],
-  "progettisti": [
-   "Via A. Bartocci n°7/T – 05100 TERNI (Tr)",
-   "Progettista responsabile: Ing. Alessandro CIABACCHINI",
-   "Taeam di Progetto:",
-   "Ing. Fabrizio TESTARELLA",
-   "Ing. Claudio RAGGI",
-   "Geom. Niccolò MAESTRI",
-   "Geom. Mirko MERLINI"
-  ],
-  "servizi": [
-   "PROGETTAZIONE PRELIMINARE, DEFINITIVA, ESECUTIVA – IMPIANTI",
-   "Progettazione antincendio",
-   "CF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
-  ]
+  "descrizione": "INTERVENTO DI RESTAURO E RISANAMENTO CONSERVATIVO ai sensi del DPR 380/01 art.lo 22\nRICONVERSIONE DI EDIFICI ESISTENTI IN RESIDENZA UNIVERSITARIA – EDIFICI A E F\nVia Clarice Tartufari n°70\nLocalità Decima Bassa – ROMA",
+  "committente": "TRIANON COLOSSEO Srl\nVia Margutta n°13\n00187 ROMA (RM)",
+  "impresa": "CRUCIANELLI REST\\EDILE Srl\nVia Andrej Sacharov n°2/4\n62029 TOLENTINO (MC)",
+  "progettisti": "Via A. Bartocci n°7/T – 05100 TERNI (Tr)\nProgettista responsabile: Ing. Alessandro CIABACCHINI\nTaeam di Progetto:\nIng. Fabrizio TESTARELLA\nIng. Claudio RAGGI\nGeom. Niccolò MAESTRI\nGeom. Mirko MERLINI",
+  "servizi": "PROGETTAZIONE PRELIMINARE, DEFINITIVA, ESECUTIVA – IMPIANTI\nProgettazione antincendio\nCF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
  },
  "foto": [
   "img/progetti/trianon-colosseo-srl-riconversione-edifici-esistenti-in-studentato/trianon-colosseo-srl-riconversione-edifi-01.webp",

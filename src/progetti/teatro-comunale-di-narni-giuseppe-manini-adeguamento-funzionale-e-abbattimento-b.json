@@ -18,52 +18,11 @@
   "fine": "2026"
  },
  "blocchi": {
-  "descrizione": [
-   "INTERVENTI DI RIQUALIFICAZIONE URBANA A VALERE SU RISORSE REGIONALI ANNUALITA’ 2024-2025” – Regione Umbria",
-   "“LAVORI DI COMPLETAMENTO FUNZIONALE, IMPIANTI MECCANICI, INSTALLAZIONE ASCENSORE E ADEGUAMENTO ALLE NORMATIVE DI PREVENZIONE INCENDI DEL TEATRO MANINI”",
-   "Via Giuseppe Garibaldi, 29 – 05035 NARNI (TR)",
-   "CUP: B37D24000120006"
-  ],
-  "committente": [
-   "COMUNE DI NARNI",
-   "Piazza dei Priori n°1",
-   "05035 Narni (Tr)",
-   "PIva 00178930558",
-   "Ing. Pietro FLORI (RUP)"
-  ],
-  "impresa": [
-   "Spett.le EDIL FENICE Srls",
-   "Via D. Bramante, 41",
-   "05100 Terni (TR)",
-   "C.F./P.Iva 01588170553",
-   "Tel. 0744/710689",
-   "Cell. 328/9898557",
-   "Email: ediliziafenice@gmail.com",
-   "PEC: edilfenicesrls@pec.it"
-  ],
-  "progettisti": [
-   "CF Consulting Srl (Mandataria)",
-   "Via A. Bartocci n°7/T – 05100 TERNI (Tr)",
-   "Progettista responsabile: Ing. Alessandro CIABACCHINI",
-   "Taeam di Progetto:",
-   "Ing. Fabrizio TESTARELLA",
-   "Ing. Claudio RAGGI",
-   "Geom. Niccolò MAESTRI",
-   "DDA Studio (Mandante)",
-   "Via Montegrappa n°33 – 05100 TERNI (Tr)",
-   "www.ddastudio.net email: info@ddastudio.net",
-   "Progettista responsabile: Arch. Pier Francesco DURANTI",
-   "MOSCATO Ing. Giovanni (Mandante)",
-   "Via Magenta n°15 – 05100 TERNI (Tr)",
-   "email: g.moscato@mg-ingegneria.it"
-  ],
-  "servizi": [
-   "Progettazione Architettonica, Impianti e strutture",
-   "Direzione Lavori",
-   "Coordinamento della Sicurezza in fase di progettazione ed Esecuzione",
-   "Progettazione antincendio",
-   "CF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
-  ]
+  "descrizione": "INTERVENTI DI RIQUALIFICAZIONE URBANA A VALERE SU RISORSE REGIONALI ANNUALITA’ 2024-2025” – Regione Umbria\n“LAVORI DI COMPLETAMENTO FUNZIONALE, IMPIANTI MECCANICI, INSTALLAZIONE ASCENSORE E ADEGUAMENTO ALLE NORMATIVE DI PREVENZIONE INCENDI DEL TEATRO MANINI”\nVia Giuseppe Garibaldi, 29 – 05035 NARNI (TR)\nCUP: B37D24000120006",
+  "committente": "COMUNE DI NARNI\nPiazza dei Priori n°1\n05035 Narni (Tr)\nPIva 00178930558\nIng. Pietro FLORI (RUP)",
+  "impresa": "Spett.le EDIL FENICE Srls\nVia D. Bramante, 41\n05100 Terni (TR)\nC.F./P.Iva 01588170553\nTel. 0744/710689\nCell. 328/9898557\nEmail: ediliziafenice@gmail.com\nPEC: edilfenicesrls@pec.it",
+  "progettisti": "CF Consulting Srl (Mandataria)\nVia A. Bartocci n°7/T – 05100 TERNI (Tr)\nProgettista responsabile: Ing. Alessandro CIABACCHINI\nTaeam di Progetto:\nIng. Fabrizio TESTARELLA\nIng. Claudio RAGGI\nGeom. Niccolò MAESTRI\nDDA Studio (Mandante)\nVia Montegrappa n°33 – 05100 TERNI (Tr)\nwww.ddastudio.net email: info@ddastudio.net\nProgettista responsabile: Arch. Pier Francesco DURANTI\nMOSCATO Ing. Giovanni (Mandante)\nVia Magenta n°15 – 05100 TERNI (Tr)\nemail: g.moscato@mg-ingegneria.it",
+  "servizi": "Progettazione Architettonica, Impianti e strutture\nDirezione Lavori\nCoordinamento della Sicurezza in fase di progettazione ed Esecuzione\nProgettazione antincendio\nCF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
  },
  "foto": [
   "img/progetti/teatro-comunale-di-narni-giuseppe-manini-adeguamento-funzionale-e-abbattimento-b/teatro-comunale-di-narni-giuseppe-manini-01.webp",

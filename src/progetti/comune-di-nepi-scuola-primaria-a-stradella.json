@@ -18,41 +18,11 @@
   "fine": "—"
  },
  "blocchi": {
-  "descrizione": [
-   "PROGETTAZIONE DEFINITIVA ED ESECUTIVA STRUTTURALE IMPIANTISTICA ED ARCHITETTONICA, NEL RISPETTO DEI CAM EDILIZIA, DELL’INTERVENTO DI MIGLIORAMENTO SISMICO DELLA SCUOLA PRIMARIA A. STRADELLA – Nepi (Vt)",
-   "CIG: 8455222DE9 CUP: D65J19000100001"
-  ],
-  "committente": [
-   "Comune di Nepi",
-   "Piazza del Comune, 20 – 01036 NEPI (VT)",
-   "Tel. 0761.5581306-304 Fax 0761.5581702",
-   "E-mail respllpp@comune.nepi.vt.it",
-   "Responsabile Unico del Procedimento: CIMA Arch. Giampaolo"
-  ],
-  "impresa": [
-   "Da definire"
-  ],
-  "progettisti": [
-   "PROGETTAZIONE DEFINITIVA ED ESECUTIVA IMPIANTI ed EFFICIENTAMENTO ENERGETICO",
-   "CF Consulting Srl",
-   "Via G.D.Romagnosi n°11 – 05100 TERNI (Tr)",
-   "Progettista responsabile: Ing. Alessandro CIABACCHINI",
-   "Taeam di Progetto:",
-   "Ing. Fabrizio TESTARELLA",
-   "Dott.ssa Elisa RICCIONI",
-   "Geom. Niccolò MAESTRI",
-   "PROGETTAZIONE DEFINITIVA ED ESECUTIVA MIGLIORAMENTO SISMICO",
-   "MOSCATO Ing. Giovanni",
-   "Via Magenta n°15 – 05100 TERNI (Tr)",
-   "Tel/Fax 0744/423686",
-   "Progettista responsabile: Ing. Giovanni MOSCATO"
-  ],
-  "servizi": [
-   "Progettazione definitiva ed Esecutiva miglioramento sismico edificio",
-   "Progettazione definitiva ed Esecutiva efficientamento energetico edile/impiantistico",
-   "Coordinamento Sicurezza in fase di Progettazione",
-   "CF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
-  ]
+  "descrizione": "PROGETTAZIONE DEFINITIVA ED ESECUTIVA STRUTTURALE IMPIANTISTICA ED ARCHITETTONICA, NEL RISPETTO DEI CAM EDILIZIA, DELL’INTERVENTO DI MIGLIORAMENTO SISMICO DELLA SCUOLA PRIMARIA A. STRADELLA – Nepi (Vt)\nCIG: 8455222DE9 CUP: D65J19000100001",
+  "committente": "Comune di Nepi\nPiazza del Comune, 20 – 01036 NEPI (VT)\nTel. 0761.5581306-304 Fax 0761.5581702\nE-mail respllpp@comune.nepi.vt.it\nResponsabile Unico del Procedimento: CIMA Arch. Giampaolo",
+  "impresa": "Da definire",
+  "progettisti": "PROGETTAZIONE DEFINITIVA ED ESECUTIVA IMPIANTI ed EFFICIENTAMENTO ENERGETICO\nCF Consulting Srl\nVia G.D.Romagnosi n°11 – 05100 TERNI (Tr)\nProgettista responsabile: Ing. Alessandro CIABACCHINI\nTaeam di Progetto:\nIng. Fabrizio TESTARELLA\nDott.ssa Elisa RICCIONI\nGeom. Niccolò MAESTRI\nPROGETTAZIONE DEFINITIVA ED ESECUTIVA MIGLIORAMENTO SISMICO\nMOSCATO Ing. Giovanni\nVia Magenta n°15 – 05100 TERNI (Tr)\nTel/Fax 0744/423686\nProgettista responsabile: Ing. Giovanni MOSCATO",
+  "servizi": "Progettazione definitiva ed Esecutiva miglioramento sismico edificio\nProgettazione definitiva ed Esecutiva efficientamento energetico edile/impiantistico\nCoordinamento Sicurezza in fase di Progettazione\nCF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
  },
  "foto": [
   "img/progetti/comune-di-nepi-scuola-primaria-a-stradella/comune-di-nepi-scuola-primaria-a-stradel-01.webp",

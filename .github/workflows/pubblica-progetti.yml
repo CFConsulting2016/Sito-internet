@@ -1,0 +1,42 @@
+# Pubblicazione dei progetti in attesa.
+#
+# I progetti nuovi si preparano nel pannello in «Progetti in attesa»
+# (src/progetti-in-attesa), che il sito non legge: prepararli non costa
+# crediti. Quando nel pannello si salva «Pubblica i progetti in attesa»
+# (src/data/pubblica-progetti-ora.json), questo giro li sposta tutti tra
+# i pubblicati e fa ricostruire il sito una volta sola (15 crediti).
+# Il feed si aggiorna e Zapier fa un post per ogni progetto.
+#
+# Serve il secret NETLIFY_BUILD_HOOK: l'indirizzo del pulsante di avvio
+# creato su Netlify (Project configuration > Build & deploy > Build hooks).
+
+name: Pubblicazione progetti
+
+on:
+  workflow_dispatch:       # avvio a mano dalla scheda Actions
+  push:
+    branches: [main]
+    paths:
+      - 'src/data/pubblica-progetti-ora.json'
+
+permissions:
+  contents: write          # salvare lo spostamento dei progetti
+
+concurrency:
+  group: pubblicazione-progetti
+  cancel-in-progress: false
+
+jobs:
+  pubblica:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Pubblicazione
+        run: node strumenti/sposta-progetti.mjs --github
+        env:
+          NETLIFY_BUILD_HOOK: ${{ secrets.NETLIFY_BUILD_HOOK }}

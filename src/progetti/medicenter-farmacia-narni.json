@@ -18,23 +18,11 @@
   "fine": "—"
  },
  "blocchi": {
-  "descrizione": [
-   "Progettazione definitiva nuova Farmacia Comunale in Narni"
-  ],
-  "committente": [
-   "Medicenter"
-  ],
-  "impresa": [],
-  "progettisti": [
-   "CF CONSULTING Srl",
-   "Via G.D. Romagnosi n°11 – 05100 terni (tr)",
-   "05100 Terni (tr)",
-   "CIABACCHINI ing. Alessandro",
-   "TESTARELLA Ing. Fabrizio"
-  ],
-  "servizi": [
-   "CF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
-  ]
+  "descrizione": "Progettazione definitiva nuova Farmacia Comunale in Narni",
+  "committente": "Medicenter",
+  "impresa": "",
+  "progettisti": "CF CONSULTING Srl\nVia G.D. Romagnosi n°11 – 05100 terni (tr)\n05100 Terni (tr)\nCIABACCHINI ing. Alessandro\nTESTARELLA Ing. Fabrizio",
+  "servizi": "CF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
  },
  "foto": [
   "img/progetti/medicenter-farmacia-narni/medicenter-farmacia-narni-01.webp",

@@ -18,30 +18,11 @@
   "fine": "2020"
  },
  "blocchi": {
-  "descrizione": [
-   "LAVORI DI MANUTENZIONE STRAORDINARIA COPERTURA E PROSPETTI"
-  ],
-  "committente": [
-   "Condominio Piazza Europa n°19 – 05100 TERNI (Tr)",
-   "ALCINI Srl – Via Alfonsine n° 4 – 05100 TERNI (Tr)",
-   "Tel 0744/27.69.47 Fax 0744/22.60.50"
-  ],
-  "impresa": [
-   "IMPRESA EDILE ESPINOZA GAUDENCIO",
-   "Via Tre Monumenti n°5 – 05100 TERNI (Tr)",
-   "Tel/Fax 0744/010844 P.Iva 01226660551",
-   "www.impresaedileespinoza.it"
-  ],
-  "progettisti": [
-   "CF Consulting Srl",
-   "CIABACCHINI Ing. Alessandro",
-   "TESTARELLA Ing. Fabrizio"
-  ],
-  "servizi": [
-   "Progettazione intervento di manutenzione straordinaria copertura e prospetti",
-   "Direzione lavori",
-   "CF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
-  ]
+  "descrizione": "LAVORI DI MANUTENZIONE STRAORDINARIA COPERTURA E PROSPETTI",
+  "committente": "Condominio Piazza Europa n°19 – 05100 TERNI (Tr)\nALCINI Srl – Via Alfonsine n° 4 – 05100 TERNI (Tr)\nTel 0744/27.69.47 Fax 0744/22.60.50",
+  "impresa": "IMPRESA EDILE ESPINOZA GAUDENCIO\nVia Tre Monumenti n°5 – 05100 TERNI (Tr)\nTel/Fax 0744/010844 P.Iva 01226660551\nwww.impresaedileespinoza.it",
+  "progettisti": "CF Consulting Srl\nCIABACCHINI Ing. Alessandro\nTESTARELLA Ing. Fabrizio",
+  "servizi": "Progettazione intervento di manutenzione straordinaria copertura e prospetti\nDirezione lavori\nCF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
  },
  "foto": [
   "img/progetti/condominio-piazza-europa-terni/condominio-piazza-europa-terni-01.webp",

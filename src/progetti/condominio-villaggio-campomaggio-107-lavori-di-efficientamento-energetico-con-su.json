@@ -18,45 +18,11 @@
   "fine": "2023"
  },
  "blocchi": {
-  "descrizione": [
-   "lavori di efficientamento energetico edile ed impiantistico edificio con accesso agli incentivi statali previsti dalla legge 17 luglio 2020, n.77, superbonus 110% per interventi di efficienza energetica o interventi antisismici”."
-  ],
-  "committente": [
-   "condominio Villaggio Campomaggio n°107",
-   "Via dell’Impresa n°107 – 05100 TERNI (Tr)",
-   "Amministratore alcini srl – alcini geom. manlio",
-   "via alfonsine n°4",
-   "05100 terni (tr)"
-  ],
-  "impresa": [
-   "New Edil Cupi Srl – General Contractor/impresa esecutrice",
-   "Via Tre Venezie n°179",
-   "05100 TERNI (Tr)",
-   "cupi elis impianti srl",
-   "via giuseppe lombardo radice, 17",
-   "05100 terni (tr)",
-   "c.f./p.iva 01628140558",
-   "tel. 0744.1983181",
-   "email: cupielisimpiantisrls@virgilio.it",
-   "email pec: cupielisimpianti@pec.it"
-  ],
-  "progettisti": [
-   "cf consulting srl",
-   "via via a. bartocci n°7/t1 – 05100 terni (tr)",
-   "05100 terni (tr)",
-   "ing. alessandro ciabacchini",
-   "ing. fabrizio testarella",
-   "geom. niccolò maestri",
-   "dott.ssa elisa riccioni",
-   "Ing. Andrea MARCELLI (PLAN Associati)"
-  ],
-  "servizi": [
-   "studio di fattibilità, progettazione definitiva ed esecutiva",
-   "Progettazione strutturale per miglioramento sismico",
-   "direzione lavori",
-   "coordinamento sicurezza in fase di progettazione e di esecuzione",
-   "CF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
-  ]
+  "descrizione": "lavori di efficientamento energetico edile ed impiantistico edificio con accesso agli incentivi statali previsti dalla legge 17 luglio 2020, n.77, superbonus 110% per interventi di efficienza energetica o interventi antisismici”.",
+  "committente": "condominio Villaggio Campomaggio n°107\nVia dell’Impresa n°107 – 05100 TERNI (Tr)\nAmministratore alcini srl – alcini geom. manlio\nvia alfonsine n°4\n05100 terni (tr)",
+  "impresa": "New Edil Cupi Srl – General Contractor/impresa esecutrice\nVia Tre Venezie n°179\n05100 TERNI (Tr)\ncupi elis impianti srl\nvia giuseppe lombardo radice, 17\n05100 terni (tr)\nc.f./p.iva 01628140558\ntel. 0744.1983181\nemail: cupielisimpiantisrls@virgilio.it\nemail pec: cupielisimpianti@pec.it",
+  "progettisti": "cf consulting srl\nvia via a. bartocci n°7/t1 – 05100 terni (tr)\n05100 terni (tr)\ning. alessandro ciabacchini\ning. fabrizio testarella\ngeom. niccolò maestri\ndott.ssa elisa riccioni\nIng. Andrea MARCELLI (PLAN Associati)",
+  "servizi": "studio di fattibilità, progettazione definitiva ed esecutiva\nProgettazione strutturale per miglioramento sismico\ndirezione lavori\ncoordinamento sicurezza in fase di progettazione e di esecuzione\nCF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
  },
  "foto": [
   "img/progetti/condominio-villaggio-campomaggio-107-lavori-di-efficientamento-energetico-con-su/condominio-villaggio-campomaggio-107-lav-01.webp",

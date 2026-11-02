@@ -18,52 +18,11 @@
   "fine": "2023"
  },
  "blocchi": {
-  "descrizione": [
-   "LAVORI DI EFFICIENTAMENTO ENERGETICO EDILE ED IMPIANTISTICO EDIFICIO CON ACCESSO AGLI INCENTIVI STATALI PREVISTI DALLA LEGGE 17 LUGLIO 2020, N.77, SUPERBONUS 110% PER INTERVENTI DI EFFICIENZA ENERGETICA O INTERVENTI ANTISISMICI”."
-  ],
-  "committente": [
-   "CONDOMINIO VIA PIANA DEI GRECI 10A-B TERNI",
-   "Via Piana dei Greci n°10A-B",
-   "05100 TERNI (Tr)",
-   "c/o AMMINISTRAZIONI CONDOMINIALI",
-   "PAOLUCCI ALESSIO",
-   "Via Cesare Battisti n°119",
-   "05100 TERNI (Tr)"
-  ],
-  "impresa": [
-   "Z.N. EDILIZIA e CONTRCT Srl – GENERAL CONTRACTOR-IMPRESA AFFIDATARIA",
-   "Via dell’Impresa n°13/B",
-   "05100 TERNI (TR)",
-   "Tel. 328 053 9643",
-   "C.F. ZFENRD78C17Z100F",
-   "P.Iva 01678100551",
-   "Email: zefinardsrl@gmail.com",
-   "PEC : zefinard@pec.it",
-   "SMA DI ZEFI SIMON (Montaggio e Smontaggio ponteggi)",
-   "Via Cervata n° 113",
-   "05100 Terni (TR)",
-   "Tel. 0744 400116",
-   "C.F. ZFESMN65A06Z100S",
-   "P.Iva 01545260554",
-   "Email: simonzefi@gmail.com",
-   "Email PEC: zefisimon@pec.it"
-  ],
-  "progettisti": [
-   "CF CONSULTING Srl",
-   "Via G.D.Romagnosi n°11 – 05100 TERNI (Tr)",
-   "05100 TERNI (Tr)",
-   "Ing. Alessandro CIABACCHINI",
-   "Ing. Fabrizio TESTARELLA",
-   "Geom. Niccolò MAESTRI",
-   "Dott.ssa Elisa RICCIONI"
-  ],
-  "servizi": [
-   "Studio di Fattibilità, Progettazione Definitiva ed Esecutiva",
-   "Direzione Lavori",
-   "Coordinamento Sicurezza in fase di Progettazione e di Esecuzione",
-   "Gestione pratiche cessione del credito DELOITTE/BANCO DESIO",
-   "CF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
-  ]
+  "descrizione": "LAVORI DI EFFICIENTAMENTO ENERGETICO EDILE ED IMPIANTISTICO EDIFICIO CON ACCESSO AGLI INCENTIVI STATALI PREVISTI DALLA LEGGE 17 LUGLIO 2020, N.77, SUPERBONUS 110% PER INTERVENTI DI EFFICIENZA ENERGETICA O INTERVENTI ANTISISMICI”.",
+  "committente": "CONDOMINIO VIA PIANA DEI GRECI 10A-B TERNI\nVia Piana dei Greci n°10A-B\n05100 TERNI (Tr)\nc/o AMMINISTRAZIONI CONDOMINIALI\nPAOLUCCI ALESSIO\nVia Cesare Battisti n°119\n05100 TERNI (Tr)",
+  "impresa": "Z.N. EDILIZIA e CONTRCT Srl – GENERAL CONTRACTOR-IMPRESA AFFIDATARIA\nVia dell’Impresa n°13/B\n05100 TERNI (TR)\nTel. 328 053 9643\nC.F. ZFENRD78C17Z100F\nP.Iva 01678100551\nEmail: zefinardsrl@gmail.com\nPEC : zefinard@pec.it\nSMA DI ZEFI SIMON (Montaggio e Smontaggio ponteggi)\nVia Cervata n° 113\n05100 Terni (TR)\nTel. 0744 400116\nC.F. ZFESMN65A06Z100S\nP.Iva 01545260554\nEmail: simonzefi@gmail.com\nEmail PEC: zefisimon@pec.it",
+  "progettisti": "CF CONSULTING Srl\nVia G.D.Romagnosi n°11 – 05100 TERNI (Tr)\n05100 TERNI (Tr)\nIng. Alessandro CIABACCHINI\nIng. Fabrizio TESTARELLA\nGeom. Niccolò MAESTRI\nDott.ssa Elisa RICCIONI",
+  "servizi": "Studio di Fattibilità, Progettazione Definitiva ed Esecutiva\nDirezione Lavori\nCoordinamento Sicurezza in fase di Progettazione e di Esecuzione\nGestione pratiche cessione del credito DELOITTE/BANCO DESIO\nCF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
  },
  "foto": [
   "img/progetti/lavori-di-efficientamento-energetico-con-superbonus-110-4/lavori-di-efficientamento-energetico-con-01.webp",

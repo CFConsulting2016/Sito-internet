@@ -18,51 +18,11 @@
   "fine": "2023"
  },
  "blocchi": {
-  "descrizione": [
-   "LAVORI DI EFFICIENTAMENTO ENERGETICO EDILE ED IMPIANTISTICO EDIFICIO CON ACCESSO AGLI INCENTIVI STATALI PREVISTI DALLA LEGGE 17 LUGLIO 2020, N.77, SUPERBONUS 110% PER INTERVENTI DI EFFICIENZA ENERGETICA O INTERVENTI ANTISISMICI”."
-  ],
-  "committente": [
-   "CONDOMINIO RESIDENCE GARDEN TERMINILLO",
-   "Via dei Villini n°28 – 02100 RIETI",
-   "Amministratore ALCINI Srl – ALCINI Geom. Manlio",
-   "Via Alfonsine n°4",
-   "05100 TERNI (TR)"
-  ],
-  "impresa": [
-   "ENGIE SERVIZI S.P.A. (GENERAL CONTRACTOR)",
-   "Viale Ribotta, 31",
-   "00144 ROMA (RM)",
-   "Tel. 3355789465",
-   "C.F. 07149930583",
-   "P.Iva 01698911003",
-   "Email: cristiano.mendolicchio@engie.com",
-   "PEC: cofely_italia@cofely.postcert.it",
-   "CRICCHI Srl (IMPRESA APPALTATRICE)",
-   "Via A. Valenzani, 12",
-   "00187 ROMA (RM)",
-   "Tel. 0744/498305",
-   "C.F./P.Iva 12711521000",
-   "Email: cricchisrl@gmail.com",
-   "PEC : cricchisrl@legalmail.it"
-  ],
-  "progettisti": [
-   "CF Consulting Srl",
-   "Via G.D.Romagnosi n°11",
-   "05100 TERNI (TR)",
-   "Progettazione, Direzione Lavori e Coordinamento Sicurezza",
-   "CIABACCHINI ing. Alessandro",
-   "Collaboratori",
-   "TESTARELLA Ing. Fabrizio",
-   "MAESTRI Geom. Niccolò",
-   "RICCIONI Dott.ssa Elisa"
-  ],
-  "servizi": [
-   "Studio di Fattibilità, Progettazione Definitiva ed Esecutiva",
-   "Direzione Lavori",
-   "Coordinamento Sicurezza in fase di Progettazione e di Esecuzione",
-   "Progettazione antincendio",
-   "CF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
-  ]
+  "descrizione": "LAVORI DI EFFICIENTAMENTO ENERGETICO EDILE ED IMPIANTISTICO EDIFICIO CON ACCESSO AGLI INCENTIVI STATALI PREVISTI DALLA LEGGE 17 LUGLIO 2020, N.77, SUPERBONUS 110% PER INTERVENTI DI EFFICIENZA ENERGETICA O INTERVENTI ANTISISMICI”.",
+  "committente": "CONDOMINIO RESIDENCE GARDEN TERMINILLO\nVia dei Villini n°28 – 02100 RIETI\nAmministratore ALCINI Srl – ALCINI Geom. Manlio\nVia Alfonsine n°4\n05100 TERNI (TR)",
+  "impresa": "ENGIE SERVIZI S.P.A. (GENERAL CONTRACTOR)\nViale Ribotta, 31\n00144 ROMA (RM)\nTel. 3355789465\nC.F. 07149930583\nP.Iva 01698911003\nEmail: cristiano.mendolicchio@engie.com\nPEC: cofely_italia@cofely.postcert.it\nCRICCHI Srl (IMPRESA APPALTATRICE)\nVia A. Valenzani, 12\n00187 ROMA (RM)\nTel. 0744/498305\nC.F./P.Iva 12711521000\nEmail: cricchisrl@gmail.com\nPEC : cricchisrl@legalmail.it",
+  "progettisti": "CF Consulting Srl\nVia G.D.Romagnosi n°11\n05100 TERNI (TR)\nProgettazione, Direzione Lavori e Coordinamento Sicurezza\nCIABACCHINI ing. Alessandro\nCollaboratori\nTESTARELLA Ing. Fabrizio\nMAESTRI Geom. Niccolò\nRICCIONI Dott.ssa Elisa",
+  "servizi": "Studio di Fattibilità, Progettazione Definitiva ed Esecutiva\nDirezione Lavori\nCoordinamento Sicurezza in fase di Progettazione e di Esecuzione\nProgettazione antincendio\nCF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
  },
  "foto": [
   "img/progetti/lavori-di-efficientamento-energetico-con-superbonus-110-e-bonus-facciate-90/lavori-di-efficientamento-energetico-con-01.webp",

@@ -18,40 +18,11 @@
   "fine": "2025"
  },
  "blocchi": {
-  "descrizione": [
-   "Intervento di Sisma ed Ecobonus con agevolazioni fiscali previste dal DL 34/2024 Superbonus 110% ancora applicabile nei territori colpiti da eventi sismici (cratere)"
-  ],
-  "committente": [
-   "Siggri BENEDETTI e DANGERIO"
-  ],
-  "impresa": [
-   "GENERAL CONTRACTOR e IMPRESA APPALTARICE",
-   "PERNAZZA Group Srl",
-   "Strada della Selva n°40",
-   "05035 Narni (tr)",
-   "Tel/Fax 0744/744589",
-   "email: web@pernazzagroupsrl.it",
-   "www.pernazzagroupsrl.it"
-  ],
-  "progettisti": [
-   "CF Consulting Srl",
-   "Via A. Bartocci n°7/T",
-   "05100 TERNI (TR)",
-   "Progettazione, Direzione Lavori EFFICIENTAMENTO ENERGETICO EDILE ED IMPIANTISTICO",
-   "CIABACCHINI ing. Alessandro",
-   "Collaboratori",
-   "TESTARELLA Ing. Fabrizio",
-   "MAESTRI Geom. Niccolò"
-  ],
-  "servizi": [
-   "EFFICIENTAMENTO ENERGETICO EDILE ED IMPIANTISTICO",
-   "Studio di Fattibilità",
-   "Progettazione Definitiva ed Esecutiva",
-   "Direzione Lavori",
-   "Contabilità",
-   "Asseverazione",
-   "CF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
-  ]
+  "descrizione": "Intervento di Sisma ed Ecobonus con agevolazioni fiscali previste dal DL 34/2024 Superbonus 110% ancora applicabile nei territori colpiti da eventi sismici (cratere)",
+  "committente": "Siggri BENEDETTI e DANGERIO",
+  "impresa": "GENERAL CONTRACTOR e IMPRESA APPALTARICE\nPERNAZZA Group Srl\nStrada della Selva n°40\n05035 Narni (tr)\nTel/Fax 0744/744589\nemail: web@pernazzagroupsrl.it\nwww.pernazzagroupsrl.it",
+  "progettisti": "CF Consulting Srl\nVia A. Bartocci n°7/T\n05100 TERNI (TR)\nProgettazione, Direzione Lavori EFFICIENTAMENTO ENERGETICO EDILE ED IMPIANTISTICO\nCIABACCHINI ing. Alessandro\nCollaboratori\nTESTARELLA Ing. Fabrizio\nMAESTRI Geom. Niccolò",
+  "servizi": "EFFICIENTAMENTO ENERGETICO EDILE ED IMPIANTISTICO\nStudio di Fattibilità\nProgettazione Definitiva ed Esecutiva\nDirezione Lavori\nContabilità\nAsseverazione\nCF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
  },
  "foto": [
   "img/progetti/condominio-via-brignone-13-spoleto-superbonus-110-sisma-ed-eco/condominio-via-brignone-13-spoleto-super-01.webp",

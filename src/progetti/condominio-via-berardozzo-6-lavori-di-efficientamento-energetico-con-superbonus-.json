@@ -18,49 +18,11 @@
   "fine": "2023"
  },
  "blocchi": {
-  "descrizione": [
-   "Lavori di efficientamento energetico edile ed impiantistico edificio con accesso agli incentivi statali previsti dalla legge 17 luglio 2020, n.77, superbonus 110% per interventi di efficienza energetica o interventi antisismici”."
-  ],
-  "committente": [
-   "Condominio Via Berardozzo n°6 Narni (terni)",
-   "Via Berardozzo n°6",
-   "05035 Narni(tr)",
-   "c/o amministrazioni condominiali",
-   "Paolucci Alessio",
-   "via cesare battisti n°119",
-   "05100 terni (tr)"
-  ],
-  "impresa": [
-   "impresa appaltatrice:",
-   "Engie Servizi s.p.a. – General Contractor",
-   "Viale Ribotta, 31",
-   "00144 Roma (rm)",
-   "tel. 3355789465",
-   "c.f. 07149930583",
-   "p.iva 0169891100",
-   "email pec: cofely_italia@cofely.postcert.it",
-   "Pernazza Group Srl",
-   "Strada della Selva, 40 – 05035 Narni (TR)",
-   "Telefono 0744/744589",
-   "Fax: 0744/722786",
-   "E-mail: web@pernazzagroupsrl.it"
-  ],
-  "progettisti": [
-   "CF Consulting srl",
-   "via A. Bartocci n°7/T – 05100 Terni (tr)",
-   "05100 terni (tr)",
-   "ing. alessandro ciabacchini",
-   "ing. fabrizio testarella",
-   "geom. niccolò maestri",
-   "dott.ssa elisa riccioni"
-  ],
-  "servizi": [
-   "Studio di fattibilità, progettazione definitiva ed esecutiva",
-   "Direzione lavori",
-   "coordinamento sicurezza in fase di progettazione e di esecuzione",
-   "Progettazione antincendio",
-   "CF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
-  ]
+  "descrizione": "Lavori di efficientamento energetico edile ed impiantistico edificio con accesso agli incentivi statali previsti dalla legge 17 luglio 2020, n.77, superbonus 110% per interventi di efficienza energetica o interventi antisismici”.",
+  "committente": "Condominio Via Berardozzo n°6 Narni (terni)\nVia Berardozzo n°6\n05035 Narni(tr)\nc/o amministrazioni condominiali\nPaolucci Alessio\nvia cesare battisti n°119\n05100 terni (tr)",
+  "impresa": "impresa appaltatrice:\nEngie Servizi s.p.a. – General Contractor\nViale Ribotta, 31\n00144 Roma (rm)\ntel. 3355789465\nc.f. 07149930583\np.iva 0169891100\nemail pec: cofely_italia@cofely.postcert.it\nPernazza Group Srl\nStrada della Selva, 40 – 05035 Narni (TR)\nTelefono 0744/744589\nFax: 0744/722786\nE-mail: web@pernazzagroupsrl.it",
+  "progettisti": "CF Consulting srl\nvia A. Bartocci n°7/T – 05100 Terni (tr)\n05100 terni (tr)\ning. alessandro ciabacchini\ning. fabrizio testarella\ngeom. niccolò maestri\ndott.ssa elisa riccioni",
+  "servizi": "Studio di fattibilità, progettazione definitiva ed esecutiva\nDirezione lavori\ncoordinamento sicurezza in fase di progettazione e di esecuzione\nProgettazione antincendio\nCF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
  },
  "foto": [
   "img/progetti/condominio-via-berardozzo-6-lavori-di-efficientamento-energetico-con-superbonus-/condominio-via-berardozzo-6-lavori-di-ef-01.webp",

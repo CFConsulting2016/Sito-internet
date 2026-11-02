@@ -6,6 +6,28 @@
   <meta name="robots" content="noindex, nofollow" />
   <title>Gestione contenuti — CF Consulting</title>
   <link rel="icon" href="../favicon.ico" />
+  <!--
+    Due pannelli allo stesso indirizzo, perché l'accesso di DecapBridge
+    conosce un indirizzo solo:
+      /admin/              pannello del cliente (config.yml): Progetti e Certificazioni
+      /admin/?completo     pannello completo (config-completo.yml): anche news,
+                           fonti e pagine. Il browser se lo ricorda finché
+                           non si apre /admin/?cliente.
+    Non è una protezione, solo un pannello più pulito per chi pubblica.
+  -->
+  <script>
+    (function () {
+      var chiave = 'cf-pannello';
+      var q = location.search;
+      try {
+        if (/[?&]completo\b/.test(q)) localStorage.setItem(chiave, 'completo');
+        if (/[?&]cliente\b/.test(q)) localStorage.removeItem(chiave);
+        var completo = localStorage.getItem(chiave) === 'completo';
+      } catch (e) { completo = false; }
+      document.write('<link href="' + (completo ? 'config-completo.yml' : 'config.yml')
+        + '" type="text/yaml" rel="cms-config-url" />');
+    })();
+  </script>
 </head>
 <body>
   <!--

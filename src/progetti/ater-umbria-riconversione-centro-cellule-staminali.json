@@ -18,40 +18,11 @@
   "fine": "2023"
  },
  "blocchi": {
-  "descrizione": [
-   "STUDIO DI FATTIBILITA’ TECNICO-ECONOMICA PER RICONVERSIONE DEL COMPLESSO EDILIZIO “EX MILIZIA” SITO IN TERNI VIA CAMPOMICCIOLO",
-   "COMMESSA 22_32_550320000_SVS5 CUP: H44E21003210001 CIG: 928934954C",
-   "FONDO COMPLEMENTARE AL PNRR art.lo 1 comma 2, lettera c) punto 13 D.Lgs 53/21"
-  ],
-  "committente": [
-   "ater umbria-comune di terni",
-   "via g. ferraris n°13",
-   "05100 terni",
-   "email pec: ater.umbria@legalmail.it",
-   "rup ing. MArco CASTELLINI"
-  ],
-  "impresa": [
-   "Da definire"
-  ],
-  "progettisti": [
-   "cf consulting srl (capogruppo)",
-   "via a. bartocci n°7t – 05100 terni (tr)",
-   "05100 terni (tr)",
-   "progettista responsabile: ciabacchini ing. alessandro",
-   "testarella ing. fabrizio",
-   "maestri geom. niccolò",
-   "riccioni dott.ssa elisa",
-   "dda studio",
-   "via montegrappa n°33 – 05100 terni (tr)",
-   "www.ddastudio.net email: info@ddastudio.net",
-   "progettista responsabile: arch. pier francesco duranti"
-  ],
-  "servizi": [
-   "progettazione studio di fattibilità tecnico economico",
-   "progettazione antincendio",
-   "coordinamento sicurezza in fase di progettazione",
-   "CF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
-  ]
+  "descrizione": "STUDIO DI FATTIBILITA’ TECNICO-ECONOMICA PER RICONVERSIONE DEL COMPLESSO EDILIZIO “EX MILIZIA” SITO IN TERNI VIA CAMPOMICCIOLO\nCOMMESSA 22_32_550320000_SVS5 CUP: H44E21003210001 CIG: 928934954C\nFONDO COMPLEMENTARE AL PNRR art.lo 1 comma 2, lettera c) punto 13 D.Lgs 53/21",
+  "committente": "ater umbria-comune di terni\nvia g. ferraris n°13\n05100 terni\nemail pec: ater.umbria@legalmail.it\nrup ing. MArco CASTELLINI",
+  "impresa": "Da definire",
+  "progettisti": "cf consulting srl (capogruppo)\nvia a. bartocci n°7t – 05100 terni (tr)\n05100 terni (tr)\nprogettista responsabile: ciabacchini ing. alessandro\ntestarella ing. fabrizio\nmaestri geom. niccolò\nriccioni dott.ssa elisa\ndda studio\nvia montegrappa n°33 – 05100 terni (tr)\nwww.ddastudio.net email: info@ddastudio.net\nprogettista responsabile: arch. pier francesco duranti",
+  "servizi": "progettazione studio di fattibilità tecnico economico\nprogettazione antincendio\ncoordinamento sicurezza in fase di progettazione\nCF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
  },
  "foto": [
   "img/progetti/ater-umbria-riconversione-centro-cellule-staminali/ater-umbria-riconversione-centro-cellule-01.webp",

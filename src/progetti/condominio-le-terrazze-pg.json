@@ -18,38 +18,11 @@
   "fine": "2015"
  },
  "blocchi": {
-  "descrizione": [
-   "Lavori di risanamento strutture in c.a., riqualificazione dei prospetti e rifacimento fosse Imhoff"
-  ],
-  "committente": [
-   "Condominio “LE RESIDENZE BELLAVISTA”",
-   "Via Cimarosa n°36-56",
-   "06100 San Sisto Perugia",
-   "TECNOSTUDIO Geom. David TOCCACELI",
-   "Via G. Doninzetti n°49",
-   "06124 San Sisto (Pg)",
-   "Tel 075/5287905 Fax 075/5295443",
-   "Geom. David TOCCACELI",
-   "email: tecnostudiodavid@libero.it"
-  ],
-  "impresa": [
-   "RESTAURA Srl",
-   "Via Piana n°9",
-   "06061 Castiglione del Lago (Pg)",
-   "Tel 075/9652410 Fax 075/9655581",
-   "P.Iva 02199320546",
-   "email: info@restaurasrl.it"
-  ],
-  "progettisti": [
-   "CIABACCHINI ing. Alessandro",
-   "TESTARELLA Ing. Fabrizio"
-  ],
-  "servizi": [
-   "Progettazione esecutiva",
-   "Direzione lavori, contabilità",
-   "Coordinamento Sicurezza in fase di Progettazione ed Esecuzione",
-   "CF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
-  ]
+  "descrizione": "Lavori di risanamento strutture in c.a., riqualificazione dei prospetti e rifacimento fosse Imhoff",
+  "committente": "Condominio “LE RESIDENZE BELLAVISTA”\nVia Cimarosa n°36-56\n06100 San Sisto Perugia\nTECNOSTUDIO Geom. David TOCCACELI\nVia G. Doninzetti n°49\n06124 San Sisto (Pg)\nTel 075/5287905 Fax 075/5295443\nGeom. David TOCCACELI\nemail: tecnostudiodavid@libero.it",
+  "impresa": "RESTAURA Srl\nVia Piana n°9\n06061 Castiglione del Lago (Pg)\nTel 075/9652410 Fax 075/9655581\nP.Iva 02199320546\nemail: info@restaurasrl.it",
+  "progettisti": "CIABACCHINI ing. Alessandro\nTESTARELLA Ing. Fabrizio",
+  "servizi": "Progettazione esecutiva\nDirezione lavori, contabilità\nCoordinamento Sicurezza in fase di Progettazione ed Esecuzione\nCF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
  },
  "foto": [
   "img/progetti/condominio-le-terrazze-pg/condominio-le-terrazze-pg-01.webp",

@@ -18,34 +18,11 @@
   "fine": "2020"
  },
  "blocchi": {
-  "descrizione": [
-   "LAVORI DI MESSA IN SICUREZZA PROSPETTI E RISANAMENTO STRUTTURE IN C.A CON ESECUZIONE IN QUOTA SU FUNI"
-  ],
-  "committente": [
-   "Condominio Via Podgora n°22 – 05100 TERNI (Tr)",
-   "RONDONI Dr Fausto – Via Manara n°7 – 05100 TERNI (Tr) Tel/Fax 0744/27.10.90"
-  ],
-  "impresa": [
-   "EDILIZIA ALTERNATIVA",
-   "Via Valtravaglia n°32- 00019 Roma (RM)",
-   "Tel 800035181 P.Iva 01771720669",
-   "www.ediliziaalternativa.it",
-   "EDALT ROMA 1 Srl",
-   "Via Tiburtina n°62/64D n°4- 00019 Roma (Rm)",
-   "Tel 800035181 P.Iva 14511811003"
-  ],
-  "progettisti": [
-   "CIABACCHINI Ing. Alessandro",
-   "TESTARELLA Ing. Fabrizio",
-   "PAOLINI ing. Manuel"
-  ],
-  "servizi": [
-   "Progettazione definitiva ed esecutiva",
-   "Direzione lavori",
-   "Coordinamento Sicurezza in fase di progettazione ed esecuzione;",
-   "Contabilità lavori",
-   "CF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
-  ]
+  "descrizione": "LAVORI DI MESSA IN SICUREZZA PROSPETTI E RISANAMENTO STRUTTURE IN C.A CON ESECUZIONE IN QUOTA SU FUNI",
+  "committente": "Condominio Via Podgora n°22 – 05100 TERNI (Tr)\nRONDONI Dr Fausto – Via Manara n°7 – 05100 TERNI (Tr) Tel/Fax 0744/27.10.90",
+  "impresa": "EDILIZIA ALTERNATIVA\nVia Valtravaglia n°32- 00019 Roma (RM)\nTel 800035181 P.Iva 01771720669\nwww.ediliziaalternativa.it\nEDALT ROMA 1 Srl\nVia Tiburtina n°62/64D n°4- 00019 Roma (Rm)\nTel 800035181 P.Iva 14511811003",
+  "progettisti": "CIABACCHINI Ing. Alessandro\nTESTARELLA Ing. Fabrizio\nPAOLINI ing. Manuel",
+  "servizi": "Progettazione definitiva ed esecutiva\nDirezione lavori\nCoordinamento Sicurezza in fase di progettazione ed esecuzione;\nContabilità lavori\nCF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
  },
  "foto": [
   "img/progetti/condominio-via-podgora-22-terni/condominio-via-podgora-22-terni-01.webp",

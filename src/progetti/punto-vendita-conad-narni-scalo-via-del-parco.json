@@ -18,74 +18,11 @@
   "fine": "2019"
  },
  "blocchi": {
-  "descrizione": [
-   "LAVORI DI RISTRUTTURAZIONE PUNTO VENDITA CONAD NARNI SCALO VIA DEL PARCO 1/A. MODIFICA LAY-OUT INTERNO E REALIZZAZIONE NUOVI IMPIANTI"
-  ],
-  "committente": [
-   "PROMETEO Srl – Via DEL Parco n°1/a",
-   "05035 Narni Scalo (Tr)",
-   "Tel 0744/751907",
-   "PAC 2000 A Soc. Cooperativa",
-   "Via del Rame",
-   "06134 Perugia Ponte Felcino"
-  ],
-  "impresa": [
-   "ACQUA srl",
-   "Via del Piombo n° 32",
-   "06134 Ponte Felcino (PG)",
-   "Tel/Fax 0755918060",
-   "P.Iva 02054250549",
-   "UMBRIAFRIGO S.R.L.",
-   "Via Manna n°35",
-   "06132 PERUGIA (PG)",
-   "Tel 075 5298212 Fax 075 5270304",
-   "P.Iva 01434260541",
-   "EMA CARTONGESSI",
-   "Via Val di Rocco",
-   "06134 Perugia (PG)",
-   "Tel. 3317566416",
-   "P.Iva 03476610542",
-   "STUDIO ARREDO",
-   "Via del Granoturco 14",
-   "06135 , Ponte San Giovanni (PG)",
-   "Tel. 075 3887011 fax : 075 5834184",
-   "P.Iva : 02814820540",
-   "SILA IMPIANTI",
-   "Via dei Ciottoli,10",
-   "06134 Resina (PG)",
-   "Piva 02144570542",
-   "CORALL SERRAMENTI di Stefano CORNICCHIA",
-   "Via Formanuova n°35",
-   "06100 Magione (Pg)",
-   "06134 Resina (PG)",
-   "Piva 02053210544",
-   "GAMMA PRODUCTION Srl",
-   "Via dell’Industria n°3",
-   "06031 Bevagna (Pg)",
-   "Piva 02053210544",
-   "MB Canne Fumarie Srl",
-   "Viale dei Pini n°42",
-   "06081 Assisi (Pg)",
-   "Piva 03339260543",
-   "Rossini Arredamenti di Stefano TUZI",
-   "Via del Piano snc",
-   "06089 Torgiano (Pg)",
-   "Piva 03118090541"
-  ],
-  "progettisti": [
-   "CF CONSULTING Srl",
-   "Via G.D. Romagnosi n°11 – 05100 terni (tr)",
-   "05100 Terni (tr)",
-   "CIABACCHINI ing. Alessandro",
-   "TESTARELLA Ing. Fabrizio"
-  ],
-  "servizi": [
-   "1. Progettazione esecutiva",
-   "2. Direzione lavori",
-   "3. Coordinamento Sicurezza in fase di progettazione ed esecuzione;",
-   "4. Progettazione antincendio punto vendita",
-   "CF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
-  ]
+  "descrizione": "LAVORI DI RISTRUTTURAZIONE PUNTO VENDITA CONAD NARNI SCALO VIA DEL PARCO 1/A. MODIFICA LAY-OUT INTERNO E REALIZZAZIONE NUOVI IMPIANTI",
+  "committente": "PROMETEO Srl – Via DEL Parco n°1/a\n05035 Narni Scalo (Tr)\nTel 0744/751907\nPAC 2000 A Soc. Cooperativa\nVia del Rame\n06134 Perugia Ponte Felcino",
+  "impresa": "ACQUA srl\nVia del Piombo n° 32\n06134 Ponte Felcino (PG)\nTel/Fax 0755918060\nP.Iva 02054250549\nUMBRIAFRIGO S.R.L.\nVia Manna n°35\n06132 PERUGIA (PG)\nTel 075 5298212 Fax 075 5270304\nP.Iva 01434260541\nEMA CARTONGESSI\nVia Val di Rocco\n06134 Perugia (PG)\nTel. 3317566416\nP.Iva 03476610542\nSTUDIO ARREDO\nVia del Granoturco 14\n06135 , Ponte San Giovanni (PG)\nTel. 075 3887011 fax : 075 5834184\nP.Iva : 02814820540\nSILA IMPIANTI\nVia dei Ciottoli,10\n06134 Resina (PG)\nPiva 02144570542\nCORALL SERRAMENTI di Stefano CORNICCHIA\nVia Formanuova n°35\n06100 Magione (Pg)\n06134 Resina (PG)\nPiva 02053210544\nGAMMA PRODUCTION Srl\nVia dell’Industria n°3\n06031 Bevagna (Pg)\nPiva 02053210544\nMB Canne Fumarie Srl\nViale dei Pini n°42\n06081 Assisi (Pg)\nPiva 03339260543\nRossini Arredamenti di Stefano TUZI\nVia del Piano snc\n06089 Torgiano (Pg)\nPiva 03118090541",
+  "progettisti": "CF CONSULTING Srl\nVia G.D. Romagnosi n°11 – 05100 terni (tr)\n05100 Terni (tr)\nCIABACCHINI ing. Alessandro\nTESTARELLA Ing. Fabrizio",
+  "servizi": "1. Progettazione esecutiva\n2. Direzione lavori\n3. Coordinamento Sicurezza in fase di progettazione ed esecuzione;\n4. Progettazione antincendio punto vendita\nCF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
  },
  "foto": [
   "img/progetti/punto-vendita-conad-narni-scalo-via-del-parco/punto-vendita-conad-narni-scalo-via-del--01.webp",

@@ -8,16 +8,19 @@
 //   node strumenti/scadenze-certificati.mjs            solo stampa
 //   node strumenti/scadenze-certificati.mjs --github   apre le segnalazioni
 
-import { readFile } from 'node:fs/promises';
+import { readFile, readdir } from 'node:fs/promises';
 
 const AVVISARE = '@FrancescoF23';
 const GIORNI_PRIMA = 60;
 
-const azienda = JSON.parse(await readFile(new URL('../src/data/azienda.json', import.meta.url), 'utf8'));
+// una certificazione per file in src/certificazioni (vedi build.mjs)
+const cartella = new URL('../src/certificazioni/', import.meta.url);
+const certificazioni = await Promise.all((await readdir(cartella)).filter((f) => f.endsWith('.json'))
+  .map(async (f) => JSON.parse(await readFile(new URL(f, cartella), 'utf8'))));
 const oggi = new Date().toISOString().slice(0, 10);
 const limite = new Date(Date.now() + GIORNI_PRIMA * 864e5).toISOString().slice(0, 10);
 
-const voci = [...(azienda.certificazioni || []), ...(azienda.certificazioniPersonali || [])]
+const voci = certificazioni
   .filter((c) => c.scadenza && c.scadenza < limite)
   .map((c) => ({
     nome: `${c.nome || c.titolo}${c.persona ? ` (${c.persona})` : ''}, n. ${c.numero}`,
@@ -51,9 +54,9 @@ for (const v of voci) {
   if (titoli.has(titolo)) continue;
   const corpo = v.scaduta
     ? `${AVVISARE} la certificazione è scaduta il ${v.scadenza}. Alla prossima pubblicazione il sito la toglie da solo; `
-      + 'per rimetterla serve il certificato rinnovato: nuovo PDF in `documenti/` e nuova scadenza in `src/data/azienda.json`.'
-    : `${AVVISARE} la certificazione scade il ${v.scadenza}. Appena arriva il rinnovo: nuovo PDF in \`documenti/\` `
-      + 'e nuova scadenza in `src/data/azienda.json`. Se non viene rinnovata, il sito la toglie da solo dopo la scadenza.';
+      + 'per rimetterla serve il certificato rinnovato: nuovo PDF e nuova scadenza dal pannello, sezione Certificazioni.'
+    : `${AVVISARE} la certificazione scade il ${v.scadenza}. Appena arriva il rinnovo: nuovo PDF `
+      + 'e nuova scadenza dal pannello, sezione Certificazioni. Se non viene rinnovata, il sito la toglie da solo dopo la scadenza.';
   const r = await api('/issues', { method: 'POST', body: JSON.stringify({ title: titolo, body: corpo }) });
   console.log(r.ok ? `Segnalazione aperta: ${titolo}` : `Segnalazione non aperta (${r.status}).`);
 }

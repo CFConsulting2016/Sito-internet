@@ -1,0 +1,468 @@
+# Decap CMS — pannello di gestione di CF Consulting
+#
+# DUE PANNELLI, STESSO INDIRIZZO /admin/ (vedi admin/index.html):
+#   config.yml           quello del cliente: solo Progetti e Certificazioni
+#   config-completo.yml  quello di Fausto: tutto
+# I campi dei progetti e delle certificazioni vanno tenuti uguali nei due.
+#
+# I file di contenuto stanno in src/ e sono JSON: il generatore (build.mjs)
+# legge quelle cartelle e riscrive l'HTML. Decap non tocca mai l'HTML.
+
+# --- accesso ---------------------------------------------------
+# DecapBridge sostituisce Netlify Identity, che è stato dismesso.
+# I due valori segnati DA COMPILARE arrivano quando creiamo il sito su
+# DecapBridge: finché non ci sono, si lavora in locale (vedi local_backend).
+backend:
+  name: git-gateway
+  repo: CFConsulting2016/Sito-internet
+  branch: main
+
+  # Accesso PKCE di DecapBridge, che ha sostituito Netlify Identity.
+  # Il codice nei due percorsi identifica il sito su DecapBridge: non e'
+  # un segreto, il browser scarica questo file a ogni apertura di /admin/.
+  auth_type: pkce
+  base_url: https://auth.decapbridge.com
+  auth_endpoint: /sites/7eb647f6-f54e-4acb-81ec-028a5f70571a/pkce
+  auth_token_endpoint: /sites/7eb647f6-f54e-4acb-81ec-028a5f70571a/token
+  gateway_url: https://gateway.decapbridge.com
+
+  # Ogni modifica porta il nome di chi l'ha fatta: con piu' persone nel
+  # pannello, la cronologia dice chi ha cambiato cosa.
+  commit_messages:
+    create: 'Aggiunto {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}>'
+    update: 'Modificato {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}>'
+    delete: 'Rimosso {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}>'
+    uploadMedia: 'Caricata immagine "{{path}}" - {{author-name}} <{{author-login}}>'
+    deleteMedia: 'Rimossa immagine "{{path}}" - {{author-name}} <{{author-login}}>'
+
+# Campi che PKCE mette a disposizione su chi ha fatto l'accesso.
+auth:
+  email_claim: email
+  first_name_claim: first_name
+  last_name_claim: last_name
+  avatar_url_claim: avatar_url
+
+# Permette di provare il pannello senza account, sul computer:
+#   npx decap-server        (in un terminale, dalla cartella del progetto)
+#   python anteprima.py     (in un altro)
+# e poi http://127.0.0.1:8777/admin/
+local_backend: true
+
+# Niente bozze né approvazioni: si compila e si pubblica (call del 30/10/2026).
+
+# --- immagini --------------------------------------------------
+# Le foto caricate dal pannello finiscono in una cartella dedicata:
+# quelle già presenti restano dove sono, con i loro percorsi.
+media_folder: img/caricate
+public_folder: img/caricate
+# Nota: Decap 3.x non espone un limite di dimensione per la libreria
+# immagini interna (`media_library` serve solo alle librerie esterne).
+# Il controllo sul peso delle foto va fatto altrove: vedi la conversione
+# in WebP, da aggiungere quando il repository sarà online.
+
+# Dove vive il sito. Serve a Decap per il collegamento "vedi il sito"
+# e per le anteprime. Quando sposteremo il dominio, qui vanno i due
+# indirizzi nuovi.
+site_url: https://cf-consulting.netlify.app
+display_url: https://cf-consulting.netlify.app
+logo_url: https://cf-consulting.netlify.app/img/logo-cf-dark.webp
+
+locale: it
+
+# L'anteprima a destra del modulo e' quella generica di Decap: non usa la
+# grafica del sito e sembra una pagina rotta. Meglio il solo modulo.
+editor:
+  preview: false
+
+collections:
+  # --- progetti ----------------------------------------------
+  # I nuovi aspettano in «Progetti in attesa» (src/progetti-in-attesa, che il
+  # sito non legge) e vanno online tutti insieme con «Pubblica i progetti in
+  # attesa»: una sola pubblicazione per tutti (.github/workflows/pubblica-progetti.yml).
+  # Le correzioni ai progetti già online invece escono subito.
+  - name: attesa-progetti
+    label: Progetti in attesa
+    label_singular: Progetto
+    description: >-
+      Qui si preparano i progetti nuovi. Restano in attesa finché non premete «Pubblica i
+      progetti in attesa»: vanno online tutti insieme, con una sola pubblicazione, e per
+      ognuno esce un post su LinkedIn e Facebook.
+    folder: src/progetti-in-attesa
+    extension: json
+    format: json
+    create: true
+    delete: true
+    slug: '{{slug}}'
+    identifier_field: shortTitle
+    summary: '{{shortTitle}}'
+    fields:
+      - label: Titolo del progetto
+        name: shortTitle
+        widget: string
+        hint: Come compare in cima alla pagina, nell'archivio e nei post su LinkedIn e Facebook.
+
+      - label: Data
+        name: data
+        widget: datetime
+        date_format: 'DD/MM/YYYY'
+        time_format: false
+        format: 'YYYY-MM-DD'
+        required: false
+        hint: Clicca il giorno sul calendario. Sul sito compare per esteso, per esempio «14 maggio 2024».
+
+      - label: Importo del lavoro (€)
+        name: importoLavoro
+        widget: number
+        value_type: float
+        min: 0
+        required: false
+        hint: "Solo il numero, senza punti né simbolo: per esempio 1250000. Il sito scrive da solo «€ 1.250.000». Se lo lasci vuoto la voce non compare."
+
+      - label: Testi della pagina
+        name: blocchi
+        widget: object
+        collapsed: false
+        hint: "Incollate in ogni riquadro il testo così com'è: ogni riga diventa un paragrafo. Dalla prima riga del Committente il sito ricava il nome del committente, dal suo indirizzo il luogo; dalla prima riga dell'Impresa l'impresa; dalla riga «progettista responsabile: …» il progettista della scheda tecnica."
+        fields:
+          - { label: Descrizione del progetto, name: descrizione, widget: text, required: false,
+              hint: "La prima riga fa anche da presentazione sotto al titolo." }
+          - { label: Committente, name: committente, widget: text, required: false,
+              hint: "Prima riga il nome, poi l'indirizzo con CAP e provincia, per esempio «00165 Roma (RM)»." }
+          - { label: Impresa appaltatrice, name: impresa, widget: text, required: false }
+          - { label: Progettisti, name: progettisti, widget: text, required: false }
+          - { label: Servizi svolti, name: servizi, widget: text, required: false }
+
+      - label: Fotografie
+        name: foto
+        widget: list
+        required: false
+        field: { label: Foto, name: foto, widget: image, choose_url: false }
+        hint: La prima è la copertina, quella che si vede nell'archivio. Le altre formano la galleria.
+
+      - label: Pubblico o privato
+        name: cat
+        widget: select
+        options: [Pubblico, Privato]
+        required: false
+        hint: "Lasciatelo vuoto: il sito lo capisce dal nome del committente (Comune, Provincia, ATER… = pubblico). Sceglietelo solo se sbaglia."
+
+      - label: Scheda tecnica — si compila da sola
+        name: scheda
+        widget: object
+        collapsed: true
+        hint: "Non serve aprirla. Un valore scritto qui prende il posto di quello ricavato dai testi."
+        fields:
+          - { label: Committente, name: committente, widget: string, required: false }
+          - { label: Luogo, name: luogo, widget: string, required: false }
+          - { label: Anno (progetti vecchi), name: anno, widget: string, required: false }
+          - { label: Importo (progetti vecchi), name: importo, widget: string, required: false }
+          - { label: Categoria, name: categoria, widget: string, required: false }
+          - { label: Impresa, name: impresa, widget: string, required: false }
+          - { label: Progettista responsabile, name: responsabile, widget: string, required: false }
+          - { label: Stato, name: stato, widget: select, required: false, options: ['In corso', 'Concluso', '—'] }
+          - { label: Inizio lavori, name: inizio, widget: string, required: false }
+          - { label: Fine lavori, name: fine, widget: string, required: false }
+
+      # dei progetti vecchi: si conservano, il pannello non li mostra
+      - { name: title, widget: hidden, required: false }
+      - { name: lead, widget: hidden, required: false }
+      - { name: tag, widget: hidden, required: false }
+      - { name: ordine, widget: hidden, required: false }
+
+  - name: progetti
+    label: Progetti pubblicati
+    label_singular: Progetto
+    description: >-
+      I progetti già online. Una correzione salvata qui va online in pochi minuti
+      (15 crediti). I progetti nuovi si creano in «Progetti in attesa».
+    folder: src/progetti
+    extension: json
+    format: json
+    create: false
+    delete: true
+    slug: '{{slug}}'
+    identifier_field: shortTitle
+    summary: '{{shortTitle}}'
+    sortable_fields: [shortTitle]
+    view_groups:
+      - label: Committente
+        field: cat
+    fields:
+      - label: Titolo del progetto
+        name: shortTitle
+        widget: string
+        hint: Come compare in cima alla pagina, nell'archivio e nei post su LinkedIn e Facebook.
+
+      - label: Data
+        name: data
+        widget: datetime
+        date_format: 'DD/MM/YYYY'
+        time_format: false
+        format: 'YYYY-MM-DD'
+        required: false
+        hint: Clicca il giorno sul calendario. Sul sito compare per esteso, per esempio «14 maggio 2024».
+
+      - label: Importo del lavoro (€)
+        name: importoLavoro
+        widget: number
+        value_type: float
+        min: 0
+        required: false
+        hint: "Solo il numero, senza punti né simbolo: per esempio 1250000. Il sito scrive da solo «€ 1.250.000». Se lo lasci vuoto la voce non compare."
+
+      - label: Testi della pagina
+        name: blocchi
+        widget: object
+        collapsed: false
+        hint: "Incollate in ogni riquadro il testo così com'è: ogni riga diventa un paragrafo. Dalla prima riga del Committente il sito ricava il nome del committente, dal suo indirizzo il luogo; dalla prima riga dell'Impresa l'impresa; dalla riga «progettista responsabile: …» il progettista della scheda tecnica."
+        fields:
+          - { label: Descrizione del progetto, name: descrizione, widget: text, required: false,
+              hint: "La prima riga fa anche da presentazione sotto al titolo." }
+          - { label: Committente, name: committente, widget: text, required: false,
+              hint: "Prima riga il nome, poi l'indirizzo con CAP e provincia, per esempio «00165 Roma (RM)»." }
+          - { label: Impresa appaltatrice, name: impresa, widget: text, required: false }
+          - { label: Progettisti, name: progettisti, widget: text, required: false }
+          - { label: Servizi svolti, name: servizi, widget: text, required: false }
+
+      - label: Fotografie
+        name: foto
+        widget: list
+        required: false
+        field: { label: Foto, name: foto, widget: image, choose_url: false }
+        hint: La prima è la copertina, quella che si vede nell'archivio. Le altre formano la galleria.
+
+      - label: Pubblico o privato
+        name: cat
+        widget: select
+        options: [Pubblico, Privato]
+        required: false
+        hint: "Lasciatelo vuoto: il sito lo capisce dal nome del committente (Comune, Provincia, ATER… = pubblico). Sceglietelo solo se sbaglia."
+
+      - label: Scheda tecnica — si compila da sola
+        name: scheda
+        widget: object
+        collapsed: true
+        hint: "Non serve aprirla. Un valore scritto qui prende il posto di quello ricavato dai testi."
+        fields:
+          - { label: Committente, name: committente, widget: string, required: false }
+          - { label: Luogo, name: luogo, widget: string, required: false }
+          - { label: Anno (progetti vecchi), name: anno, widget: string, required: false }
+          - { label: Importo (progetti vecchi), name: importo, widget: string, required: false }
+          - { label: Categoria, name: categoria, widget: string, required: false }
+          - { label: Impresa, name: impresa, widget: string, required: false }
+          - { label: Progettista responsabile, name: responsabile, widget: string, required: false }
+          - { label: Stato, name: stato, widget: select, required: false, options: ['In corso', 'Concluso', '—'] }
+          - { label: Inizio lavori, name: inizio, widget: string, required: false }
+          - { label: Fine lavori, name: fine, widget: string, required: false }
+
+      # dei progetti vecchi: si conservano, il pannello non li mostra
+      - { name: title, widget: hidden, required: false }
+      - { name: lead, widget: hidden, required: false }
+      - { name: tag, widget: hidden, required: false }
+      - { name: ordine, widget: hidden, required: false }
+
+  - name: pubblicazione-progetti
+    label: Pubblica i progetti in attesa
+    files:
+      - name: progetti-in-attesa
+        label: Pubblica ora tutti i progetti in attesa
+        file: src/data/pubblica-progetti-ora.json
+        fields:
+          - label: Richiesta di pubblicazione
+            name: richiesta
+            widget: datetime
+            required: false
+            hint: >-
+              Premete «Adesso» per mettere la data di oggi, poi Pubblica. In pochi minuti tutti i
+              progetti in «Progetti in attesa» vanno online insieme, con una sola pubblicazione
+              (15 crediti), e partono i post su LinkedIn e Facebook. Se non ci sono progetti in
+              attesa non succede niente.
+
+  # --- certificazioni ------------------------------------------
+  # Una per file in src/certificazioni. Quelle scadute il sito le toglie da
+  # sole; 60 giorni prima della scadenza arriva un avviso (scadenze-certificati.mjs).
+  - name: certificazioni
+    label: Certificazioni
+    label_singular: Certificazione
+    description: >-
+      Le certificazioni in Chi siamo. Quando arriva un rinnovo, aprite quella vecchia,
+      caricate il nuovo PDF e cambiate la scadenza. Una certificazione scaduta sparisce
+      dal sito da sola.
+    folder: src/certificazioni
+    extension: json
+    format: json
+    create: true
+    delete: true
+    slug: '{{slug}}'
+    identifier_field: titolo
+    summary: '{{titolo}} — {{numero}}'
+    fields:
+      - label: Tipo
+        name: tipo
+        widget: select
+        options:
+          - { label: "Dell'azienda", value: impresa }
+          - { label: Di una persona, value: personale }
+      - { label: Titolo della certificazione, name: titolo, widget: string,
+          hint: "Per esempio «UNI EN ISO 9001:2015» o «Ingegnere esperto in Energetica»." }
+      - { label: Persona, name: persona, widget: string, required: false,
+          hint: "Solo per le certificazioni personali, per esempio «Ing. Claudio Raggi»." }
+      - { label: Specializzazione o ambito, name: specializzazione, widget: string, required: false }
+      - { label: Ente che l'ha rilasciata, name: ente, widget: string }
+      - { label: Numero del certificato, name: numero, widget: string }
+      - label: Scadenza
+        name: scadenza
+        widget: datetime
+        date_format: 'DD/MM/YYYY'
+        time_format: false
+        format: 'YYYY-MM-DD'
+      - label: Certificato in PDF
+        name: pdf
+        widget: file
+        required: false
+        choose_url: false
+        media_folder: /documenti
+        public_folder: documenti
+        hint: Compare il pulsante «Scarica il certificato». Attenzione ai dati personali che contiene.
+      - label: Marchio
+        name: marchio
+        widget: image
+        required: false
+        choose_url: false
+        hint: Solo per le certificazioni dell'azienda, il logo che compare in fondo a ogni pagina.
+      - { name: ordine, widget: hidden, required: false }
+
+  # --- news (solo Fausto) -----------------------------------
+  - name: news
+    label: News
+    label_singular: Notizia
+    folder: src/news
+    extension: json
+    format: json
+    description: >-
+      Le notizie: le pubblica da sola la raccolta del lunedì e del giovedì. Restano online due mesi.
+    create: true
+    delete: true
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    identifier_field: titolo
+    summary: '{{data}} — {{titolo}}'
+    sortable_fields: [data, titolo]
+    fields:
+      - label: Titolo dell'articolo
+        name: titolo
+        widget: string
+        hint: Il titolo così come lo ha scritto la fonte. Non riscriverlo.
+
+      - label: Fonte
+        name: fonte
+        widget: relation
+        collection: fonti
+        search_fields: [nome]
+        value_field: '{{slug}}'
+        display_fields: [nome]
+        hint: "Spegnere una fonte ferma solo le proposte nuove: le notizie già pubblicate restano online, a meno che nella scheda della fonte non si tolga «Mantieni pubblicati»."
+
+      - label: Indirizzo dell'articolo
+        name: url
+        widget: string
+        pattern: ['^https?://', 'Deve essere un indirizzo che comincia con http:// o https://']
+        hint: Il collegamento all'articolo originale. Il testo completo resta sul sito della fonte.
+
+      - label: Data
+        name: data
+        widget: datetime
+        date_format: 'YYYY-MM-DD'
+        time_format: false
+        format: 'YYYY-MM-DD'
+
+      - label: Nota redazionale
+        name: nota
+        widget: text
+        required: false
+        hint: Due righe scritte da voi, con parole vostre. Non copiare il testo dell'articolo.
+
+      - label: Immagine
+        name: foto
+        widget: image
+        choose_url: false
+        required: false
+        hint: Facoltativa, e dev'essere vostra o libera da diritti. Non usare le foto della fonte.
+
+  # --- fonti --------------------------------------------------
+  - name: fonti
+    label: Fonti
+    label_singular: Fonte
+    folder: src/fonti
+    extension: json
+    format: json
+    create: false
+    delete: false
+    identifier_field: nome
+    summary: '{{nome}}'
+    sortable_fields: [ordine, nome]
+    fields:
+      - { label: Nome, name: nome, widget: string }
+
+      - label: Raccogli nuove notizie
+        name: attiva
+        widget: boolean
+        default: false
+        hint: "Se la spegni, da questa fonte non si pubblicano piu' notizie nuove. Quelle gia' online restano dove sono."
+
+      - label: Mantieni online le notizie gia' pubblicate
+        name: mantieniPubblicati
+        widget: boolean
+        default: true
+        hint: "Toglilo solo se la fonte chiede espressamente di rimuovere i contenuti: sparisce dal sito tutto il suo archivio, in un colpo solo. Un cambio di condizioni d'uso, da solo, non obbliga a farlo." 
+
+      - { label: Sito, name: sito, widget: string }
+      - { label: Indirizzo del feed, name: feed, widget: string }
+      - { label: Radice degli indirizzi, name: base, widget: string, required: false }
+
+      - label: Autorizzazione
+        name: autorizzazione
+        widget: select
+        options:
+          - { label: 'Non necessaria', value: 'non-necessaria' }
+          - { label: 'Richiesta, in attesa di risposta', value: 'richiesta' }
+          - { label: 'Concessa per iscritto', value: 'concessa' }
+          - { label: 'Negata', value: 'negata' }
+
+      - label: Attribuzione obbligatoria
+        name: attribuzione
+        widget: string
+        required: false
+        hint: "Se la fonte impone una dicitura, scrivila qui: comparirà sotto ogni notizia."
+
+      - { label: Pagina delle condizioni d'uso, name: condizioni, widget: string, required: false }
+
+      - label: Controllo delle condizioni
+        name: revisione
+        widget: object
+        collapsed: false
+        fields:
+          - label: Stato
+            name: stato
+            widget: select
+            options:
+              - { label: 'A posto', value: 'ok' }
+              - { label: 'Condizioni cambiate, da rivedere', value: 'da-verificare' }
+            hint: Quando le condizioni d'uso della fonte cambiano, qui compare «da rivedere». Leggi la nota, poi decidi se rimettere «a posto» oppure spegnere la fonte.
+          - { label: Data del controllo, name: data, widget: string, required: false }
+          - { label: Cosa è cambiato, name: nota, widget: text, required: false }
+
+      - { label: Ordine, name: ordine, widget: number, value_type: int, required: false }
+
+  # --- testi fissi della pagina News --------------------------
+  - name: pagine
+    label: Pagine
+    files:
+      - name: pagina-news
+        label: Pagina News
+        file: src/data/pagina-news.json
+        fields:
+          - { label: Titolo, name: titolo, widget: string }
+          - { label: Sommario, name: sommario, widget: string,
+              hint: 'La riga sotto al titolo, in cima alla pagina.' }
+          - { label: Nota in fondo alla pagina, name: nota, widget: text,
+              hint: "La precisazione sul fatto che gli articoli sono di terzi. Conviene non toglierla." }

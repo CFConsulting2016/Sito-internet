@@ -18,36 +18,11 @@
   "fine": "—"
  },
  "blocchi": {
-  "descrizione": [
-   "Realizzazione di un edificio bifamiliare in località Cospea Alta ad uso residenziale . Telaio in acciaio e strutture esterne di tamponatura “a secco”. Edificio N-Zeb"
-  ],
-  "committente": [
-   "SHAHINI EDUARD-ADRIANA GENTIAN"
-  ],
-  "impresa": [
-   "E&G Allestimenti Srls",
-   "Via Donato Bramante n°41",
-   "05100 TERNI (Tr)"
-  ],
-  "progettisti": [
-   "CF Consulting Srl",
-   "Via A. Bartocci n°7/T – 05100 TERNI (Tr)",
-   "Progettista responsabile: Ing. Alessandro CIABACCHINI",
-   "Taeam di Progetto:",
-   "Ing. Fabrizio TESTARELLA",
-   "Ing. Claudio RAGGI",
-   "Geom. Niccolò MAESTRI",
-   "Geom. Mirko MERLINI"
-  ],
-  "servizi": [
-   "Progettazione architettonica in variante",
-   "Progettazione impianti",
-   "Progettazione ARPA per Sostenibilità",
-   "Ambientale in CLASSE A",
-   "Direzione Lavori",
-   "Coordinamento della Sicurezza in fase di Progettazione e Esecuzione",
-   "CF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
-  ]
+  "descrizione": "Realizzazione di un edificio bifamiliare in località Cospea Alta ad uso residenziale . Telaio in acciaio e strutture esterne di tamponatura “a secco”. Edificio N-Zeb",
+  "committente": "SHAHINI EDUARD-ADRIANA GENTIAN",
+  "impresa": "E&G Allestimenti Srls\nVia Donato Bramante n°41\n05100 TERNI (Tr)",
+  "progettisti": "CF Consulting Srl\nVia A. Bartocci n°7/T – 05100 TERNI (Tr)\nProgettista responsabile: Ing. Alessandro CIABACCHINI\nTaeam di Progetto:\nIng. Fabrizio TESTARELLA\nIng. Claudio RAGGI\nGeom. Niccolò MAESTRI\nGeom. Mirko MERLINI",
+  "servizi": "Progettazione architettonica in variante\nProgettazione impianti\nProgettazione ARPA per Sostenibilità\nAmbientale in CLASSE A\nDirezione Lavori\nCoordinamento della Sicurezza in fase di Progettazione e Esecuzione\nCF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
  },
  "foto": [
   "img/progetti/realizzazione-di-un-edificio-bifamiliare-redidenziale/realizzazione-di-un-edificio-bifamiliare-01.webp",

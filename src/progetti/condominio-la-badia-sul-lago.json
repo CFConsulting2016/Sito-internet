@@ -18,35 +18,11 @@
   "fine": "—"
  },
  "blocchi": {
-  "descrizione": [
-   "Lavori di riqualificazione piscina condominiale"
-  ],
-  "committente": [
-   "Condominio “La Badia sul Lago” località Case Sparse – Via Sant’Arcangelo n°11 Magione (Pg)",
-   "TECNOSTUDIO Geom. David TOCCACELI",
-   "Via G. Doninzetti n°49",
-   "06124 San Sisto (Pg)",
-   "Tel 075/5287905 Fax 075/5295443",
-   "c/a Geom. Massimo TOCCACELI",
-   "email: tecnostudiodavid@libero.it"
-  ],
-  "impresa": [
-   "RO.NA Piscine Srl",
-   "Via Ponchiarelli n°34",
-   "06074 Ellera (Pg)",
-   "Tel 075/5178707",
-   "P.Iva 01322470541"
-  ],
-  "progettisti": [
-   "CIABACCCHINI ing. Alessandro"
-  ],
-  "servizi": [
-   "Progettazione definitiva ed esecutiva",
-   "Direzione lavori, contabilità",
-   "Progetto strutture",
-   "Coordinamento sicurezza in fase di progettazione ed esecuzione",
-   "CF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
-  ]
+  "descrizione": "Lavori di riqualificazione piscina condominiale",
+  "committente": "Condominio “La Badia sul Lago” località Case Sparse – Via Sant’Arcangelo n°11 Magione (Pg)\nTECNOSTUDIO Geom. David TOCCACELI\nVia G. Doninzetti n°49\n06124 San Sisto (Pg)\nTel 075/5287905 Fax 075/5295443\nc/a Geom. Massimo TOCCACELI\nemail: tecnostudiodavid@libero.it",
+  "impresa": "RO.NA Piscine Srl\nVia Ponchiarelli n°34\n06074 Ellera (Pg)\nTel 075/5178707\nP.Iva 01322470541",
+  "progettisti": "CIABACCCHINI ing. Alessandro",
+  "servizi": "Progettazione definitiva ed esecutiva\nDirezione lavori, contabilità\nProgetto strutture\nCoordinamento sicurezza in fase di progettazione ed esecuzione\nCF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
  },
  "foto": [
   "img/progetti/condominio-la-badia-sul-lago/condominio-la-badia-sul-lago-01.webp",

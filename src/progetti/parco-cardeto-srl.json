@@ -18,15 +18,11 @@
   "fine": "—"
  },
  "blocchi": {
-  "descrizione": [],
-  "committente": [
-   "PARCO Cardeto Srl"
-  ],
-  "impresa": [],
-  "progettisti": [],
-  "servizi": [
-   "CF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
-  ]
+  "descrizione": "",
+  "committente": "PARCO Cardeto Srl",
+  "impresa": "",
+  "progettisti": "",
+  "servizi": "CF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
  },
  "foto": [
   "img/progetti/parco-cardeto-srl/parco-cardeto-srl-01.webp",

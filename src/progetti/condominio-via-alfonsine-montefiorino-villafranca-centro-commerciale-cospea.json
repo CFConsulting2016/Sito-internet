@@ -18,56 +18,11 @@
   "fine": "—"
  },
  "blocchi": {
-  "descrizione": [
-   "LAVORI DI RIFACIMENTO GIUNTI TECNICI STRADALI, PAVIMENTAZIONE CARRABILE E PEDONALE"
-  ],
-  "committente": [
-   "Condominio Viale Villafranca-Montefiorino-Alfonsine – 05100 TERNI (Tr)",
-   "AMMINISTRATORE:",
-   "ALCINI Srl – Via Alfonsine n° 4 – 05100 TERNI (Tr)",
-   "Tel 0744/27.69.47 Fax 0744/22.60.50"
-  ],
-  "impresa": [
-   "MARCOST Srl",
-   "Via Gentile n°11 – 67017 Pizzoli (AQ)",
-   "Tel/Fax 069031050 P.Iva 01771720669",
-   "www.impresemarronaro.com",
-   "FMI Srl",
-   "Via Melzo n°4- 00188 Roma (Rm)",
-   "Tel/Fax 06/9031360 06/90131887 P.Iva 01224621001",
-   "www.impresemarronaro.com",
-   "ASFALTERNI Snc",
-   "Via A.Filzi n°6 – 05100 TERNI (Tr)",
-   "Tel 074459033 Fax 0744436057 P.Iva 00056200553",
-   "www.alsfalterni-terni.it",
-   "PAESAGGI UMBRI Srl",
-   "Strada del Cerquesto n°40 – 05100 TERNI (Tr)",
-   "Tel. 0744761397 Fax 0744761551 – P.Iva 00056200553",
-   "www.paesaggiumbricreatoridinatura.com",
-   "TECNO PROOF Srls",
-   "Via Montenero n°29 00058 Santa Marinella (RM)",
-   "Tel. 0744761397 Fax 0744761551 – P.Iva 15359991005",
-   "CUPI ELIS IMPIANTI Srls",
-   "Via Radice n°15-17 – 05100 TERNI (Tr)",
-   "P.Iva 01628140558"
-  ],
-  "progettisti": [
-   "CF Consulting Srl",
-   "Via G.D. Romagnosi n°11",
-   "05100 terni (tr)",
-   "Progettazione, Direzione Lavori e Coordinamento sicurezza",
-   "CIABACCHINI Ing. Alessandro",
-   "Collaboratori",
-   "TESTARELLA Ing. Fabrizio",
-   "MAESTRI Geom. Niccolò",
-   "RICCIONI Dott.ssa Elisa"
-  ],
-  "servizi": [
-   "Progettazione intervento con inserimento giunti tecnici stradali",
-   "Direzione lavori",
-   "Coordinamento Sicurezza in fase di progettazione ed esecuzione;",
-   "CF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
-  ]
+  "descrizione": "LAVORI DI RIFACIMENTO GIUNTI TECNICI STRADALI, PAVIMENTAZIONE CARRABILE E PEDONALE",
+  "committente": "Condominio Viale Villafranca-Montefiorino-Alfonsine – 05100 TERNI (Tr)\nAMMINISTRATORE:\nALCINI Srl – Via Alfonsine n° 4 – 05100 TERNI (Tr)\nTel 0744/27.69.47 Fax 0744/22.60.50",
+  "impresa": "MARCOST Srl\nVia Gentile n°11 – 67017 Pizzoli (AQ)\nTel/Fax 069031050 P.Iva 01771720669\nwww.impresemarronaro.com\nFMI Srl\nVia Melzo n°4- 00188 Roma (Rm)\nTel/Fax 06/9031360 06/90131887 P.Iva 01224621001\nwww.impresemarronaro.com\nASFALTERNI Snc\nVia A.Filzi n°6 – 05100 TERNI (Tr)\nTel 074459033 Fax 0744436057 P.Iva 00056200553\nwww.alsfalterni-terni.it\nPAESAGGI UMBRI Srl\nStrada del Cerquesto n°40 – 05100 TERNI (Tr)\nTel. 0744761397 Fax 0744761551 – P.Iva 00056200553\nwww.paesaggiumbricreatoridinatura.com\nTECNO PROOF Srls\nVia Montenero n°29 00058 Santa Marinella (RM)\nTel. 0744761397 Fax 0744761551 – P.Iva 15359991005\nCUPI ELIS IMPIANTI Srls\nVia Radice n°15-17 – 05100 TERNI (Tr)\nP.Iva 01628140558",
+  "progettisti": "CF Consulting Srl\nVia G.D. Romagnosi n°11\n05100 terni (tr)\nProgettazione, Direzione Lavori e Coordinamento sicurezza\nCIABACCHINI Ing. Alessandro\nCollaboratori\nTESTARELLA Ing. Fabrizio\nMAESTRI Geom. Niccolò\nRICCIONI Dott.ssa Elisa",
+  "servizi": "Progettazione intervento con inserimento giunti tecnici stradali\nDirezione lavori\nCoordinamento Sicurezza in fase di progettazione ed esecuzione;\nCF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
  },
  "foto": [
   "img/progetti/condominio-via-alfonsine-montefiorino-villafranca-centro-commerciale-cospea/condominio-via-alfonsine-montefiorino-vi-01.webp",

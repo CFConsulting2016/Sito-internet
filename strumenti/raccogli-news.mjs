@@ -1,43 +1,33 @@
 /**
- * Raccolta automatica delle news per il pannello di CF Consulting.
+ * Pubblicazione automatica delle news di CF Consulting.
  *
- * Legge i feed delle fonti attive (src/fonti/*.json), sceglie al massimo
- * TRE articoli nuovi e li propone nel pannello Decap come notizie pronte
- * da pubblicare. Non pubblica niente: decide il cliente, una per una.
- *
- * Ogni proposta e' una richiesta di modifica su un ramo cms/attesa/<nome>
- * con l'etichetta decap-cms/pending_publish: e' il formato che Decap usa
- * per le sue bozze, quindi la proposta compare nella scheda Workflow come
- * se l'avesse scritta il cliente. Pubblicarla la mette in «News in attesa»
- * (src/news-in-attesa), da dove va online con il giro del lunedi'.
- * Fino al 28/10/2026 le proposte stavano su cms/news/<nome>: si controllano
- * ancora, perche' gli articoli gia' proposti non tornino.
+ * Legge i feed delle fonti attive (src/fonti/*.json), sceglie DUE articoli
+ * nuovi e li scrive in src/news: il lunedi' e il giovedi' mattina il giro di
+ * GitHub (.github/workflows/news.yml) li salva tutti in una volta, e Netlify
+ * ricostruisce il sito una volta sola. Nessuna approvazione: il cliente non
+ * vede le news nel pannello (decisione della call del 30/10/2026).
  *
  * Cosa finisce nella notizia: titolo dell'articolo, collegamento, testata
  * e data. Niente riassunto e niente immagini della fonte, come concordato:
  * e' questo formato a tenerci dentro i limiti della legge sul diritto
- * d'autore. La nota redazionale resta vuota, la aggiunge il cliente se vuole.
+ * d'autore. Le news restano sul sito due mesi: le toglie build.mjs.
  *
  * Uso:
- *   node strumenti/raccogli-news.mjs            prova in locale: mostra cosa
- *                                               proporrebbe, non scrive nulla
- *   node strumenti/raccogli-news.mjs --github   lo fa davvero (solo da GitHub
- *                                               Actions, serve GITHUB_TOKEN)
+ *   node strumenti/raccogli-news.mjs           prova: mostra cosa pubblicherebbe
+ *   node strumenti/raccogli-news.mjs --scrivi  scrive i file in src/news
  *
  * Nessuna dipendenza: solo Node 20 o superiore.
  */
-import { readFile, readdir } from 'node:fs/promises';
+import { readFile, readdir, writeFile } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 
-const MAX_TOTALE = 3;       // proposte per giro, in tutto
-const MAX_PER_FONTE = 2;    // per non far arrivare tre notizie dalla stessa testata
+const MAX_TOTALE = 2;       // news per giro: lunedi' e giovedi', quattro a settimana
+const MAX_PER_FONTE = 1;    // una per testata, se ce ne sono abbastanza (vedi sotto)
 const GIORNI_MASSIMI = 14;  // gli articoli piu' vecchi non sono piu' notizie
-const ETICHETTA = 'decap-cms/pending_publish';
-const GIORNI_PROPOSTA = 14; // le proposte non pubblicate si scartano da sole dopo due settimane
-const RAMI = ['cms/attesa/', 'cms/news/']; // il primo è quello di oggi, il secondo quello di prima
 const UA = 'CF-Consulting-News/1.0 (+https://www.cieffeconsulting.eu)';
 
 /* --- lettura dei dati ----------------------------------------- */
@@ -117,7 +107,7 @@ function slug(testo) {
 
 const giorno = (d) => d.toISOString().slice(0, 10);
 
-function scegli(candidati, giaVisti) {
+function scegli(candidati, giaVisti, perTestata) {
   const limite = Date.now() - GIORNI_MASSIMI * 86400000;
   const perFonte = {};
   const scelti = [];
@@ -127,84 +117,20 @@ function scegli(candidati, giaVisti) {
 
   for (const a of ordinati) {
     if (scelti.length >= MAX_TOTALE) break;
-    if ((perFonte[a.fonte] || 0) >= MAX_PER_FONTE) continue;
+    if ((perFonte[a.fonte] || 0) >= perTestata) continue;
     perFonte[a.fonte] = (perFonte[a.fonte] || 0) + 1;
     scelti.push(a);
   }
   return scelti;
 }
 
-/* --- GitHub: creare le proposte -------------------------------- */
-
-function github(token, repo) {
-  const api = async (metodo, percorso, corpo) => {
-    const r = await fetch(`https://api.github.com/repos/${repo}${percorso}`, {
-      method: metodo,
-      headers: {
-        Authorization: `Bearer ${token}`,
-        Accept: 'application/vnd.github+json',
-        'User-Agent': UA,
-        ...(corpo ? { 'Content-Type': 'application/json' } : {}),
-      },
-      body: corpo ? JSON.stringify(corpo) : undefined,
-    });
-    if (!r.ok) throw new Error(`GitHub ${metodo} ${percorso}: ${r.status} ${await r.text()}`);
-    return r.status === 204 ? null : r.json();
-  };
-
-  return {
-    /** Una proposta per questo ramo esiste gia', aperta o chiusa? Le chiuse
-     *  contano: se il cliente ha scartato un articolo, non va riproposto. */
-    async giaProposto(nome) {
-      const proprietario = repo.split('/')[0];
-      for (const prefisso of RAMI) {
-        const elenco = await api('GET', `/pulls?state=all&head=${proprietario}:${encodeURIComponent(prefisso + nome)}`);
-        if (elenco.length) return true;
-      }
-      return false;
-    },
-
-    /** Scarta le proposte automatiche rimaste nel pannello oltre il limite:
-     *  le chiude, come se il cliente le avesse scartate. Il ramo resta, così
-     *  giaProposto() continua a riconoscerle e non tornano. Le bozze scritte
-     *  dal cliente non si toccano: solo quelle che iniziano con «Proposta news». */
-    async scartaVecchie(giorni) {
-      const limite = Date.now() - giorni * 864e5;
-      const aperte = await api('GET', '/pulls?state=open&per_page=100');
-      const vecchie = aperte.filter((pr) => RAMI.some((p) => pr.head.ref.startsWith(p))
-        && pr.title.startsWith('Proposta news:')
-        && Date.parse(pr.created_at) < limite);
-      for (const pr of vecchie) await api('PATCH', `/pulls/${pr.number}`, { state: 'closed' });
-      return vecchie.length;
-    },
-
-    async proponi(ramo, percorso, contenuto, titolo) {
-      const principale = await api('GET', '/git/ref/heads/main');
-      await api('POST', '/git/refs', { ref: `refs/heads/${ramo}`, sha: principale.object.sha });
-      await api('PUT', `/contents/${percorso}`, {
-        message: `Proposta automatica: ${titolo}`,
-        content: Buffer.from(contenuto, 'utf8').toString('base64'),
-        branch: ramo,
-      });
-      const pr = await api('POST', '/pulls', {
-        title: `Proposta news: ${titolo}`.slice(0, 250),
-        head: ramo,
-        base: 'main',
-        body: 'Proposta automatica della raccolta news. Si pubblica dal pannello di gestione, nella scheda Workflow.',
-      });
-      await api('POST', `/issues/${pr.number}/labels`, { labels: [ETICHETTA] });
-      return pr.number;
-    },
-  };
-}
-
 /* --- giro principale ------------------------------------------ */
 
-const suGithub = process.argv.includes('--github');
+const scrivi = process.argv.includes('--scrivi');
 
 const fonti = (await leggiCartella('fonti')).filter((f) => f.attiva === true && f.feed);
-const giaPubblicate = new Set([...await leggiCartella('news'), ...await leggiCartella('news-in-attesa')]
-  .map((n) => n.url));
+// anche le news scadute restano nella cartella: cosi' non tornano mai
+const giaPubblicate = new Set((await leggiCartella('news')).map((n) => n.url));
 
 console.log(`Fonti attive: ${fonti.map((f) => f.nome).join(', ') || 'nessuna'}`);
 
@@ -220,57 +146,23 @@ for (const fonte of fonti) {
   }
 }
 
-let gh = null;
-if (suGithub) {
-  const token = process.env.GITHUB_TOKEN;
-  const repo = process.env.GITHUB_REPOSITORY;
-  if (!token || !repo) throw new Error('Mancano GITHUB_TOKEN o GITHUB_REPOSITORY');
-  gh = github(token, repo);
-  const scartate = await gh.scartaVecchie(GIORNI_PROPOSTA);
-  if (scartate) console.log(`Proposte più vecchie di ${GIORNI_PROPOSTA} giorni scartate: ${scartate}`);
-}
-
-// Scorro i candidati in ordine e salto quelli gia' proposti in passato,
-// finche' non ne trovo tre davvero nuovi.
-const scartati = new Set(giaPubblicate);
-let scelti = [];
-for (let giro = 0; giro < 10; giro++) {
-  const prova = scegli(candidati, scartati);
-  const nuovi = [];
-  for (const a of prova) {
-    const nome = `${giorno(a.data)}-${slug(a.titolo)}`;
-    if (gh && await gh.giaProposto(nome)) {
-      scartati.add(a.url);
-    } else {
-      nuovi.push({ ...a, nome });
-    }
-  }
-  scelti = nuovi;
-  if (nuovi.length === prova.length) break; // nessuno scartato in questo giro
-}
+// una per testata; se una fonte non ha niente di nuovo, la seconda news
+// puo' arrivare dalla stessa testata della prima
+let scelti = scegli(candidati, giaPubblicate, MAX_PER_FONTE);
+if (scelti.length < MAX_TOTALE) scelti = scegli(candidati, giaPubblicate, MAX_TOTALE);
 
 if (!scelti.length) {
-  console.log('\nNessun articolo nuovo da proporre.');
+  console.log('\nNessun articolo nuovo da pubblicare.');
   process.exit(0);
 }
 
-console.log(`\n${suGithub ? 'Proposte create' : 'Proposte che verrebbero create (prova, nulla e\' stato scritto)'}:`);
+console.log(`\n${scrivi ? 'Pubblicate' : "Da pubblicare (prova, nulla e' stato scritto)"}:`);
 for (const a of scelti) {
-  const notizia = {
-    titolo: a.titolo,
-    fonte: a.fonte,
-    url: a.url,
-    data: giorno(a.data),
-    nota: '',
-    foto: '',
-  };
-  const contenuto = JSON.stringify(notizia, null, 1) + '\n';
-  if (gh) {
-    const numero = await gh.proponi(`cms/attesa/${a.nome}`, `src/news-in-attesa/${a.nome}.json`, contenuto, a.titolo);
-    console.log(`  #${numero}  ${a.titolo}`);
-  } else {
-    console.log(`\n  ramo:  cms/attesa/${a.nome}`);
-    console.log(`  file:  src/news-in-attesa/${a.nome}.json`);
-    console.log('  ' + contenuto.trim().replace(/\n/g, '\n  '));
+  let nome = `${giorno(a.data)}-${slug(a.titolo)}`;
+  if (existsSync(join(ROOT, 'src', 'news', `${nome}.json`))) nome += '-2';
+  const notizia = { titolo: a.titolo, fonte: a.fonte, url: a.url, data: giorno(a.data), nota: '', foto: '' };
+  if (scrivi) {
+    await writeFile(join(ROOT, 'src', 'news', `${nome}.json`), JSON.stringify(notizia, null, 1) + '\n', 'utf8');
   }
+  console.log(`  ${notizia.data}  ${a.titolo}`);
 }

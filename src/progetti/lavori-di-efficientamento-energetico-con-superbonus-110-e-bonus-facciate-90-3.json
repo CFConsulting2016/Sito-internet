@@ -18,68 +18,11 @@
   "fine": "2021"
  },
  "blocchi": {
-  "descrizione": [
-   "LAVORI DI EFFICIENTAMENTO ENERGETICO EDILE ED IMPIANTISTICO EDIFICIO CON ACCESSO AGLI INCENTIVI STATALI PREVISTI DALLA LEGGE 17 LUGLIO 2020, N.77, SUPERBONUS 110% PER INTERVENTI DI EFFICIENZA ENERGETICA O INTERVENTI ANTISISMICI”.",
-   "BONUS FACCIATE 90%"
-  ],
-  "committente": [
-   "CONDOMINIO VIA XX SETTEMBRE N°33",
-   "Amministratore ALCINI Srl – ALCINI Geom. Manlio",
-   "Via Alfonsine n°4",
-   "05100 TERNI (TR)"
-  ],
-  "impresa": [
-   "ZEFI NARD d.i. GENERAL CONTRACTOR – IMPRESA AFFIDATARIA",
-   "Viale Tito Oro Nobili n°4",
-   "05100 TERNI (TR)",
-   "Tel. 328 053 9643",
-   "C.F. ZFENRD78C17Z100F",
-   "P.Iva 01315130557",
-   "Email: zefinard@hotmail.com",
-   "PEC : zefinard@pec.it",
-   "SMA DI ZEFI SIMON",
-   "Via Cervata n° 113",
-   "05100 Terni (TR)",
-   "Tel. 0744 400116",
-   "C.F. ZFESMN65A06Z100S",
-   "P.Iva 01545260554",
-   "Email: simonzefi@gmail.com",
-   "Email PEC: zefisimon@pec.it",
-   "LIBERATI ERMINIO FU ENRICO",
-   "Via Romagna n° 61/C",
-   "05100 Terni (TR)",
-   "Tel. 0744 404287",
-   "C.F. LBRRMN47D17L117B",
-   "P.Iva 00069790558",
-   "Email: erminioliberati@gmail.com",
-   "Email PEC: liberati@pec.it",
-   "EDIL PROJECT DI CILANGI ALBERT",
-   "Via S. efebo 27/C",
-   "05100 Terni (TR)",
-   "Tel. 3286461772",
-   "C.F. CLNLRT81P01Z100T",
-   "P.Iva 01534860554",
-   "Email: edilproject_2016@libero.it",
-   "Email PEC: edilproject@pec.cnaumbria.it"
-  ],
-  "progettisti": [
-   "CF Consulting Srl",
-   "Via G.D.Romagnosi n°11",
-   "05100 TERNI (TR)",
-   "Progettazione, Direzione Lavori e Coordinamento Sicurezza",
-   "CIABACCHINI ing. Alessandro",
-   "Collaboratori",
-   "TESTARELLA Ing. Fabrizio",
-   "MAESTRI Geom. Niccolò",
-   "RICCIONI Dott.ssa Elisa"
-  ],
-  "servizi": [
-   "Studio di Fattibilità, Progettazione Definitiva ed Esecutiva",
-   "Direzione Lavori",
-   "Coordinamento Sicurezza in fase di Progettazione ed Esecuzione",
-   "Gestione pratica ENEA e CESSIONE DEL CREDITO",
-   "CF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
-  ]
+  "descrizione": "LAVORI DI EFFICIENTAMENTO ENERGETICO EDILE ED IMPIANTISTICO EDIFICIO CON ACCESSO AGLI INCENTIVI STATALI PREVISTI DALLA LEGGE 17 LUGLIO 2020, N.77, SUPERBONUS 110% PER INTERVENTI DI EFFICIENZA ENERGETICA O INTERVENTI ANTISISMICI”.\nBONUS FACCIATE 90%",
+  "committente": "CONDOMINIO VIA XX SETTEMBRE N°33\nAmministratore ALCINI Srl – ALCINI Geom. Manlio\nVia Alfonsine n°4\n05100 TERNI (TR)",
+  "impresa": "ZEFI NARD d.i. GENERAL CONTRACTOR – IMPRESA AFFIDATARIA\nViale Tito Oro Nobili n°4\n05100 TERNI (TR)\nTel. 328 053 9643\nC.F. ZFENRD78C17Z100F\nP.Iva 01315130557\nEmail: zefinard@hotmail.com\nPEC : zefinard@pec.it\nSMA DI ZEFI SIMON\nVia Cervata n° 113\n05100 Terni (TR)\nTel. 0744 400116\nC.F. ZFESMN65A06Z100S\nP.Iva 01545260554\nEmail: simonzefi@gmail.com\nEmail PEC: zefisimon@pec.it\nLIBERATI ERMINIO FU ENRICO\nVia Romagna n° 61/C\n05100 Terni (TR)\nTel. 0744 404287\nC.F. LBRRMN47D17L117B\nP.Iva 00069790558\nEmail: erminioliberati@gmail.com\nEmail PEC: liberati@pec.it\nEDIL PROJECT DI CILANGI ALBERT\nVia S. efebo 27/C\n05100 Terni (TR)\nTel. 3286461772\nC.F. CLNLRT81P01Z100T\nP.Iva 01534860554\nEmail: edilproject_2016@libero.it\nEmail PEC: edilproject@pec.cnaumbria.it",
+  "progettisti": "CF Consulting Srl\nVia G.D.Romagnosi n°11\n05100 TERNI (TR)\nProgettazione, Direzione Lavori e Coordinamento Sicurezza\nCIABACCHINI ing. Alessandro\nCollaboratori\nTESTARELLA Ing. Fabrizio\nMAESTRI Geom. Niccolò\nRICCIONI Dott.ssa Elisa",
+  "servizi": "Studio di Fattibilità, Progettazione Definitiva ed Esecutiva\nDirezione Lavori\nCoordinamento Sicurezza in fase di Progettazione ed Esecuzione\nGestione pratica ENEA e CESSIONE DEL CREDITO\nCF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
  },
  "foto": [
   "img/progetti/lavori-di-efficientamento-energetico-con-superbonus-110-e-bonus-facciate-90-3/lavori-di-efficientamento-energetico-con-01.webp",

@@ -1,7 +1,9 @@
 # News automatiche per il sito di CF Consulting.
 #
-# Lunedi' e giovedi' mattina propone fino a tre notizie nel pannello
-# (scheda Workflow): il cliente sceglie quali pubblicare.
+# Lunedi' e giovedi' mattina pubblica DUE notizie nuove, senza approvazione
+# (decisione della call del 30/10/2026): le scrive in src/news e le salva
+# in un unico salvataggio, quindi Netlify ricostruisce una volta sola per
+# giro (15 crediti, circa 9 volte al mese). Le news restano online due mesi.
 # Il lunedi' controlla anche le condizioni d'uso delle fonti e le
 # scadenze delle certificazioni.
 #
@@ -23,9 +25,8 @@ on:
   workflow_dispatch:       # avvio a mano dalla scheda Actions
 
 permissions:
-  contents: write          # salvare lo stato della sorveglianza
-  pull-requests: write     # creare le proposte per il pannello
-  issues: write            # segnalare un cambio di condizioni
+  contents: write          # salvare le news e lo stato della sorveglianza
+  issues: write            # segnalare un cambio di condizioni o una scadenza
 
 concurrency:
   group: news-automatiche
@@ -41,33 +42,34 @@ jobs:
         with:
           node-version: 22
 
+      # Prima la sorveglianza: se una fonte cambia condizioni la spegne,
+      # e la raccolta qui sotto non la usa piu'.
       - name: Sorveglianza delle condizioni d'uso
         if: github.event.schedule == '0 6 * * 1' || github.event_name == 'workflow_dispatch'
         run: node strumenti/sorveglia-fonti.mjs --github
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Si salva solo se e' cambiato qualcosa: nelle settimane tranquille
-      # non arriva nessun salvataggio sul ramo principale.
-      - name: Salvataggio dello stato della sorveglianza
-        if: github.event.schedule == '0 6 * * 1' || github.event_name == 'workflow_dispatch'
-        run: |
-          if [ -n "$(git status --porcelain strumenti/sorveglianza-fonti.json src/fonti)" ]; then
-            git config user.name "Raccolta news"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git add strumenti/sorveglianza-fonti.json src/fonti
-            git commit -m "Sorveglianza fonti: controllo del $(date -u +%F)"
-            git push
-          fi
-
-      # Il lunedi': segnala le certificazioni scadute o in scadenza
       - name: Scadenze delle certificazioni
         if: github.event.schedule == '0 6 * * 1' || github.event_name == 'workflow_dispatch'
         run: node strumenti/scadenze-certificati.mjs --github
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Raccolta delle news
-        run: node strumenti/raccogli-news.mjs --github
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Pubblicazione delle news
+        run: node strumenti/raccogli-news.mjs --scrivi
+
+      # Un solo salvataggio per tutto: news nuove e stato della sorveglianza.
+      # Se non e' cambiato niente non si salva niente e non si spende niente.
+      - name: Salvataggio
+        run: |
+          git add src/news strumenti/sorveglianza-fonti.json src/fonti
+          if git diff --cached --quiet; then
+            echo "Niente di nuovo."
+            exit 0
+          fi
+          git config user.name "Pubblicazione news"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "News del $(date -u +%F)"
+          git pull --rebase --quiet
+          git push --quiet

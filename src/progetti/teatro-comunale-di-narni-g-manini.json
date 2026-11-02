@@ -18,57 +18,11 @@
   "fine": "2024"
  },
  "blocchi": {
-  "descrizione": [
-   "Efficientamento energetico Teatro comunale di Narni “Giuseppe Manini” – PNNR Missione 1 – Componente 3 – “Patrimo-nio culturale per la prossima generazione” – Investimento 1.3 finanziato dall’Unione Europea NextGenerationEU.",
-   "Impresa: VEGA TECNO SERVICE Srl avente sede legale in Foligno (PG), via Angelo Morettini n°16, (codice fiscale e partita IVA 03416280547)",
-   "Affidamento: D.D. n.35 del 08/02/2023",
-   "Codice Unico Progetto CUP: 34J22000060001",
-   "Codice Identificativo Gara CIG: 9538656BEF"
-  ],
-  "committente": [
-   "COMUNE DI NARNI",
-   "Piazza dei Priori n°1",
-   "05035 Narni (Tr)",
-   "PIva 00178930558",
-   "Ing. Pietro FLORI (RUP)"
-  ],
-  "impresa": [
-   "VEGA TECNO SERVICE Srl",
-   "Via Angelo Morettini, 16",
-   "06034 Foligno (PG)",
-   "C.F./P.Iva 03416280547",
-   "Tel. 075/8043305",
-   "Email: info@vegatecnoservice.it",
-   "PEC: vega@pecascom.it"
-  ],
-  "progettisti": [
-   "PROGETTAZIONE PRELIMINARE",
-   "DDA Studio",
-   "Via Montegrappa n°33 – 05100 TERNI (Tr)",
-   "www.ddastudio.net email: info@ddastudio.net",
-   "Progettista responsabile: Arch. Pier Francesco DURANTI",
-   "Taeam di Progetto:",
-   "Arch. Alessandro ALMADORI",
-   "Arch. Giuseppe ANDREOLI",
-   "Arch. Silvano SIGISMONDI",
-   "PROGETTAZIONE DEFINITIVA ED ESECUTIVA",
-   "CF Consulting Srl",
-   "Via G.D.Romagnosi n°11 – 05100 TERNI (Tr)",
-   "Progettista responsabile: Ing. Alessandro CIABACCHINI",
-   "Taeam di Progetto:",
-   "Ing. Fabrizio TESTARELLA",
-   "Dott.ssa Elisa RICCIONI",
-   "Geom. Niccolò MAESTRI"
-  ],
-  "servizi": [
-   "Bando di gara Regione Umbria POR FERS",
-   "Progettazione Preliminare",
-   "Progettazione Definitiva",
-   "Coordinamento Sicurezza in fase di Progettazione",
-   "Direzione Lavori",
-   "Coordinamento Sicurezza in Fase di Esecuzione",
-   "CF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
-  ]
+  "descrizione": "Efficientamento energetico Teatro comunale di Narni “Giuseppe Manini” – PNNR Missione 1 – Componente 3 – “Patrimo-nio culturale per la prossima generazione” – Investimento 1.3 finanziato dall’Unione Europea NextGenerationEU.\nImpresa: VEGA TECNO SERVICE Srl avente sede legale in Foligno (PG), via Angelo Morettini n°16, (codice fiscale e partita IVA 03416280547)\nAffidamento: D.D. n.35 del 08/02/2023\nCodice Unico Progetto CUP: 34J22000060001\nCodice Identificativo Gara CIG: 9538656BEF",
+  "committente": "COMUNE DI NARNI\nPiazza dei Priori n°1\n05035 Narni (Tr)\nPIva 00178930558\nIng. Pietro FLORI (RUP)",
+  "impresa": "VEGA TECNO SERVICE Srl\nVia Angelo Morettini, 16\n06034 Foligno (PG)\nC.F./P.Iva 03416280547\nTel. 075/8043305\nEmail: info@vegatecnoservice.it\nPEC: vega@pecascom.it",
+  "progettisti": "PROGETTAZIONE PRELIMINARE\nDDA Studio\nVia Montegrappa n°33 – 05100 TERNI (Tr)\nwww.ddastudio.net email: info@ddastudio.net\nProgettista responsabile: Arch. Pier Francesco DURANTI\nTaeam di Progetto:\nArch. Alessandro ALMADORI\nArch. Giuseppe ANDREOLI\nArch. Silvano SIGISMONDI\nPROGETTAZIONE DEFINITIVA ED ESECUTIVA\nCF Consulting Srl\nVia G.D.Romagnosi n°11 – 05100 TERNI (Tr)\nProgettista responsabile: Ing. Alessandro CIABACCHINI\nTaeam di Progetto:\nIng. Fabrizio TESTARELLA\nDott.ssa Elisa RICCIONI\nGeom. Niccolò MAESTRI",
+  "servizi": "Bando di gara Regione Umbria POR FERS\nProgettazione Preliminare\nProgettazione Definitiva\nCoordinamento Sicurezza in fase di Progettazione\nDirezione Lavori\nCoordinamento Sicurezza in Fase di Esecuzione\nCF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
  },
  "foto": [
   "img/progetti/teatro-comunale-di-narni-g-manini/teatro-comunale-di-narni-g-manini-01.webp",
