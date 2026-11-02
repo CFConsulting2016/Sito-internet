@@ -57,8 +57,8 @@ media_folder: img/caricate
 public_folder: img/caricate
 # Nota: Decap 3.x non espone un limite di dimensione per la libreria
 # immagini interna (`media_library` serve solo alle librerie esterne).
-# Il controllo sul peso delle foto va fatto altrove: vedi la conversione
-# in WebP, da aggiungere quando il repository sarà online.
+# Il peso delle foto dei progetti lo controlla il campo «galleria»
+# (admin/galleria.js): lato lungo 1600 px e WebP, nel browser.
 
 # Dove vive il sito. Serve a Decap per il collegamento "vedi il sito"
 # e per le anteprime. Quando sposteremo il dominio, qui vanno i due
@@ -68,6 +68,13 @@ display_url: https://cf-consulting.netlify.app
 logo_url: https://cf-consulting.netlify.app/img/logo-cf-dark.webp
 
 locale: it
+
+# Nomi dei file delle voci (e delle foto) solo in caratteri semplici:
+# «Città» diventa «citta». Gli accenti nei nomi dei file danno problemi
+# con alcuni server e negli indirizzi delle pagine.
+slug:
+  encoding: ascii
+  clean_accents: true
 
 # L'anteprima a destra del modulo e' quella generica di Decap: non usa la
 # grafica del sito e sembra una pagina rotta. Meglio il solo modulo.
@@ -134,10 +141,11 @@ collections:
 
       - label: Fotografie
         name: foto
-        widget: list
+        # Widget fatto da noi (admin/galleria.js): tante foto insieme, rimpicciolite
+        # e convertite in WebP nel browser. Salva lo stesso array di percorsi.
+        widget: galleria
         required: false
-        field: { label: Foto, name: foto, widget: image, choose_url: false }
-        hint: La prima è la copertina, quella che si vede nell'archivio. Le altre formano la galleria.
+        hint: "Selezionate tutte le foto della cartella insieme, o trascinatele qui. La prima è la copertina, quella che si vede nell'archivio; trascinatele per cambiare l'ordine."
 
       - label: Pubblico o privato
         name: cat
@@ -226,10 +234,11 @@ collections:
 
       - label: Fotografie
         name: foto
-        widget: list
+        # Widget fatto da noi (admin/galleria.js): tante foto insieme, rimpicciolite
+        # e convertite in WebP nel browser. Salva lo stesso array di percorsi.
+        widget: galleria
         required: false
-        field: { label: Foto, name: foto, widget: image, choose_url: false }
-        hint: La prima è la copertina, quella che si vede nell'archivio. Le altre formano la galleria.
+        hint: "Selezionate tutte le foto della cartella insieme, o trascinatele qui. La prima è la copertina, quella che si vede nell'archivio; trascinatele per cambiare l'ordine."
 
       - label: Pubblico o privato
         name: cat
