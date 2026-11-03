@@ -422,6 +422,139 @@ function markCurrent(html, nav) {
 // Il giorno della costruzione, all'ora italiana: decide «In corso» o «Concluso».
 const OGGI = new Date().toLocaleDateString('sv-SE', { timeZone: 'Europe/Rome' });
 
+/* --- luogo dall'indirizzo del committente: inizio --- */
+
+// Le 107 province attuali, con il nome per riconoscere «(Terni)» al posto di «(TR)».
+const PROVINCE = {
+  AG: 'Agrigento', AL: 'Alessandria', AN: 'Ancona', AO: 'Aosta', AP: 'Ascoli Piceno',
+  AQ: "L'Aquila", AR: 'Arezzo', AT: 'Asti', AV: 'Avellino', BA: 'Bari', BG: 'Bergamo',
+  BI: 'Biella', BL: 'Belluno', BN: 'Benevento', BO: 'Bologna', BR: 'Brindisi',
+  BS: 'Brescia', BT: 'Barletta-Andria-Trani', BZ: 'Bolzano', CA: 'Cagliari',
+  CB: 'Campobasso', CE: 'Caserta', CH: 'Chieti', CL: 'Caltanissetta', CN: 'Cuneo',
+  CO: 'Como', CR: 'Cremona', CS: 'Cosenza', CT: 'Catania', CZ: 'Catanzaro', EN: 'Enna',
+  FC: 'Forlì-Cesena', FE: 'Ferrara', FG: 'Foggia', FI: 'Firenze', FM: 'Fermo',
+  FR: 'Frosinone', GE: 'Genova', GO: 'Gorizia', GR: 'Grosseto', IM: 'Imperia',
+  IS: 'Isernia', KR: 'Crotone', LC: 'Lecco', LE: 'Lecce', LI: 'Livorno', LO: 'Lodi',
+  LT: 'Latina', LU: 'Lucca', MB: 'Monza e Brianza', MC: 'Macerata', ME: 'Messina',
+  MI: 'Milano', MN: 'Mantova', MO: 'Modena', MS: 'Massa-Carrara', MT: 'Matera',
+  NA: 'Napoli', NO: 'Novara', NU: 'Nuoro', OR: 'Oristano', PA: 'Palermo', PC: 'Piacenza',
+  PD: 'Padova', PE: 'Pescara', PG: 'Perugia', PI: 'Pisa', PN: 'Pordenone', PO: 'Prato',
+  PR: 'Parma', PT: 'Pistoia', PU: 'Pesaro e Urbino', PV: 'Pavia', PZ: 'Potenza',
+  RA: 'Ravenna', RC: 'Reggio Calabria', RE: 'Reggio Emilia', RG: 'Ragusa', RI: 'Rieti',
+  RM: 'Roma', RN: 'Rimini', RO: 'Rovigo', SA: 'Salerno', SI: 'Siena', SO: 'Sondrio',
+  SP: 'La Spezia', SR: 'Siracusa', SS: 'Sassari', SU: 'Sud Sardegna', SV: 'Savona',
+  TA: 'Taranto', TE: 'Teramo', TN: 'Trento', TO: 'Torino', TP: 'Trapani', TR: 'Terni',
+  TS: 'Trieste', TV: 'Treviso', UD: 'Udine', VA: 'Varese', VB: 'Verbano-Cusio-Ossola',
+  VC: 'Vercelli', VE: 'Venezia', VI: 'Vicenza', VR: 'Verona', VT: 'Viterbo', VV: 'Vibo Valentia',
+};
+// Sigle soppresse ma ancora negli indirizzi vecchi: Carbonia-Iglesias, Medio
+// Campidano, Ogliastra, Olbia-Tempio (Sardegna, fino al 2016), Forlì e Pesaro
+// (prima di FC e PU).
+const PROVINCE_STORICHE = {
+  CI: 'Carbonia-Iglesias', VS: 'Medio Campidano', OG: 'Ogliastra', OT: 'Olbia-Tempio',
+  FO: 'Forlì', PS: 'Pesaro',
+};
+const SIGLE = new Set([...Object.keys(PROVINCE), ...Object.keys(PROVINCE_STORICHE)]);
+const nomeChiave = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+  .replace(/[^a-z]+/g, ' ').trim();
+const SIGLA_DA_NOME = new Map([
+  ...Object.entries(PROVINCE), ...Object.entries(PROVINCE_STORICHE),
+  ['AQ', 'Aquila'], ['SP', 'Spezia'], ['MB', 'Monza'], ['PU', 'Pesaro Urbino'],
+  ['MS', 'Massa Carrara'], ['RE', "Reggio nell'Emilia"], ['RC', 'Reggio di Calabria'],
+  ['BZ', 'Bolzano Bozen'], ['BT', 'Barletta Andria Trani'],
+].map(([s, n]) => [nomeChiave(n), s]));
+
+// Parole che chiudono il nome della città: recapiti e paese in coda.
+const FINE_CITTA = /^(?:tel|telefono|fax|cell|cellulare|e-?mail|mail|pec|p\.?\s*iva|partita|c\.f\.?|cf|italia|italy)$/i;
+const CITTA = /^[\p{L}'’.]+(?:[ -][\p{L}'’.]+)*/u;
+const INDIRIZZO = /^(?:via|viale|v\.le|piazza|p\.zza|piazzale|p\.le|corso|c\.so|largo|vicolo|strada|str\.|localit[aà]|loc\.|frazione|fraz\.|vocabolo|voc\.|contrada|c\.da|borgo|lungo\p{L}*|zona|salita|traversa)(?=[\s.,]|$)/iu;
+
+/** «(TR)», «(Tr)», «(Terni)» → «TR»; «(RUP)», «(Tel)» → null */
+function siglaDa(testo) {
+  const t = testo.trim();
+  if (/^[A-Za-z]{2}$/.test(t)) return SIGLE.has(t.toUpperCase()) ? t.toUpperCase() : null;
+  return SIGLA_DA_NOME.get(nomeChiave(t)) || null;
+}
+
+/**
+ * Il testo comincia con la città: «Narni (TR) …», «Narni - TR», «Narni, TR»,
+ * «Narni TR Italia», «Narni (Terni)». Restituisce «Narni (TR)», o solo la città
+ * se la provincia manca o non è una sigla vera. null se non c'è una città.
+ */
+function cittaDa(testo) {
+  const m = testo.match(CITTA);
+  if (!m) return null;
+  let parole = m[0].split(' ');
+  const stop = parole.findIndex((w) => FINE_CITTA.test(w) || w === 'IT');
+  if (stop >= 0) parole = parole.slice(0, stop);
+  let sigla = null;
+  // «05035 Narni TR»: la sigla staccata solo da uno spazio vale se è maiuscola
+  // e in elenco, così «San Benedetto Po» resta una città
+  const ultima = parole[parole.length - 1];
+  if (parole.length > 1 && /^[A-Z]{2}$/.test(ultima)) {
+    // «Narni XX»: due maiuscole che non sono una sigla non fanno parte della città
+    if (SIGLE.has(ultima)) sigla = ultima;
+    parole = parole.slice(0, -1);
+  }
+  if (!sigla && stop < 0) {
+    const resto = testo.slice(m[0].length);
+    const p = resto.match(/^\s*(?:[-–—,]\s*)?(?:\(([^()]{2,40})\)|([A-Za-z]{2})(?![\p{L}]))/u);
+    if (p) sigla = p[1] ? siglaDa(p[1]) : siglaDa(p[2]);
+  }
+  const citta = parole.join(' ').replace(/[.'’]+$/, '');
+  if ((citta.match(/\p{L}/gu) || []).length < 2) return null;
+  return titoloCitta(citta) + (sigla ? ` (${sigla})` : '');
+}
+
+/** L'ultimo pezzo prima di una posizione: dopo l'ultimo separatore e dopo il civico. */
+function codaPrima(testo) {
+  const pezzi = testo.split(/\s[-–—]\s|[,;–—]/);
+  const parole = pezzi[pezzi.length - 1].trim().split(/\s+/).filter(Boolean);
+  const civico = parole.map((w) => /\d/.test(w)).lastIndexOf(true);
+  const coda = parole.slice(civico + 1).join(' ');
+  // «Via del Rame Perugia»: senza civico non si sa dove finisce la via
+  if (civico < 0 && INDIRIZZO.test(coda)) return '';
+  return coda;
+}
+
+/**
+ * Il luogo da una riga dell'indirizzo del committente, o null.
+ * Con il CAP: «05035 Narni (TR)», «05035 - Narni, TR», «05035 Narni TR Italia»,
+ * «Narni (TR) 05035», «Piazza dei Priori 1, Narni 05035».
+ * Senza CAP (solo se senzaCap, cioè non sulla riga del nome): «Narni (TR)»,
+ * con una sigla vera tra parentesi; «(RUP)» o «(Tel)» non lo sono.
+ * Niente sigla: solo la città, la provincia non si inventa.
+ */
+function luogoDaRiga(riga, senzaCap) {
+  const cap = /(?:^|[\s,;:–—(-])(\d{5})(?=$|[\s,;–—)-])/g;
+  for (const m of riga.matchAll(cap)) {
+    const fine = m.index + m[0].length;
+    const dopo = riga.slice(fine).replace(/^[\s,;–—-]+/, '');
+    const l = cittaDa(dopo);
+    if (l) return l;
+    // il CAP dopo la città: «Narni (TR) 05035», «…, Narni 05035»
+    const prima = codaPrima(riga.slice(0, fine - 5));
+    const l2 = prima && !/\b(?:srl|spa|snc|sas|comune|provincia|regione|condominio)\b/i.test(prima)
+      ? cittaDa(prima) : null;
+    if (l2) return l2;
+  }
+  if (!senzaCap) return null;
+  if (/^(?:tel|telefono|fax|cell|e-?mail|mail|pec|p\.?\s*iva|partita|c\.f\.|cf\b)/i.test(riga)) return null;
+  for (const m of riga.matchAll(/\(\s*([A-Za-z]{2})\s*\)/g)) {
+    const sigla = siglaDa(m[1]);
+    if (!sigla) continue;
+    const coda = codaPrima(riga.slice(0, m.index));
+    if (!coda || coda.split(' ').length > 4) continue;
+    // titoli e ragioni sociali non sono città: «Arch. Rossi (PG)», «Alcini Srl (TR)»
+    if (/\b(?:ing|arch|geom|dott|dr|avv|rag|sig|srl|spa|snc|sas|comune|provincia|regione|condominio|amministrat\p{L}*|rup)\b/iu.test(coda)) continue;
+    const l = cittaDa(`${coda} (${sigla})`);
+    if (l) return l;
+  }
+  return null;
+}
+
+/* --- luogo dall'indirizzo del committente: fine --- */
+
 const areas = JSON.parse(await read(SRC, 'data', 'areas.json'));
 const tuttiProgetti = await leggiCartella('progetti', (p, nome) => {
   p.slug = nome;                       // il nome del file è lo slug: non cambia
@@ -449,14 +582,10 @@ function completaProgetto(p) {
 
   if (vuoto(p.committente) && b.committente.length) p.committente = b.committente[0];
   if (vuoto(p.luogo)) {
-    // dall'indirizzo del committente, riga per riga: «via aurelia 292 – 00165
-    // roma (rm)» → «Roma (RM)»; «piazza ridolfi 1 – 05100 TERNI» → «Terni».
-    // Senza sigla tra parentesi si scrive solo la città: la provincia non si
-    // inventa. Se il committente non ha un CAP il luogo resta vuoto: quello
-    // dell'impresa o di CF Consulting direbbe dove sta l'ufficio, non il cantiere.
-    const cap = /(?:^|[^\d])\d{5}\s+([A-Za-zÀ-ÿ'.]+(?:[ -][A-Za-zÀ-ÿ'.]+)*)\s*(?:\(([A-Za-z]{2})\))?\s*(?:$|[,;–—(]|-\s)/;
-    const m = b.committente.map((r) => r.match(cap)).find(Boolean);
-    if (m) p.luogo = titoloCitta(m[1]) + (m[2] ? ` (${m[2].toUpperCase()})` : '');
+    // dall'indirizzo del committente (mai da impresa o progettisti: direbbero
+    // dove sta l'ufficio, non il cantiere), riga per riga. Vedi luogoDaRiga().
+    const l = b.committente.map((r, i) => luogoDaRiga(r, i > 0)).find(Boolean);
+    if (l) p.luogo = l;
   }
   if (vuoto(p.impresa) && b.impresa.length) p.impresa = b.impresa[0];
   if (vuoto(p.responsabile)) {
@@ -504,6 +633,8 @@ function titoloCitta(nome) {
   return nome.trim().toLowerCase().replace(/[\p{L}]+/gu, (w, i) =>
     (i > 0 && minuscole.has(w) ? w : w[0].toUpperCase() + w.slice(1)));
 }
+
+
 // Un progetto appena creato dal pannello di solito non ha «Ordine»: va in
 // cima, nell'archivio e nel feed. In fondo uscirebbe dai primi 30 del feed,
 // e Zapier non lo vedrebbe mai: niente post sui social.
