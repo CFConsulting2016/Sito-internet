@@ -933,6 +933,12 @@ ${voci}
   righe.push('# Generato da build.mjs: non modificare a mano, si riscrive a ogni build.');
   righe.push('# Le voci da cambiare stanno in src/data/redirect.json.');
   righe.push('');
+  // Netlify pubblica tutta la cartella: i file di lavoro (dati grezzi, progetti
+  // in attesa, script, note) li nascondiamo. Il «!» serve perché i file esistono.
+  righe.push('# File di lavoro: non si aprono dal sito');
+  for (const da of ['/src/*', '/strumenti/*', '/mockup/*', '/build.mjs', '/anteprima.py', '/HANDOFF.md'])
+    righe.push(`${da.padEnd(larghezza)} /404.html  404!`);
+  righe.push('');
   blocco('Pagine principali', Object.entries(mappa.pagine));
   blocco(`Schede progetto (${schede.length})`, schede);
   blocco('Pagine servizio', Object.entries(mappa.servizi));

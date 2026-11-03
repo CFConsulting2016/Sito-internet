@@ -2,6 +2,14 @@
 # Generato da build.mjs: non modificare a mano, si riscrive a ogni build.
 # Le voci da cambiare stanno in src/data/redirect.json.
 
+# File di lavoro: non si aprono dal sito
+/src/*                                                                         /404.html  404!
+/strumenti/*                                                                   /404.html  404!
+/mockup/*                                                                      /404.html  404!
+/build.mjs                                                                     /404.html  404!
+/anteprima.py                                                                  /404.html  404!
+/HANDOFF.md                                                                    /404.html  404!
+
 # Pagine principali
 /chi-siamo/                                                                    /chi-siamo.html  301
 /contatti/                                                                     /contatti.html  301
