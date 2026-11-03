@@ -138,12 +138,12 @@ collections:
         name: blocchi
         widget: object
         collapsed: false
-        hint: "Incollate in ogni riquadro il testo così com'è: ogni riga diventa un paragrafo. Dalla prima riga del Committente il sito ricava il nome del committente, dal suo indirizzo (CAP e sigla della provincia) il luogo; dalla prima riga dell'Impresa l'impresa; dalla riga «Progettista responsabile: …» (o dalla riga sotto «Progettista responsabile») il progettista della scheda tecnica."
+        hint: "Incollate in ogni riquadro il testo così com'è: ogni riga diventa un paragrafo. Dalla prima riga del Committente il sito ricava il nome del committente, dal suo indirizzo il luogo; dalla prima riga dell'Impresa l'impresa; dalla riga «Progettista responsabile: …» (o dalla riga sotto «Progettista responsabile») il progettista della scheda tecnica."
         fields:
           - { label: Descrizione del progetto, name: descrizione, widget: text, required: false,
               hint: "La prima riga fa anche da presentazione sotto al titolo." }
           - { label: Committente, name: committente, widget: text, required: false,
-              hint: "Prima riga il nome, poi l'indirizzo con CAP e provincia, per esempio «Via Aurelia 292 – 00165 Roma (RM)». Compare nel testo così com'è e serve anche a ricavare il luogo: senza CAP né sigla della provincia il luogo resta vuoto." }
+              hint: "Prima riga il nome, poi l'indirizzo con CAP e provincia, per esempio «00165 Roma (RM)»." }
           - { label: Impresa appaltatrice, name: impresa, widget: text, required: false }
           - { label: Progettisti, name: progettisti, widget: text, required: false }
           - { label: Servizi svolti, name: servizi, widget: text, required: false }
@@ -240,12 +240,12 @@ collections:
         name: blocchi
         widget: object
         collapsed: false
-        hint: "Incollate in ogni riquadro il testo così com'è: ogni riga diventa un paragrafo. Dalla prima riga del Committente il sito ricava il nome del committente, dal suo indirizzo (CAP e sigla della provincia) il luogo; dalla prima riga dell'Impresa l'impresa; dalla riga «Progettista responsabile: …» (o dalla riga sotto «Progettista responsabile») il progettista della scheda tecnica."
+        hint: "Incollate in ogni riquadro il testo così com'è: ogni riga diventa un paragrafo. Dalla prima riga del Committente il sito ricava il nome del committente, dal suo indirizzo il luogo; dalla prima riga dell'Impresa l'impresa; dalla riga «Progettista responsabile: …» (o dalla riga sotto «Progettista responsabile») il progettista della scheda tecnica."
         fields:
           - { label: Descrizione del progetto, name: descrizione, widget: text, required: false,
               hint: "La prima riga fa anche da presentazione sotto al titolo." }
           - { label: Committente, name: committente, widget: text, required: false,
-              hint: "Prima riga il nome, poi l'indirizzo con CAP e provincia, per esempio «Via Aurelia 292 – 00165 Roma (RM)». Compare nel testo così com'è e serve anche a ricavare il luogo: senza CAP né sigla della provincia il luogo resta vuoto." }
+              hint: "Prima riga il nome, poi l'indirizzo con CAP e provincia, per esempio «00165 Roma (RM)»." }
           - { label: Impresa appaltatrice, name: impresa, widget: text, required: false }
           - { label: Progettisti, name: progettisti, widget: text, required: false }
           - { label: Servizi svolti, name: servizi, widget: text, required: false }
