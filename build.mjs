@@ -448,16 +448,9 @@ function completaProgetto(p) {
   for (const k of ['descrizione', 'committente', 'impresa', 'progettisti', 'servizi']) b[k] = righe(b[k]);
 
   if (vuoto(p.committente) && b.committente.length) p.committente = b.committente[0];
-  if (vuoto(p.luogo)) {
-    // dall'indirizzo del committente, riga per riga: «via aurelia 292 – 00165
-    // roma (rm)» → «Roma (RM)»; «piazza ridolfi 1 – 05100 TERNI» → «Terni».
-    // Senza sigla tra parentesi si scrive solo la città: la provincia non si
-    // inventa. Se il committente non ha un CAP il luogo resta vuoto: quello
-    // dell'impresa o di CF Consulting direbbe dove sta l'ufficio, non il cantiere.
-    const cap = /(?:^|[^\d])\d{5}\s+([A-Za-zÀ-ÿ'.]+(?:[ -][A-Za-zÀ-ÿ'.]+)*)\s*(?:\(([A-Za-z]{2})\))?\s*(?:$|[,;–—(]|-\s)/;
-    const m = b.committente.map((r) => r.match(cap)).find(Boolean);
-    if (m) p.luogo = titoloCitta(m[1]) + (m[2] ? ` (${m[2].toUpperCase()})` : '');
-  }
+  // Il luogo non si ricava dall'indirizzo del committente: è la sede di chi
+  // ha dato l'incarico, non per forza il cantiere. Esce solo se scritto.
+  if (vuoto(p.luogo) && !vuoto(p.luogoCantiere)) p.luogo = String(p.luogoCantiere).trim();
   if (vuoto(p.impresa) && b.impresa.length) p.impresa = b.impresa[0];
   if (vuoto(p.responsabile)) {
     // «Progettista responsabile: Ing. Rossi», oppure «Progettista Responsabile»
@@ -498,12 +491,6 @@ function completaProgetto(p) {
   if (vuoto(p.categoria)) p.categoria = p.cat;
 }
 
-/** «TERNI» → «Terni», «citta' di castello» → «Citta' di Castello» */
-function titoloCitta(nome) {
-  const minuscole = new Set(['di', 'del', 'della', 'dei', 'delle', 'in', 'sul', 'sulla', 'al', 'e', 'nel', 'nell']);
-  return nome.trim().toLowerCase().replace(/[\p{L}]+/gu, (w, i) =>
-    (i > 0 && minuscole.has(w) ? w : w[0].toUpperCase() + w.slice(1)));
-}
 // Un progetto appena creato dal pannello di solito non ha «Ordine»: va in
 // cima, nell'archivio e nel feed. In fondo uscirebbe dai primi 30 del feed,
 // e Zapier non lo vedrebbe mai: niente post sui social.
@@ -828,9 +815,15 @@ for (const p of projects) {
     .replace('{{BLOCCHI}}', projectBlocks(p))
     .replace('{{SCHEDA}}', sheetRows(p))
     .replace('{{GALLERIA}}', gallery(p))
-    .replace('{{OTHERS}}', projectCards(others));
+    .replace('{{OTHERS}}', projectCards(others))
+    // senza luogo scritto la cella non c'è: meglio niente che un luogo dedotto
+    .replace('{{CELLA_LUOGO}}', p.luogo && p.luogo !== '—' ? `      <div class="project-meta__cell">
+        <div class="project-meta__k">Luogo</div>
+        <div class="project-meta__v">${esc(p.luogo)}</div>
+      </div>
+` : '');
 
-  for (const key of ['shortTitle', 'lead', 'committente', 'luogo', 'cellaDataK', 'cellaDataV', 'importo']) {
+  for (const key of ['shortTitle', 'lead', 'committente', 'cellaDataK', 'cellaDataV', 'importo']) {
     content = content.replace(new RegExp(`\\{\\{${key}\\}\\}`, 'g'), esc(p[key] || '—'));
   }
 

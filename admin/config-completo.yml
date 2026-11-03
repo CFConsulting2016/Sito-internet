@@ -134,11 +134,17 @@ collections:
         required: false
         hint: "Solo il numero, senza punti né simbolo: per esempio 1250000. Il sito scrive da solo «€ 1.250.000». Se lo lasci vuoto la voce non compare."
 
+      - label: Luogo del cantiere
+        name: luogoCantiere
+        widget: string
+        required: false
+        hint: "Dove si trova il lavoro, per esempio «Narni (TR)». Il sito non lo ricava dall'indirizzo del committente. Se lo lasciate vuoto la voce non compare."
+
       - label: Testi della pagina
         name: blocchi
         widget: object
         collapsed: false
-        hint: "Incollate in ogni riquadro il testo così com'è: ogni riga diventa un paragrafo. Dalla prima riga del Committente il sito ricava il nome del committente, dal suo indirizzo il luogo; dalla prima riga dell'Impresa l'impresa; dalla riga «Progettista responsabile: …» (o dalla riga sotto «Progettista responsabile») il progettista della scheda tecnica."
+        hint: "Incollate in ogni riquadro il testo così com'è: ogni riga diventa un paragrafo. Dalla prima riga del Committente il sito ricava il nome del committente; dalla prima riga dell'Impresa l'impresa; dalla riga «Progettista responsabile: …» (o dalla riga sotto «Progettista responsabile») il progettista della scheda tecnica."
         fields:
           - { label: Descrizione del progetto, name: descrizione, widget: text, required: false,
               hint: "La prima riga fa anche da presentazione sotto al titolo." }
@@ -236,11 +242,17 @@ collections:
         required: false
         hint: "Solo il numero, senza punti né simbolo: per esempio 1250000. Il sito scrive da solo «€ 1.250.000». Se lo lasci vuoto la voce non compare."
 
+      - label: Luogo del cantiere
+        name: luogoCantiere
+        widget: string
+        required: false
+        hint: "Dove si trova il lavoro, per esempio «Narni (TR)». Il sito non lo ricava dall'indirizzo del committente. Se lo lasciate vuoto la voce non compare."
+
       - label: Testi della pagina
         name: blocchi
         widget: object
         collapsed: false
-        hint: "Incollate in ogni riquadro il testo così com'è: ogni riga diventa un paragrafo. Dalla prima riga del Committente il sito ricava il nome del committente, dal suo indirizzo il luogo; dalla prima riga dell'Impresa l'impresa; dalla riga «Progettista responsabile: …» (o dalla riga sotto «Progettista responsabile») il progettista della scheda tecnica."
+        hint: "Incollate in ogni riquadro il testo così com'è: ogni riga diventa un paragrafo. Dalla prima riga del Committente il sito ricava il nome del committente; dalla prima riga dell'Impresa l'impresa; dalla riga «Progettista responsabile: …» (o dalla riga sotto «Progettista responsabile») il progettista della scheda tecnica."
         fields:
           - { label: Descrizione del progetto, name: descrizione, widget: text, required: false,
               hint: "La prima riga fa anche da presentazione sotto al titolo." }
