@@ -3,15 +3,15 @@
  "sito": "https://biblus.acca.it/",
  "feed": "https://biblus.acca.it/feed/",
  "base": "https://biblus.acca.it",
- "attiva": false,
+ "attiva": true,
  "mantieniPubblicati": true,
- "autorizzazione": "richiesta",
+ "autorizzazione": "concessa",
  "attribuzione": "BibLus – biblus.acca.it",
  "condizioni": "https://biblus.acca.it/termini-d-uso-proprieta-intellettuale-e-responsabilita/",
  "revisione": {
-  "stato": "da-verificare",
-  "data": "2026-09-25",
-  "nota": "In attesa di autorizzazione scritta da ACCA software S.p.A. I termini d'uso permettono la condivisione dei collegamenti e la citazione di brevi estratti con attribuzione «BibLus – biblus.acca.it» e link diretto alla pagina originaria, e ammettono l'uso del feed RSS nei modi tecnici messi a disposizione. Vietano però la ripubblicazione sistematica senza autorizzazione scritta: è quella la parola che rende incerto un automatismo. Richiesta inviata a redazione.biblus@acca.it. Non attivare prima della risposta scritta."
+  "stato": "ok",
+  "data": "2026-11-11",
+  "nota": "Risposta scritta di BibLus al cliente (novembre 2026): si possono condividere i link e citare brevi estratti indicando titolo dell'articolo, fonte «BibLus – biblus.acca.it» e link diretto alla pagina originale. Non sono autorizzate la riproduzione integrale o sostanziale né la ripubblicazione sistematica degli articoli. Il sito mostra solo titolo, «Leggi su BibLus – biblus.acca.it» e link, senza testo né foto: letta così, non è ripubblicazione degli articoli. «Sistematica» però non è chiarito: se BibLus obietta, spegnere la fonte o ridurla a una volta a settimana."
  },
  "ordine": 5
 }
