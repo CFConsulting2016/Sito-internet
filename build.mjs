@@ -682,7 +682,9 @@ const condivisione = new Map();   // slug -> { file, byte }
     try {
       const sorgente = await readFile(join(ROOT, p.img));
       const impronta = createHash('sha1').update(OG_VERSIONE).update(sorgente).digest('hex').slice(0, 8);
-      const file = `${OG.cartella}/${p.slug}-${impronta}.jpg`;
+      // nomi oltre 255 caratteri non si possono scrivere: si accorcia solo quando serve,
+      // così le immagini dei progetti già condivisi non cambiano indirizzo
+      const file = `${OG.cartella}/${p.slug.length > 200 ? p.slug.slice(0, 200) : p.slug}-${impronta}.jpg`;
       const percorso = join(ROOT, file);
       usati.add(file);
       let byte = await stat(percorso).then((s) => s.size, () => 0);

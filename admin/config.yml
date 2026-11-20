@@ -99,7 +99,8 @@ collections:
     format: json
     create: true
     delete: true
-    slug: '{{slug}}'
+    # il nome del file si ferma a 100 caratteri (i server non accettano nomi oltre 255); il titolo resta intero
+    slug: "{{fields.shortTitle | truncate(100, '-')}}"
     identifier_field: shortTitle
     summary: '{{shortTitle}}'
     fields:
