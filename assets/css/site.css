@@ -490,7 +490,11 @@ textarea:focus-visible,
   overflow: hidden;
   display: flex;
   align-items: center;
+  /* all'apertura la copertina riempie lo schermo sotto la barra in alto;
+     i progetti si vedono scorrendo. --altezza-header la misura site.js */
   min-height: 620px;
+  min-height: max(620px, calc(100vh - var(--altezza-header, 73px)));
+  min-height: max(620px, calc(100svh - var(--altezza-header, 73px)));
 }
 .hero__grid { position: absolute; inset: 0; }
 .hero__grid svg {

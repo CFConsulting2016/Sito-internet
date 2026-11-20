@@ -8,6 +8,15 @@
 
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
 
+  /* La copertina della home riempie lo schermo sotto la barra in alto:
+     il CSS ha bisogno dell'altezza vera della barra, che cambia col telefono. */
+  function misuraHeader() {
+    var h = document.querySelector('.site-header');
+    if (h) document.documentElement.style.setProperty('--altezza-header', h.offsetHeight + 'px');
+  }
+  misuraHeader();
+  window.addEventListener('resize', misuraHeader);
+
   /* --- 1. Rivelazioni allo scroll --------------------------- */
 
   function initReveal() {
