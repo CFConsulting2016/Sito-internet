@@ -46,6 +46,55 @@ const esc = (s) => String(s)
   .replace(/>/g, '&gt;')
   .replace(/"/g, '&quot;');
 
+/** Taglia un testo a `max` caratteri alla parola intera, con «…» in coda.
+ *  Toglie la punteggiatura e le parole vuote rimaste appese alla fine. */
+function tagliaParola(testo, max) {
+  const s = String(testo || '').replace(/\s+/g, ' ').trim();
+  if (s.length <= max) return s;
+  let t = s.slice(0, max).replace(/\s+\S*$/, '');   // «…» compreso nei max
+  const appese = /(?:[\s,;:–—\-(/]+|\s+(?:e|ed|o|di|del|della|dei|degli|delle|da|in|a|al|alla|con|per|su|il|lo|la|le|gli|i|un|una|che|è|n\.?))$/i;
+  while (appese.test(t)) t = t.replace(appese, '');
+  return t + '…';
+}
+
+/** Primo periodo di un testo, entro `max` caratteri. Non si ferma sui punti
+ *  delle abbreviazioni («n. 63», «D.Lgs. 81», «art. 14», «c.a.»): finiva lì
+ *  e la frase restava monca. Se il periodo è troppo lungo, taglia alla parola. */
+const ABBREVIAZIONI = /(?:^|[\s(.])(?:\p{L}{1,2}|d\.lgs|lgs|art|artt|ing|arch|geom|dott|sig|ss|pag|cfr|ecc|loc|fraz|ex|tab|cap|reg|dir|min|lett|co)\.$/iu;
+function firstSentence(text, max = 180) {
+  // via anche i caratteri invisibili incollati dal vecchio sito (trattino morbido)
+  const s = String(text || '').replace(/[­​﻿]/g, '').replace(/\s+/g, ' ').trim();
+  if (!s) return '';
+  const fine = /[.!?](?=\s|$)/g;
+  let m;
+  while ((m = fine.exec(s))) {
+    const fino = s.slice(0, m.index + 1);
+    if (fino.length < 40) continue;
+    if (m[0] === '.' && ABBREVIAZIONI.test(fino)) continue;
+    if (fino.length > max) break;
+    return fino;
+  }
+  return tagliaParola(s, max);
+}
+
+/** Larghezza e altezza di un'immagine WebP, lette dall'intestazione del file:
+ *  servono a width/height dei marchi, senza dipendere da sharp. */
+async function misureWebp(file) {
+  try {
+    const b = await readFile(join(ROOT, file));
+    if (b.toString('ascii', 0, 4) !== 'RIFF' || b.toString('ascii', 8, 12) !== 'WEBP') return null;
+    const tipo = b.toString('ascii', 12, 16);
+    if (tipo === 'VP8X') return { w: 1 + b.readUIntLE(24, 3), h: 1 + b.readUIntLE(27, 3) };
+    if (tipo === 'VP8L') {
+      const v = b.readUInt32LE(21);
+      return { w: 1 + (v & 0x3fff), h: 1 + ((v >> 14) & 0x3fff) };
+    }
+    if (tipo === 'VP8 ') return { w: b.readUInt16LE(26) & 0x3fff, h: b.readUInt16LE(28) & 0x3fff };
+  } catch { /* file mancante: niente misure */ }
+  return null;
+}
+const attrMisure = (m) => (m ? ` width="${m.w}" height="${m.h}"` : '');
+
 /** "Sostenibilità ambientale" -> "sostenibilita-ambientale" */
 const slug = (s) => s
   .normalize('NFD').replace(/[̀-ͯ]/g, '')
@@ -190,12 +239,12 @@ function publicBodies(projects) {
     .map((p) => p.committente.toUpperCase())).size;
 }
 
-function certLogos(certificazioni) {
+function certLogos(certificazioni, misure) {
   if (!certificazioni.length) {
     return '      <div class="cert"><span class="cert__todo">loghi da inserire</span></div>';
   }
   return certificazioni.map((c) => `      <div class="cert">
-        <img class="cert__logo" src="${c.file}" alt="${esc(c.nome)}" loading="lazy" />
+        <img class="cert__logo" src="${c.file}" alt="${esc(c.nome)}"${attrMisure(misure.get(c.file))} loading="lazy" />
         <span class="cert__name">${esc(c.nome)}</span>
       </div>`).join('\n');
 }
@@ -261,7 +310,7 @@ function rigaAlbo(a) {
 /** Fascia dei marchi sopra al piede: certificazione d'impresa e sostegni.
  *  Accanto al marchio stanno norma e numero di certificato, come chiedono
  *  i regolamenti d'uso degli enti. */
-function fasciaMarchi(azienda) {
+function fasciaMarchi(azienda, misure) {
   const voci = [];
   for (const c of (azienda.certificazioni || []).filter((x) => x.file)) { // senza marchio non c'è logo da mostrare
     const testo = `${c.nome} &middot; certificato n. ${c.numero} &middot; ${c.ente}`;
@@ -276,7 +325,7 @@ function fasciaMarchi(azienda) {
   return `<section class="marchi">
   <div class="container marchi__inner">
 ${voci.map((v) => `    <figure class="marchio">
-      <img class="marchio__logo" src="${v.file}" alt="${esc(v.alt)}" loading="lazy" />
+      <img class="marchio__logo" src="${v.file}" alt="${esc(v.alt)}"${attrMisure(misure.get(v.file))} loading="lazy" />
       <figcaption class="marchio__testo">${v.testo}</figcaption>
     </figure>`).join('\n')}
   </div>
@@ -549,6 +598,56 @@ const azienda = JSON.parse(await read(SRC, 'data', 'azienda.json'));
   azienda.certificazioniPersonali = valide(azienda.certificazioniPersonali);
 }
 
+/* --- contatti e dati strutturati ---------------------------- */
+// Il dominio definitivo, come nei canonical: i dati strutturati descrivono
+// l'azienda, non l'indirizzo provvisorio dell'anteprima.
+const DOMINIO = 'https://www.cieffeconsulting.eu/';
+const contatti = azienda.contatti;
+
+/** "0744 196 3005" -> "+3907441963005" (per i link tel: e lo schema) */
+const telInternazionale = (t) => {
+  const cifre = String(t).replace(/[^\d+]/g, '');
+  return cifre.startsWith('+') ? cifre : `+39${cifre}`;
+};
+
+/** Scheda JSON-LD dell'azienda, la stessa su ogni pagina. Solo dati già
+ *  presenti in azienda.json: niente coordinate, prezzi o recensioni. */
+const jsonLd = (() => {
+  const i = contatti.indirizzo;
+  const dati = {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    '@id': `${DOMINIO}#azienda`,
+    name: 'CF Consulting',
+    legalName: azienda.legale.denominazione,
+    url: DOMINIO,
+    logo: `${DOMINIO}img/logo-cf-dark.webp`,
+    foundingDate: azienda.fondazione,
+    vatID: azienda.legale.partitaIva,
+    telephone: telInternazionale(contatti.telefono),
+    email: contatti.email,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: i.via,
+      postalCode: i.cap,
+      addressLocality: i.citta,
+      addressRegion: i.provincia,
+      addressCountry: i.paese,
+    },
+    openingHoursSpecification: contatti.orari.fasce.map(([apre, chiude]) => ({
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: contatti.orari.giorni.map((g) => `https://schema.org/${g}`),
+      opens: apre,
+      closes: chiude,
+    })),
+    sameAs: contatti.social,
+  };
+  // dentro <script> un «</script>» o un «<!--» nei dati chiuderebbe il blocco
+  const testo = JSON.stringify(dati)
+    .replace(/</g, '\\u003c').replace(/>/g, '\\u003e').replace(/&/g, '\\u0026');
+  return `<script type="application/ld+json">\n${testo}\n</script>`;
+})();
+
 /* --- immagini di condivisione (og:image e feed) -------------- */
 // Facebook, LinkedIn e WhatsApp documentano JPEG, PNG e GIF, non WebP, e
 // consigliano 1200x630: per ogni progetto con foto se ne ricava un JPEG
@@ -634,10 +733,21 @@ header = header
 
 const schedeCertificati = await certificatiSchede(azienda);
 
-footer = fasciaMarchi(azienda) + '\n\n' + footer
+// misure vere dei marchi (fascia in fondo e loghi delle certificazioni):
+// con width e height la pagina non salta quando l'immagine arriva
+const misureMarchi = new Map();
+for (const f of [...azienda.certificazioni.map((c) => c.file), ...(azienda.sostegni || []).map((s) => s.file)]) {
+  if (f && !misureMarchi.has(f)) misureMarchi.set(f, await misureWebp(f));
+}
+
+footer = fasciaMarchi(azienda, misureMarchi) +'\n\n' + footer
   .replace('{{RIGA_LEGALE}}', rigaLegale(azienda.legale))
   .replace('{{RIGA_ALBO}}', rigaAlbo(azienda.legale.albo))
-  .replace('{{ANNO}}', String(new Date().getFullYear()));
+  .replace('{{ANNO}}', String(new Date().getFullYear()))
+  .replace('{{FOOTER_INDIRIZZO}}', esc(`${contatti.indirizzo.via}, ${contatti.indirizzo.citta}`))
+  .replace('{{FOOTER_TEL_LINK}}', telInternazionale(contatti.telefono))
+  .replace('{{FOOTER_TEL}}', esc(contatti.telefono))
+  .replace(/\{\{FOOTER_EMAIL\}\}/g, esc(contatti.email));
 
 // le cartelle generate si ricreano da zero: altrimenti restano in giro
 // le pagine di build precedenti con slug ormai cambiati
@@ -674,13 +784,19 @@ async function emit(meta, content) {
     .replace(/\{\{assetVersion\}\}/g, assetVersion)
     .replace(/\{\{ogImage\}\}/g, SITE + (meta.ogImage || OG_PREDEFINITA))
     .replace(/\{\{ogImageAlt\}\}/g, esc(meta.ogImageAlt || meta.title))
+    .replace('{{robots}}', meta.noindex ? '<meta name="robots" content="noindex" />\n' : '')
+    .replace('{{jsonld}}', () => jsonLd)
     .replace('{{header}}', markCurrent(header, meta.nav))
     .replace('{{content}}', content.replace('{{heroGrid}}', heroGrid).trim())
     .replace('{{footer}}', footer);
 
-  // pagine in sottocartella: riscrive i percorsi relativi
-  if (base) {
-    const rialza = (url) => /^(https?:|mailto:|tel:|#|\.\.\/|data:)/.test(url) ? url : base + url;
+  // pagine in sottocartella: riscrive i percorsi relativi.
+  // La 404 (meta.assoluti) Netlify la serve a qualunque indirizzo sbagliato,
+  // anche /a/b/c.html: lì i percorsi relativi non tornano, servono quelli
+  // dalla radice. In locale funzionano lo stesso se si serve la radice.
+  if (base || meta.assoluti) {
+    const prefisso = meta.assoluti ? '/' : base;
+    const rialza = (url) => /^(https?:|mailto:|tel:|#|\.\.\/|\/|data:)/.test(url) ? url : prefisso + url;
 
     html = html.replace(/(src|href)="([^"]+)"/g,
       (_, attr, url) => `${attr}="${rialza(url)}"`);
@@ -730,7 +846,7 @@ for (const file of (await readdir(join(SRC, 'pages'))).filter((f) => f.endsWith(
     .replace('{{NEWS_NOTA}}', esc(paginaNews.nota))
     .replace('{{TEAM}}', teamCards(team))
     .replace('{{PUBLIC_BODIES}}', String(publicBodies(projects)))
-    .replace('{{CERTIFICAZIONI}}', certLogos(azienda.certificazioni.filter((c) => c.file)))
+    .replace('{{CERTIFICAZIONI}}', certLogos(azienda.certificazioni.filter((c) => c.file), misureMarchi))
     .replace('{{SEDE}}', sedeMedia(azienda.sede))
     .replace('{{MAPPA_SEDE}}', mappaSede())
     .replace('{{RACCONTO_FOTO_1}}', raccontoFoto(azienda.sede, 3, 'La sala riunioni di CF Consulting a Terni'))
@@ -742,15 +858,8 @@ for (const file of (await readdir(join(SRC, 'pages'))).filter((f) => f.endsWith(
 /* --- 2. le 22 pagine sotto-servizio ------------------------- */
 
 const tplServizio = await read(SRC, 'templates', 'servizio.html');
+const DESC_MAX_SERVIZI = 160;
 const relatedPool = projects.filter((p) => p.img).slice(0, 3);
-
-/** Primo periodo dell'introduzione, usato come sommario nell'hero. */
-function firstSentence(text, max = 180) {
-  if (!text) return '';
-  const m = text.match(/^(.{40,}?[.!?])(\s|$)/);
-  const s = (m ? m[1] : text).trim();
-  return s.length > max ? s.slice(0, max - 1).replace(/\s\S*$/, '') + '…' : s;
-}
 
 function prose(paragraphs) {
   if (!paragraphs.length) {
@@ -773,9 +882,26 @@ ${items.map((i) => `            <li>${esc(i)}</li>`).join('\n')}
       </div>`;
 }
 
+/* Meta description dei servizi: il primo periodo dell'introduzione, se è
+   una frase vera. In molte pagine il primo paragrafo è solo il nome del
+   servizio ripetuto («Medicina del lavoro»): allora una frase neutra col
+   nome, seguita dal primo periodo utile della pagina, entro 160 caratteri. */
+const testoServizio = (area, item) => serviceText[`${area.id}/${slug(item)}`] || { intro: [], elenco: [] };
+const tuttoMaiuscolo = (s) => !/\p{Ll}/u.test(s);
+const candidateServizi = areas.flatMap((a) => a.items.map((it) => firstSentence(testoServizio(a, it).intro[0], DESC_MAX_SERVIZI)));
+function descrizioneServizio(area, item) {
+  const intro = testoServizio(area, item).intro;
+  const d = firstSentence(intro[0], DESC_MAX_SERVIZI);
+  const doppia = candidateServizi.filter((x) => x === d).length > 1;
+  if (d && d.length >= 70 && !doppia && !tuttoMaiuscolo(d)) return d;
+  const utile = intro.slice(1).find((x) => x.trim().length >= 60 && !tuttoMaiuscolo(x));
+  return tagliaParola(`${item}: servizio di CF Consulting, studio di ingegneria a Terni.`
+    + (utile ? ` ${firstSentence(utile, 400)}` : ''), DESC_MAX_SERVIZI);
+}
+
 for (const area of areas) {
   for (const item of area.items) {
-    const testo = serviceText[`${area.id}/${slug(item)}`] || { intro: [], elenco: [] };
+    const testo = testoServizio(area, item);
     const lead = firstSentence(testo.intro[0]) || `Area ${area.name.toLowerCase()}.`;
 
     const content = tplServizio
@@ -791,9 +917,9 @@ for (const area of areas) {
     await emit({
       out: `servizi/${area.id}/${slug(item)}.html`,
       nav: 'servizi',
-      title: `${item} — CF Consulting, Terni`,
-      description: firstSentence(testo.intro[0], 155)
-        || `${item}: il servizio di CF Consulting, studio di ingegneria a Terni.`,
+      // oltre i 65 caratteri Google taglia: «, Terni» è il primo a cadere
+      title: `${item} — CF Consulting, Terni`.length > 65 ? `${item} — CF Consulting` : `${item} — CF Consulting, Terni`,
+      description: descrizioneServizio(area, item),
       canonical: `${SITE}servizi/${area.id}/${slug(item)}.html`
     }, content);
   }
@@ -858,6 +984,30 @@ function sheetRows(p) {
   ).join('\n');
 }
 
+/** Un valore da mostrare: non vuoto e non il trattino dei campi assenti. */
+const pieno = (v) => v !== undefined && v !== null && String(v).trim() !== '' && String(v).trim() !== '—';
+
+/** La griglia in alto: solo le celle con un valore. Senza luogo scritto la
+ *  cella non c'è (meglio niente che un luogo dedotto), e così per data e
+ *  importo: niente righe con il solo «—». */
+function projectMeta(p) {
+  const celle = [
+    ['Committente', p.committente],
+    ['Luogo', p.luogo],
+    [p.cellaDataK, p.cellaDataV],
+    ['Importo dei lavori', p.importo],
+  ].filter(([, v]) => pieno(v));
+  if (!celle.length) return '';
+  // con una sola cella la griglia non si allarga a tutta la riga
+  return `    <div class="project-meta${celle.length === 1 ? ' project-meta--sola' : ''} hero-in hero-in--late">
+${celle.map(([k, v]) => `      <div class="project-meta__cell">
+        <div class="project-meta__k">${esc(k)}</div>
+        <div class="project-meta__v">${esc(v)}</div>
+      </div>`).join('\n')}
+    </div>
+`;
+}
+
 function gallery(p) {
   const foto = (p.foto || []).slice(1);   // la prima è già l'immagine di apertura
   if (!foto.length) return '';
@@ -881,8 +1031,33 @@ ${items}
 </section>`;
 }
 
+/* Meta description dei progetti. Il primo periodo del testo del cliente va
+   bene quando è una frase vera; non quando è un codice di gara («CIG …»,
+   «CUP … – CIG …»), quando è troppo corto o quando è uguale su più pagine.
+   Allora si usa un testo neutro col titolo del progetto, scritto
+   esattamente come l'ha scritto il cliente: i testi del cliente qui non si
+   correggono, né le maiuscole né altro. */
+const DESC_MIN = 70;
+const DESC_MAX = 160;
+const soloCodici = (s) => {
+  if (/\b(CIG|CUP|commessa|codice fiscale|partita iva|p\.\s?iva)\b/i.test(s)) return true;
+  const lettere = (s.match(/\p{L}/gu) || []).length;
+  const cifre = (s.match(/\d/g) || []).length;
+  return cifre > lettere;
+};
+const descrizioneDiRipiego = (p) => tagliaParola(
+  `${p.shortTitle} – progetto di CF Consulting, studio di ingegneria, architettura ed energia a Terni.`, DESC_MAX);
+const candidataProgetto = new Map(projects.map((p) => [p.slug, firstSentence(p.lead, DESC_MAX)]));
+const quanteVolte = new Map();
+for (const d of candidataProgetto.values()) quanteVolte.set(d, (quanteVolte.get(d) || 0) + 1);
+function descrizioneProgetto(p) {
+  const d = candidataProgetto.get(p.slug);
+  if (!d || d.length < DESC_MIN || soloCodici(d) || quanteVolte.get(d) > 1) return descrizioneDiRipiego(p);
+  return d;
+}
+
 for (const p of projects) {
-  const others = projects.filter((o) => o.slug !== p.slug && o.img).slice(0, 3);
+  const others =projects.filter((o) => o.slug !== p.slug && o.img).slice(0, 3);
 
   const figure = p.img
     ? `<img src="${p.img}" ${srcset(p.img)} sizes="(max-width: 1240px) 100vw, 1184px"
@@ -895,22 +1070,15 @@ for (const p of projects) {
     .replace('{{SCHEDA}}', sheetRows(p))
     .replace('{{GALLERIA}}', gallery(p))
     .replace('{{OTHERS}}', projectCards(others))
-    // senza luogo scritto la cella non c'è: meglio niente che un luogo dedotto
-    .replace('{{CELLA_LUOGO}}', p.luogo && p.luogo !== '—' ? `      <div class="project-meta__cell">
-        <div class="project-meta__k">Luogo</div>
-        <div class="project-meta__v">${esc(p.luogo)}</div>
-      </div>
-` : '');
-
-  for (const key of ['shortTitle', 'lead', 'committente', 'cellaDataK', 'cellaDataV', 'importo']) {
-    content = content.replace(new RegExp(`\\{\\{${key}\\}\\}`, 'g'), esc(p[key] || '—'));
-  }
+    .replace('{{LEAD}}', pieno(p.lead) ? `      <p class="page-hero__lead">${esc(p.lead)}</p>\n` : '')
+    .replace('{{PROJECT_META}}', projectMeta(p))
+    .replace(/\{\{shortTitle\}\}/g, esc(p.shortTitle || '—'));
 
   await emit({
     out: projectHref(p),
     nav: 'progetti',
     title: `${p.shortTitle} — CF Consulting`,
-    description: firstSentence(p.lead, 155) || `${p.title}. Progetto CF Consulting.`,
+    description: descrizioneProgetto(p),
     canonical: SITE + projectHref(p),
     ogImage: ogImmagine(p),
     ogImageAlt: condivisione.has(p.slug) ? `${p.shortTitle} — foto del progetto` : undefined

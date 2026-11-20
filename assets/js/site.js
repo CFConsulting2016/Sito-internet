@@ -357,6 +357,19 @@
     // resta quello del browser, che blocca l'invio senza la casella privacy
     form.noValidate = true;
 
+    // ogni messaggio d'errore è legato al suo campo (aria-describedby) e
+    // annunciato dai lettori di schermo quando compare (aria-live)
+    Array.prototype.forEach.call(form.querySelectorAll('.form__field'), function (box, i) {
+      var slot = box.querySelector('.form__error');
+      var input = box.querySelector('input, textarea');
+      if (!slot || !input) return;
+      if (!slot.id) slot.id = (input.id || 'cf-campo-' + i) + '-err';
+      slot.setAttribute('aria-live', 'polite');
+      var desc = (input.getAttribute('aria-describedby') || '').split(/\s+/).filter(Boolean);
+      if (desc.indexOf(slot.id) < 0) desc.push(slot.id);
+      input.setAttribute('aria-describedby', desc.join(' '));
+    });
+
     function fieldError(input, message) {
       var box = input.closest('.form__field');
       var slot = box && box.querySelector('.form__error');

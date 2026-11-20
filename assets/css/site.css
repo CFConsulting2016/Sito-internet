@@ -755,6 +755,8 @@ textarea:focus-visible,
   margin-bottom: 18px;
 }
 .site-footer__lines { font-size: 13.5px; line-height: 1.9; }
+.site-footer__lines a { color: inherit; }
+.site-footer__lines a:hover { color: #fff; }
 .site-footer__nav { display: flex; flex-direction: column; gap: 9px; font-size: 13.5px; }
 .site-footer__nav a { color: rgba(255,255,255,.62); }
 .site-footer__nav a:hover { color: #fff; }
@@ -1368,6 +1370,7 @@ textarea:focus-visible,
   grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
   border: 1px solid var(--on-navy-rule-2);
 }
+.project-meta--sola { max-width: 320px; }
 .project-meta__cell {
   background: var(--navy);
   padding: 20px 18px;
@@ -1640,11 +1643,17 @@ textarea:focus-visible,
   font-family: inherit;
   font-size: 15px;
   color: var(--text);
-  outline: none;
   transition: border-color .2s ease;
 }
 .form textarea { resize: vertical; }
 .form input:focus, .form textarea:focus { border-color: var(--red); }
+/* il bordo rosso da solo non basta a chi naviga da tastiera: anello visibile */
+.form input:focus-visible,
+.form textarea:focus-visible {
+  border-color: var(--red);
+  outline: 2px solid var(--red);
+  outline-offset: 2px;
+}
 .form [aria-invalid="true"] { border-color: var(--red); }
 
 .form__field { display: flex; flex-direction: column; gap: 6px; }

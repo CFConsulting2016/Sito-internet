@@ -31,6 +31,40 @@
    "stato": "Italia"
   }
  },
+ "contatti": {
+  "indirizzo": {
+   "via": "Via A. Bartocci 7/T",
+   "cap": "05100",
+   "citta": "Terni",
+   "provincia": "TR",
+   "paese": "IT"
+  },
+  "telefono": "0744 196 3005",
+  "email": "info@cieffeconsulting.eu",
+  "orari": {
+   "giorni": [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday"
+   ],
+   "fasce": [
+    [
+     "09:00",
+     "13:00"
+    ],
+    [
+     "15:00",
+     "19:30"
+    ]
+   ]
+  },
+  "social": [
+   "https://www.linkedin.com/company/cf-consulting-s-r-l/",
+   "https://www.facebook.com/cieffeconsultingsrl"
+  ]
+ },
  "sostegni": [
   {
    "nome": "I Bambini delle Fate",
