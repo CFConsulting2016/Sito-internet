@@ -1,0 +1,14 @@
+{
+  "name": "cf-consulting-sito",
+  "private": true,
+  "description": "Sito statico CF Consulting: node build.mjs genera le pagine.",
+  "scripts": {
+    "build": "node build.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "dependencies": {
+    "sharp": "0.35.5"
+  }
+}

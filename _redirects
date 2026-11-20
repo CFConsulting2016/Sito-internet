@@ -6,7 +6,10 @@
 /src/*                                                                         /404.html  404!
 /strumenti/*                                                                   /404.html  404!
 /mockup/*                                                                      /404.html  404!
+/node_modules/*                                                                /404.html  404!
 /build.mjs                                                                     /404.html  404!
+/package.json                                                                  /404.html  404!
+/package-lock.json                                                             /404.html  404!
 /anteprima.py                                                                  /404.html  404!
 /HANDOFF.md                                                                    /404.html  404!
 

@@ -3,9 +3,13 @@
  *
  * Unisce il partial condiviso (header + pannello servizi + drawer + footer)
  * alle pagine in src/pages/ e ai due template in src/templates/, e scrive
- * HTML statico nella radice del progetto. Nessuna dipendenza: `node build.mjs`.
+ * HTML statico nella radice del progetto: `node build.mjs`.
+ * Unica dipendenza, facoltativa: sharp, per le immagini di condivisione JPEG
+ * (vedi «immagini di condivisione» più sotto). Senza, il sito si costruisce
+ * lo stesso.
  */
-import { readFile, writeFile, readdir, mkdir, rm, stat } from 'node:fs/promises';
+import { readFile, writeFile, readdir, mkdir, rm, stat, unlink } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -544,6 +548,80 @@ const azienda = JSON.parse(await read(SRC, 'data', 'azienda.json'));
   azienda.certificazioni = valide(azienda.certificazioni);
   azienda.certificazioniPersonali = valide(azienda.certificazioniPersonali);
 }
+
+/* --- immagini di condivisione (og:image e feed) -------------- */
+// Facebook, LinkedIn e WhatsApp documentano JPEG, PNG e GIF, non WebP, e
+// consigliano 1200x630: per ogni progetto con foto se ne ricava un JPEG
+// dalla prima foto, ritagliato al centro. Lo fa il build, così funziona anche
+// per i progetti nuovi caricati dal pannello (che carica solo WebP).
+//
+// Il nome contiene un'impronta della foto sorgente: /img/* è in cache per un
+// anno (netlify.toml) e Meta ricorda l'anteprima per indirizzo d'immagine,
+// quindi copertina nuova = indirizzo nuovo. Se il file con quel nome c'è già
+// non si rifà: quelli dei progetti esistenti sono nel repository, su Netlify
+// si generano solo i nuovi. Senza sharp, o se una foto non si legge, si usa
+// l'immagine predefinita (strumenti/immagine-condivisione.mjs) e il build
+// va avanti lo stesso.
+const OG = { w: 1200, h: 630, maxByte: 300 * 1024, cartella: 'img/condivisione/progetti' };
+const OG_PREDEFINITA = 'img/condivisione/cf-consulting.jpg';
+const OG_VERSIONE = 'v1';   // da cambiare se cambia il ritaglio: rinomina e rifà tutti i file
+
+let sharp = null;
+try {
+  if (process.env.CF_SENZA_SHARP) throw new Error('disattivato con CF_SENZA_SHARP');
+  sharp = (await import('sharp')).default;
+} catch (err) {
+  console.log(`AVVISO: sharp non disponibile (${err.code || err.message}): i progetti`);
+  console.log('senza JPEG di condivisione già pronto useranno l\'immagine predefinita.');
+}
+
+const condivisione = new Map();   // slug -> { file, byte }
+{
+  const usati = new Set();
+  let generati = 0;
+  for (const p of projects.filter((q) => q.img)) {
+    try {
+      const sorgente = await readFile(join(ROOT, p.img));
+      const impronta = createHash('sha1').update(OG_VERSIONE).update(sorgente).digest('hex').slice(0, 8);
+      const file = `${OG.cartella}/${p.slug}-${impronta}.jpg`;
+      const percorso = join(ROOT, file);
+      usati.add(file);
+      let byte = await stat(percorso).then((s) => s.size, () => 0);
+      if (!byte) {
+        if (!sharp) continue;
+        await mkdir(join(ROOT, OG.cartella), { recursive: true });
+        // qualità 80; se una foto molto dettagliata supera il limite, si scende
+        let jpeg;
+        for (const quality of [80, 72, 64, 56]) {
+          jpeg = await sharp(sorgente)
+            .rotate()                                   // segue l'orientamento EXIF
+            .resize(OG.w, OG.h, { fit: 'cover', position: 'centre' })
+            .flatten({ background: '#FFFFFF' })         // eventuale trasparenza
+            .jpeg({ quality, progressive: true, mozjpeg: true })
+            .toBuffer();
+          if (jpeg.length <= OG.maxByte) break;
+        }
+        await writeFile(percorso, jpeg);
+        byte = jpeg.length;
+        generati++;
+      }
+      condivisione.set(p.slug, { file, byte });
+    } catch (err) {
+      console.log(`AVVISO: immagine di condivisione non creata per ${p.slug} (${err.message}): uso la predefinita`);
+    }
+  }
+  // via i JPEG di copertine non più usate (solo in questa cartella)
+  let tolti = 0;
+  for (const nome of await readdir(join(ROOT, OG.cartella)).catch(() => [])) {
+    if (nome.endsWith('.jpg') && !usati.has(`${OG.cartella}/${nome}`)) {
+      await unlink(join(ROOT, OG.cartella, nome));
+      tolti++;
+    }
+  }
+  console.log(`condivisione: ${condivisione.size} JPEG progetto (${generati} nuovi${tolti ? `, ${tolti} vecchi tolti` : ''})`);
+}
+const ogImmagine = (p) => condivisione.get(p.slug)?.file || OG_PREDEFINITA;
+
 const layout = await read(SRC, 'layout.html');
 const heroGrid = (await read(SRC, 'partials', 'hero-grid.html')).trim();
 let footer = (await read(SRC, 'partials', 'footer.html')).trim();
@@ -594,7 +672,8 @@ async function emit(meta, content) {
     .replace(/\{\{description\}\}/g, esc(meta.description))
     .replace(/\{\{canonical\}\}/g, meta.canonical)
     .replace(/\{\{assetVersion\}\}/g, assetVersion)
-    .replace(/\{\{ogImage\}\}/g, meta.ogImage || SITE + 'img/logo-cf-dark.webp')
+    .replace(/\{\{ogImage\}\}/g, SITE + (meta.ogImage || OG_PREDEFINITA))
+    .replace(/\{\{ogImageAlt\}\}/g, esc(meta.ogImageAlt || meta.title))
     .replace('{{header}}', markCurrent(header, meta.nav))
     .replace('{{content}}', content.replace('{{heroGrid}}', heroGrid).trim())
     .replace('{{footer}}', footer);
@@ -833,7 +912,8 @@ for (const p of projects) {
     title: `${p.shortTitle} — CF Consulting`,
     description: firstSentence(p.lead, 155) || `${p.title}. Progetto CF Consulting.`,
     canonical: SITE + projectHref(p),
-    ogImage: p.img ? SITE + p.img : undefined
+    ogImage: ogImmagine(p),
+    ogImageAlt: condivisione.has(p.slug) ? `${p.shortTitle} — foto del progetto` : undefined
   }, content);
 }
 
@@ -847,10 +927,9 @@ const sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n'
 await writeFile(join(ROOT, 'sitemap.xml'), sitemap, 'utf8');
 
 /* --- feed dei progetti -------------------------------------- */
-// Le foto migrate sono WebP, quelle caricate dal pannello di solito JPEG:
-// il tipo dichiarato nel feed segue l'estensione del file.
-const tipoImmagine = (f) => ({ jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'image/png', webp: 'image/webp' })[
-  String(f).split('.').pop().toLowerCase()] || 'image/jpeg';
+// L'immagine allegata è il JPEG di condivisione del progetto (vedi sopra),
+// o la predefinita se non s'è potuto crearlo: Zapier la passa a LinkedIn e
+// Facebook, che il WebP non lo prendono sempre. RSS vuole il peso in byte.
 // È il ponte fra il pannello e i social: quando il cliente pubblica un
 // progetto, il sito si ricostruisce, il progetto compare qui, e Zapier
 // se ne accorge. Niente webhook, che sul piano gratuito non ci sono.
@@ -861,6 +940,7 @@ const tipoImmagine = (f) => ({ jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'imag
 {
   const base = (process.env.URL || SITE).replace(/\/+$/, '') + '/';
   const quando = new Date().toUTCString();
+  const predefinita = { file: OG_PREDEFINITA, byte: (await stat(join(ROOT, OG_PREDEFINITA))).size };
 
   // Il guid NON contiene l'indirizzo: e' con lui che Zapier riconosce i
   // progetti gia' visti. Se dipendesse dal dominio, il giorno del lancio
@@ -868,14 +948,14 @@ const tipoImmagine = (f) => ({ jpg: 'image/jpeg', jpeg: 'image/jpeg', png: 'imag
   // social in blocco. Lo slug invece non cambia mai.
   const voci = projects.slice(0, 30).map((p) => {
     const url = base + projectHref(p);
-    const foto = p.img ? base + p.img : '';
+    const foto = p.img ? condivisione.get(p.slug) || predefinita : null;
     return `    <item>
       <title>${esc(p.shortTitle)}</title>
       <link>${esc(url)}</link>
       <guid isPermaLink="false">cf-consulting-progetto-${esc(p.slug)}</guid>
       <description>${esc(p.lead || p.title)}</description>
       <category>${esc(p.cat)}</category>${foto ? `
-      <enclosure url="${esc(foto)}" type="${tipoImmagine(foto)}" length="0" />` : ''}
+      <enclosure url="${esc(base + foto.file)}" type="image/jpeg" length="${foto.byte}" />` : ''}
     </item>`;
   }).join('\n');
 
@@ -930,7 +1010,8 @@ ${voci}
   // Netlify pubblica tutta la cartella: i file di lavoro (dati grezzi, progetti
   // in attesa, script, note) li nascondiamo. Il «!» serve perché i file esistono.
   righe.push('# File di lavoro: non si aprono dal sito');
-  for (const da of ['/src/*', '/strumenti/*', '/mockup/*', '/build.mjs', '/anteprima.py', '/HANDOFF.md'])
+  for (const da of ['/src/*', '/strumenti/*', '/mockup/*', '/node_modules/*', '/build.mjs',
+    '/package.json', '/package-lock.json', '/anteprima.py', '/HANDOFF.md'])
     righe.push(`${da.padEnd(larghezza)} /404.html  404!`);
   righe.push('');
   blocco('Pagine principali', Object.entries(mappa.pagine));
