@@ -775,6 +775,19 @@ await censisci('img');
 
 const written = [];
 
+const impronteCaricate = new Map();
+async function versioneCaricate(html) {
+  const trovati = [...new Set(html.match(/img\/caricate\/[^"'\s,?)]+\.(?:webp|jpe?g|png|gif)(?![?\w])/g) || [])];
+  for (const percorso of trovati) {
+    if (!impronteCaricate.has(percorso)) {
+      const dati = await readFile(join(ROOT, percorso)).catch(() => null);
+      impronteCaricate.set(percorso, dati ? createHash('sha1').update(dati).digest('hex').slice(0, 8) : '');
+    }
+  }
+  return html.replace(/img\/caricate\/[^"'\s,?)]+\.(?:webp|jpe?g|png|gif)(?![?\w])/g,
+    (p) => (impronteCaricate.get(p) ? `${p}?v=${impronteCaricate.get(p)}` : p));
+}
+
 async function emit(meta, content) {
   const depth = meta.out.split('/').length - 1;
   const base = depth ? '../'.repeat(depth) : '';
@@ -812,6 +825,13 @@ async function emit(meta, content) {
       return `srcset="${voci.join(', ')}"`;
     });
   }
+
+  // Le foto caricate dal pannello prendono un «?v=» col contenuto del file.
+  // Mentre si prepara un progetto in attesa il pannello le chiede al sito, che
+  // non le ha ancora: alcuni browser si erano tenuti quella risposta «non
+  // trovata» e la foto restava rotta anche dopo la pubblicazione (20/11/2026).
+  // Con l'indirizzo nuovo il browser la richiede. Testi e nomi dei file non cambiano.
+  html = await versioneCaricate(html);
 
   const outPath = join(ROOT, meta.out);
   await mkdir(dirname(outPath), { recursive: true });
