@@ -41,10 +41,30 @@
   [headers.values]
     Cache-Control = "public, max-age=0, must-revalidate"
 
-# Le immagini invece non cambiano mai: hanno un nome diverso quando
-# sono diverse, quindi possono restare in cache a lungo.
+# Le immagini nostre invece non cambiano mai: hanno un nome diverso quando
+# sono diverse, quindi possono restare in cache a lungo. NON img/caricate:
+# il pannello chiede le foto appena caricate prima che esistano sul sito, e
+# Netlify mette questa intestazione anche sulla risposta «non trovata»: il
+# browser se la ricordava per un anno e la foto restava rotta (20/11/2026).
+# Le foto caricate restano con la regola di Netlify: si ricontrollano ogni volta.
 [[headers]]
-  for = "/img/*"
+  for = "/img/progetti/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+[[headers]]
+  for = "/img/sede/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+[[headers]]
+  for = "/img/team/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+[[headers]]
+  for = "/img/certificazioni/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+[[headers]]
+  for = "/img/condivisione/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
