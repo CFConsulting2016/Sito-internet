@@ -2,6 +2,9 @@
 # Generato da build.mjs: non modificare a mano, si riscrive a ogni build.
 # Le voci da cambiare stanno in src/data/redirect.json.
 
+# Indirizzo provvisorio → dominio
+https://cf-consulting.netlify.app/*                                            https://www.cieffeconsulting.eu/:splat  301!
+
 # File di lavoro: non si aprono dal sito
 /src/*                                                                         /404.html  404!
 /strumenti/*                                                                   /404.html  404!

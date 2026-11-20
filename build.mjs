@@ -1177,6 +1177,13 @@ ${voci}
   righe.push('');
   // Netlify pubblica tutta la cartella: i file di lavoro (dati grezzi, progetti
   // in attesa, script, note) li nascondiamo. Il «!» serve perché i file esistono.
+  // L'indirizzo provvisorio di Netlify porta al dominio vero: niente doppioni
+  // per Google, e i vecchi link (pannello, feed di Zapier) continuano a funzionare.
+  righe.push('# Indirizzo provvisorio → dominio');
+  // destinazione scritta per esteso: SITE su Netlify viene da URL e non deve mai
+  // poter tornare all'indirizzo provvisorio (sarebbe un giro infinito)
+  righe.push(`${'https://cf-consulting.netlify.app/*'.padEnd(larghezza)} https://www.cieffeconsulting.eu/:splat  301!`);
+  righe.push('');
   righe.push('# File di lavoro: non si aprono dal sito');
   for (const da of ['/src/*', '/strumenti/*', '/mockup/*', '/node_modules/*', '/build.mjs',
     '/package.json', '/package-lock.json', '/anteprima.py', '/HANDOFF.md'])
@@ -1201,7 +1208,7 @@ console.log(`${written.length} pagine + sitemap.xml + robots.txt`);
 // meglio un avviso a ogni build che un sito invisibile per settimane
 try {
   const toml = await read(ROOT, 'netlify.toml');
-  if (/X-Robots-Tag\s*=\s*"noindex/.test(toml)) {
+  if (/for\s*=\s*"\/\*"\s*\[headers\.values\][^\[]*X-Robots-Tag\s*=\s*"noindex/.test(toml)) {   // solo il blocco su tutto il sito, non quello di /admin/
     console.log('\nNOTA: il sito è escluso dai motori di ricerca (X-Robots-Tag in');
     console.log('netlify.toml). Giusto adesso, da togliere il giorno del lancio.');
   }

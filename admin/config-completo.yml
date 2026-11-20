@@ -63,9 +63,9 @@ public_folder: img/caricate
 # Dove vive il sito. Serve a Decap per il collegamento "vedi il sito"
 # e per le anteprime. Quando sposteremo il dominio, qui vanno i due
 # indirizzi nuovi.
-site_url: https://cf-consulting.netlify.app
-display_url: https://cf-consulting.netlify.app
-logo_url: https://cf-consulting.netlify.app/img/logo-cf-dark.webp
+site_url: https://www.cieffeconsulting.eu
+display_url: https://www.cieffeconsulting.eu
+logo_url: https://www.cieffeconsulting.eu/img/logo-cf-dark.webp
 
 locale: it
 
