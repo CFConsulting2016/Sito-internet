@@ -841,7 +841,8 @@ for (const p of projects) {
 
 const sitemap = '<?xml version="1.0" encoding="UTF-8"?>\n'
   + '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
-  + written.map((u) => `  <url><loc>${SITE}${u === 'index.html' ? '' : u}</loc></url>`).join('\n')
+  + written.filter((u) => u !== '404.html')   // la pagina d'errore non va indicizzata
+    .map((u) => `  <url><loc>${SITE}${u === 'index.html' ? '' : u}</loc></url>`).join('\n')
   + '\n</urlset>\n';
 await writeFile(join(ROOT, 'sitemap.xml'), sitemap, 'utf8');
 

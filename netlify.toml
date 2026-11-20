@@ -20,6 +20,19 @@
   # che nessuno abbia toccato una riga.
   NODE_VERSION = "22"
 
+# Protezioni di base per tutte le pagine: il browser non indovina il tipo
+# dei file, il sito non si apre dentro altri siti, ai link esterni arriva
+# solo il dominio e non l'indirizzo completo, niente fotocamera, microfono
+# o posizione. La mappa di Google è un iframe dentro le nostre pagine:
+# queste regole non la toccano.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "SAMEORIGIN"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=()"
+
 # Le pagine sono statiche e cambiano a ogni pubblicazione: non vanno
 # tenute in cache dal browser, altrimenti il cliente modifica un
 # progetto e non vede la differenza.
