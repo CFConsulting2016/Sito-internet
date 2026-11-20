@@ -789,7 +789,9 @@ textarea:focus-visible,
   background: radial-gradient(80% 110% at 30% 50%,
     rgba(15,26,43,.35) 0%, rgba(15,26,43,.82) 68%, var(--navy) 100%);
 }
-.page-hero__inner { position: relative; padding: 72px 0 84px; }
+/* solo sopra e sotto: il margine laterale lo dà .container (prima queste
+   regole lo azzeravano e su telefono il testo toccava il bordo) */
+.page-hero__inner { position: relative; padding-block: 72px 84px; }
 .page-hero__title {
   margin: 0;
   max-width: 900px;
@@ -1398,7 +1400,9 @@ textarea:focus-visible,
   background: none;
   border: 0;
   border-bottom: 1px solid var(--border);
-  padding: 24px 4px;
+  /* a destra più spazio: il segno ruotato di 45° si allarga e su telefono
+     sporgeva di un pixel, facendo scorrere la pagina di lato */
+  padding: 24px 10px 24px 4px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -1834,8 +1838,8 @@ textarea:focus-visible,
 .block-head--narrow { max-width: 620px; margin-bottom: 44px; }
 .rule--gap { margin-top: 26px; }
 .cta-band--tight { padding-block: 76px; }
-.section-inner-tight { padding: 72px 0 96px; }
-.section-inner-wide { padding: 84px 0; }
+.section-inner-tight { padding-block: 72px 96px; }
+.section-inner-wide { padding-block: 84px; }
 
 .sr-only {
   position: absolute;
@@ -1851,12 +1855,12 @@ textarea:focus-visible,
 .block-head--tight { margin-bottom: 30px; }
 .two-col--contact { gap: 56px; }
 .section--navy-gap { margin-top: 56px; }
-.section-inner-project { padding: 48px 0 88px; }
+.section-inner-project { padding-block: 48px 88px; }
 .head-row__title--lg { font-size: clamp(24px, 3vw, 32px); }
 .gallery-head { justify-content: flex-end; }
-.section-inner-service { padding: 76px 0 88px; }
-.section-inner-archive { padding: 56px 0 40px; }
-.notfound { padding: 120px 0 140px; text-align: center; }
+.section-inner-service { padding-block: 76px 88px; }
+.section-inner-archive { padding-block: 56px 40px; }
+.notfound { padding-block: 120px 140px; text-align: center; }
 .notfound__code {
   font-size: clamp(60px, 12vw, 120px);
   font-weight: 600;
@@ -2539,7 +2543,7 @@ textarea:focus-visible,
 
 /* --- 28. Pagine legali -------------------------------------- */
 .page-hero--plain { background: var(--navy); }
-.page-hero--plain .page-hero__inner { padding: 64px 0 68px; }
+.page-hero--plain .page-hero__inner { padding-block: 64px 68px; }
 
 .legale { max-width: 76ch; }
 .legale__intro {
