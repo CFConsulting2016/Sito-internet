@@ -2522,6 +2522,50 @@ textarea:focus-visible,
   color: var(--text-2);
 }
 
+/* sotto i loghi: l'anteprima di ogni certificato, cliccabile verso il PDF */
+.certificati-mini {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 22px 28px;
+  margin-top: 26px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.certificato-mini {
+  width: 132px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: var(--text-2);
+  text-decoration: none;
+}
+.certificato-mini img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 8px rgba(16, 24, 40, .08);
+  background: #fff;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.certificato-mini:hover img,
+.certificato-mini:focus-visible img {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(16, 24, 40, .14);
+}
+.certificato-mini__nome {
+  margin-top: 10px;
+  font-size: 11px;
+  line-height: 1.4;
+  font-weight: 600;
+  color: var(--heading);
+}
+.certificato-mini__chi { font-size: 11px; line-height: 1.4; }
+@media (max-width: 760px) {
+  .certificato-mini { width: calc(50% - 14px); max-width: 150px; }
+}
+
 .site-footer__legal {
   margin-top: 36px;
   padding-top: 22px;

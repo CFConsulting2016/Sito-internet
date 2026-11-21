@@ -364,6 +364,12 @@ collections:
         media_folder: /documenti
         public_folder: documenti
         hint: Compare il pulsante «Scarica il certificato». Attenzione ai dati personali che contiene.
+      - label: Anteprima del certificato
+        name: anteprima
+        widget: image
+        required: false
+        choose_url: false
+        hint: "Un'immagine della prima pagina del certificato (per esempio uno screenshot). Compare in fondo a ogni pagina e, cliccandola, si apre il PDF. Se manca, il certificato non compare lì ma resta in Chi siamo."
       - label: Marchio
         name: marchio
         widget: image

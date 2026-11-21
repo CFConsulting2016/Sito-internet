@@ -10,6 +10,7 @@
  */
 import { readFile, writeFile, readdir, mkdir, rm, stat, unlink } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
+import { existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -320,7 +321,24 @@ function fasciaMarchi(azienda, misure) {
   for (const s of azienda.sostegni || []) {
     voci.push({ file: s.file, alt: s.nome, testo: s.testo });
   }
-  if (!voci.length) return '';
+  // sotto i loghi, l'anteprima di ogni certificato (d'impresa e personali):
+  // cliccandola si apre il PDF (richiesta del cliente, 21/11/2026)
+  const certi = [...(azienda.certificazioni || []), ...(azienda.certificazioniPersonali || [])]
+    .filter((c) => c.anteprima && c.pdf);
+  if (!voci.length && !certi.length) return '';
+
+  const miniature = certi.length ? `
+  <div class="container certificati-mini">
+${certi.map((c) => {
+    const titolo = c.nome || c.titolo;
+    const chi = c.persona || '';
+    return `    <a class="certificato-mini" href="${esc(c.pdf)}" target="_blank" rel="noopener" title="${esc([titolo, chi].filter(Boolean).join(' — '))} (PDF)">
+      <img src="${c.anteprima}" alt="Certificato ${esc(titolo)}${chi ? ' — ' + esc(chi) : ''}"${attrMisure(misure.get(c.anteprima))} loading="lazy" />
+      <span class="certificato-mini__nome">${esc(titolo)}</span>${chi ? `
+      <span class="certificato-mini__chi">${esc(chi)}</span>` : ''}
+    </a>`;
+  }).join('\n')}
+  </div>` : '';
 
   return `<section class="marchi">
   <div class="container marchi__inner">
@@ -328,8 +346,17 @@ ${voci.map((v) => `    <figure class="marchio">
       <img class="marchio__logo" src="${v.file}" alt="${esc(v.alt)}"${attrMisure(misure.get(v.file))} loading="lazy" />
       <figcaption class="marchio__testo">${v.testo}</figcaption>
     </figure>`).join('\n')}
-  </div>
+  </div>${miniature}
 </section>`;
+}
+
+/** L'immagine della prima pagina del certificato: quella caricata dal pannello
+ *  o, se manca, img/certificazioni/anteprime/<nome del PDF>.webp. */
+function anteprimaCert(c) {
+  if (c.anteprima) return String(c.anteprima).replace(/^\/+/, '');
+  const nome = (c.pdf || '').split('/').pop().replace(/\.pdf$/i, '');
+  const f = nome && `img/certificazioni/anteprime/${nome}.webp`;
+  return f && existsSync(join(ROOT, f)) ? f : '';
 }
 
 function sedeMedia(sede) {
@@ -573,10 +600,10 @@ const azienda = JSON.parse(await read(SRC, 'data', 'azienda.json'));
   const certificazioni = await leggiCartella('certificazioni');
   azienda.certificazioni = certificazioni.filter((c) => c.tipo === 'impresa').map((c) => ({
     nome: c.titolo, ente: c.ente, numero: c.numero, scadenza: c.scadenza,
-    ambito: c.specializzazione, file: percorso(c.marchio), pdf: percorso(c.pdf) }));
+    ambito: c.specializzazione, file: percorso(c.marchio), pdf: percorso(c.pdf), anteprima: anteprimaCert(c) }));
   azienda.certificazioniPersonali = certificazioni.filter((c) => c.tipo !== 'impresa').map((c) => ({
     persona: c.persona, titolo: c.titolo, specializzazione: c.specializzazione,
-    ente: c.ente, numero: c.numero, scadenza: c.scadenza, pdf: percorso(c.pdf) }));
+    ente: c.ente, numero: c.numero, scadenza: c.scadenza, pdf: percorso(c.pdf), anteprima: anteprimaCert(c) }));
 }
 // Una certificazione scaduta non si mostra: presentarla come valida, in una
 // gara, è peggio che non averla. Due mesi prima si avvisa di caricare il rinnovo.
@@ -738,7 +765,8 @@ const schedeCertificati = await certificatiSchede(azienda);
 // misure vere dei marchi (fascia in fondo e loghi delle certificazioni):
 // con width e height la pagina non salta quando l'immagine arriva
 const misureMarchi = new Map();
-for (const f of [...azienda.certificazioni.map((c) => c.file), ...(azienda.sostegni || []).map((s) => s.file)]) {
+for (const f of [...azienda.certificazioni.map((c) => c.file), ...(azienda.sostegni || []).map((s) => s.file),
+  ...[...azienda.certificazioni, ...azienda.certificazioniPersonali].map((c) => c.anteprima)]) {
   if (f && !misureMarchi.has(f)) misureMarchi.set(f, await misureWebp(f));
 }
 
