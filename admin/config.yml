@@ -369,6 +369,6 @@ collections:
         widget: image
         required: false
         choose_url: false
-        hint: Solo per le certificazioni dell'azienda, il logo che compare in fondo a ogni pagina.
+        hint: "Il logo dell'ente che ha rilasciato il certificato (non quello di Accredia da solo). Compare in fondo a ogni pagina: cliccandolo si apre il PDF, o la sezione Certificazioni se più certificati hanno lo stesso logo."
       - { name: ordine, widget: hidden, required: false }
 
