@@ -369,7 +369,7 @@ collections:
         widget: image
         required: false
         choose_url: false
-        hint: "Il logo dell'ente che ha rilasciato il certificato (non quello di Accredia da solo). Compare in fondo a ogni pagina: cliccandolo si apre il PDF, o la sezione Certificazioni se più certificati hanno lo stesso logo."
+        hint: Solo per le certificazioni dell'azienda, il logo che compare in fondo a ogni pagina.
       - { name: ordine, widget: hidden, required: false }
 
   # --- news (solo Fausto) -----------------------------------

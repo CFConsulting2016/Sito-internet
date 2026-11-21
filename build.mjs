@@ -311,34 +311,23 @@ function rigaAlbo(a) {
  *  Accanto al marchio stanno norma e numero di certificato, come chiedono
  *  i regolamenti d'uso degli enti. */
 function fasciaMarchi(azienda, misure) {
-  // Solo loghi, come chiesto dal cliente (21/11/2026): uno per ente, il logo
-  // dell'organismo che ha rilasciato il certificato (mai Accredia da solo:
-  // RG-09 §7.2). Un certificato solo → si apre il PDF; più certificati con lo
-  // stesso logo (es. le due CERTing) → la sezione Certificazioni di Chi siamo.
-  const gruppi = new Map();
-  for (const c of [...(azienda.certificazioni || []), ...(azienda.certificazioniPersonali || [])]) {
-    if (!c.file) continue;                       // senza marchio non c'è logo da mostrare
-    if (!gruppi.has(c.file)) gruppi.set(c.file, []);
-    gruppi.get(c.file).push(c);
-  }
   const voci = [];
-  for (const [file, certi] of gruppi) {
-    const descrivi = (c) => [c.nome || c.titolo, c.persona].filter(Boolean).join(' — ');
-    const alt = `${certi[0].ente}: ${certi.map(descrivi).join('; ')}`;
-    const unico = certi.length === 1 && certi[0].pdf;
-    voci.push({ file, alt, href: unico ? certi[0].pdf : 'chi-siamo.html#certificazioni', nuovaScheda: Boolean(unico) });
+  for (const c of (azienda.certificazioni || []).filter((x) => x.file)) { // senza marchio non c'è logo da mostrare
+    const testo = `${c.nome} &middot; certificato n. ${c.numero} &middot; ${c.ente}`;
+    voci.push({ file: c.file, alt: `${c.nome} — ${c.ente}`,
+      testo: c.pdf ? `<a href="${esc(c.pdf)}" target="_blank" rel="noopener">${testo}</a>` : testo });
   }
-  for (const s of azienda.sostegni || []) voci.push({ file: s.file, alt: s.nome });
+  for (const s of azienda.sostegni || []) {
+    voci.push({ file: s.file, alt: s.nome, testo: s.testo });
+  }
   if (!voci.length) return '';
 
-  return `<section class="marchi" aria-label="Certificazioni">
+  return `<section class="marchi">
   <div class="container marchi__inner">
-${voci.map((v) => {
-    const img = `<img class="marchio__logo" src="${v.file}" alt="${esc(v.alt)}"${attrMisure(misure.get(v.file))} loading="lazy" />`;
-    return v.href
-      ? `    <a class="marchio" href="${esc(v.href)}" title="${esc(v.alt)}"${v.nuovaScheda ? ' target="_blank" rel="noopener"' : ''}>${img}</a>`
-      : `    <span class="marchio">${img}</span>`;
-  }).join('\n')}
+${voci.map((v) => `    <figure class="marchio">
+      <img class="marchio__logo" src="${v.file}" alt="${esc(v.alt)}"${attrMisure(misure.get(v.file))} loading="lazy" />
+      <figcaption class="marchio__testo">${v.testo}</figcaption>
+    </figure>`).join('\n')}
   </div>
 </section>`;
 }
@@ -587,7 +576,7 @@ const azienda = JSON.parse(await read(SRC, 'data', 'azienda.json'));
     ambito: c.specializzazione, file: percorso(c.marchio), pdf: percorso(c.pdf) }));
   azienda.certificazioniPersonali = certificazioni.filter((c) => c.tipo !== 'impresa').map((c) => ({
     persona: c.persona, titolo: c.titolo, specializzazione: c.specializzazione,
-    ente: c.ente, numero: c.numero, scadenza: c.scadenza, file: percorso(c.marchio), pdf: percorso(c.pdf) }));
+    ente: c.ente, numero: c.numero, scadenza: c.scadenza, pdf: percorso(c.pdf) }));
 }
 // Una certificazione scaduta non si mostra: presentarla come valida, in una
 // gara, è peggio che non averla. Due mesi prima si avvisa di caricare il rinnovo.
@@ -749,7 +738,7 @@ const schedeCertificati = await certificatiSchede(azienda);
 // misure vere dei marchi (fascia in fondo e loghi delle certificazioni):
 // con width e height la pagina non salta quando l'immagine arriva
 const misureMarchi = new Map();
-for (const f of [...azienda.certificazioni, ...azienda.certificazioniPersonali, ...(azienda.sostegni || [])].map((c) => c.file)) {
+for (const f of [...azienda.certificazioni.map((c) => c.file), ...(azienda.sostegni || []).map((s) => s.file)]) {
   if (f && !misureMarchi.has(f)) misureMarchi.set(f, await misureWebp(f));
 }
 
