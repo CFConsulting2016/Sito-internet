@@ -1,4 +1,6 @@
 {
+  "luogoCantiere": "Terni",
+  "dataFine": "2026-11-11",
   "foto": [
     "img/progetti/ater-umbria-comune-di-terni-_-riqualificazione-urbana-quartiere-san-lucio/ater-umbria-comune-di-terni-_-riqualific-01.webp",
     "img/progetti/ater-umbria-comune-di-terni-_-riqualificazione-urbana-quartiere-san-lucio/ater-umbria-comune-di-terni-_-riqualific-02.webp",
@@ -72,7 +74,7 @@
     "committente": "ATER UMBRIA-COMUNE DI TERNI\nVia G. Ferraris n°13\n05100 TERNI\nEMAIL PEC: ater.umbria@legalmail.it\nRUP Ing.Elisa Lucaroni",
     "impresa": "ATI PICONE COSTRUZIONI Srl/ITALSTEM Spa\nVia Bramante n°3/D\n05100 TERNI (Tr)\nEmail PEC: piconecostruzioni@pec.it",
     "progettisti": "CF Consulting Srl (Capogruppo)\nVia A. Bartocci n°7T – 05100 terni (tr)\n05100 terni (tr)\nProgettista Responsabile: CIABACCHINI Ing. Alessandro\nTESTARELLA Ing. Fabrizio\nMAESTRI Geom. Niccolò\nMERLINI Geom. Mirko\nPERUGINI Ing. Federica\nTec. Riccardo CARPINELLI\nMartelli Ing. Carlo\nDott. Paolo PACCARA",
-    "servizi": "Progettazione ESECUTIVA\nProgettazione antincendio\nCoordinamento Sicurezza in fase di Progettazione\nCF Consulting ha al suo interno uno staff tecnico di professionisti che pianificano il servizio di progettazione seguendo specifiche procedure imposte dal proprio Sistema Gestione Qualità certificato da Kiwa Cermet a garanzia di un elevato standard qualitativo del prodotto finale."
+    "servizi": "Progettazione ESECUTIVA Architettonica e strutturale\nProgettazione ANTINCENDIO\nCoordinamento Sicurezza in fase di Progettazione\n"
   },
   "scheda": {
     "importo": "10.545.488 €",
@@ -86,6 +88,8 @@
     "inizio": "2024",
     "responsabile": "CIABACCHINI Ing. Alessandro"
   },
+  "data": "2024-01-16",
+  "importoLavoro": 12345000,
   "cat": "Pubblico",
   "title": "ATER UMBRIA-COMUNE DI TERNI – Riqualificazione Urbana Quartiere “San Lucio”",
   "tag": "ATER UMBRIA-COMUNE DI TERNI",
